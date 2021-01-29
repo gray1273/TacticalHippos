@@ -1,0 +1,31 @@
+***Planning to do GUIs with Ruby-2d see https://www.ruby2d.com/learn/get-started/***
+
+0. Setup
+	Get number of players (1-4) and player names
+	Loop the game
+		Game game = Game.new
+		do {wait(), ... } while game.inProgress || game.playAgain
+	Add the initial mouse click method (just call Game Class's updateGame with mouse position)
+	Create PlayAgain Class - Constructor, isInBounds(position), yesClicked(position), noClicked(position)
+
+1. Game Class
+	Generate all cards in the deck and shuffle it -- set game.inProgress = true
+	Create list of cards currently shown - call show on those cards
+	Method to swap the selected 3 cards with the next 3 (remove old cards and show new cards)
+	selectCard(Card) - Given this card if 3 cards are now selected call method above
+
+2. Mixed Game Class / Card Class
+	Method to confirm that a set of 3 cards is or is not a set
+	Method that returns a set from those currently shown - Can just brute force
+	Card Class - Constructor(int, int, int, int) - Where each int cooresponds to a value - Opacity, Shape, Count, Color; Corresponding getter methods
+
+3. Game Class
+	Create updateGame(position) - get the click's conext- Loop through UI elements calling .isInBounds(position) for each, call corresponding interfacing method if isInBounds
+	Create interfacing methods between game and graphics - setCurrentPlayer, addHint, playAgain (selectCard also interfacing, implemented by 1.)
+
+4. Way to swap between players 
+	(i.e. create a box with player's name, when clicked, that player is selecting, change text color or something to emphasize)
+	Hint Class - Constructor, isInBounds
+	Player Class - name, points, updatePoints, addPoints, isSelected, Constructor(string name, int index), select, deselect, isInBounds(position)
+
+5. Card class methods: isShown, isSelected, addHint, select, deselect, show(param table index), remove, isInBounds
