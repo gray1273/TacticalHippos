@@ -1,25 +1,23 @@
 ***Planning to do GUIs with Ruby-2d see https://www.ruby2d.com/learn/get-started/***
 
-0. Setup
-	Get number of players (1-4) and player names
-	Loop the game
-		Game game = Game.new
-		do {wait(), ... } while game.inProgress || game.playAgain
+0. Initial Setup
+	Get number of players (1-4) and player names, start game
+	**GUI will require text input**
+
+1. Final GUI page
 	Add the initial mouse click method (just call Game Class's updateGame with mouse position)
 	Create PlayAgain Class - Constructor, isInBounds(position), yesClicked(position), noClicked(position)
 
-1. Game Class
+2. Game Class
 	Generate all cards in the deck and shuffle it -- set game.inProgress = true
 	Create list of cards currently shown - call show on those cards
 	Method to swap the selected 3 cards with the next 3 (remove old cards and show new cards)
-	selectCard(Card) - Given this card if 3 cards are now selected call method above
-
-2. Mixed Game Class / Card Class
 	Method to confirm that a set of 3 cards is or is not a set
 	Method that returns a set from those currently shown - Can just brute force
-	Card Class - Constructor(int, int, int, int) - Where each int cooresponds to a value - Opacity, Shape, Count, Color; Corresponding getter methods
+	selectCard(Card) - Given this card if 3 cards are now selected call method above
 
 3. Game Class
+	Add the initial mouse click method (should just call updateGame with the mouse's position)
 	Create updateGame(position) - get the click's conext- Loop through UI elements calling .isInBounds(position) for each, call corresponding interfacing method if isInBounds
 	Create interfacing methods between game and graphics - setCurrentPlayer, addHint, playAgain (selectCard also interfacing, implemented by 1.)
 
@@ -29,3 +27,4 @@
 	Player Class - name, points, updatePoints, addPoints, isSelected, Constructor(string name, int index), select, deselect, isInBounds(position)
 
 5. Card class methods: isShown, isSelected, addHint, select, deselect, show(param table index), remove, isInBounds
+	Card Class - Constructor(int, int, int, int) - Where each int cooresponds to a value - Opacity, Shape, Count, Color; Corresponding getter methods
