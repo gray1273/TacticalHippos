@@ -16,5 +16,17 @@ class Runner
 	def p2Score
 		@p2Score
 	end
-
+	#Waits until either q or p is pressed (the button that either player uses to call out a set)
+	def waitUntilSetSeen
+		require 'io/console'
+		readChar = ' ';
+		while (readChar != 'q' && readChar != 'p') do
+			readChar = STDIN.getch
+		end
+		if(readChar == 'q')
+			# stuff with p1 score
+		else
+			# stuff with p2 score
+		end
+	end
 end
