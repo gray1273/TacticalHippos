@@ -24,11 +24,8 @@ class Runner
 		while (readChar != 'q' && readChar != 'p') do
 			readChar = STDIN.getch
 		end
-		if(readChar == 'q')
-			# stuff with p1 score
-		else
-			# stuff with p2 score
-		end
+		# TODO: change to the columns displayed
+		processCallout(readChar == 'q', 4)
 	end
 	# Gets input from the console of what set the player wants to input. Checks that set and increments if valid.
 	# Inputs:
@@ -51,7 +48,7 @@ class Runner
 				echo "Invalid input. Try again."
 			end
 		end
-		# CALL METHOD THAT CHECKS SET
+		# TODO: call method that checks set
 		validSet = true
 		if(validSet)
 			if(player)
