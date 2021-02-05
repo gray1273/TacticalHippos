@@ -4,7 +4,17 @@ class Board
 
   #print the in used cards
   def printCurrentCards()
-    puts Deck.inUseCards
+    @current = Deck.getCurrent()
+    # Print Column headings
+    puts "----A--------B--------C----"
+    # Print the cards
+    (@current.length / 3).times { |i|
+      print "#{i.to_s}"
+      3.times { |j|
+        print "   |   " + @current[3*i + j].consoleString
+      }
+      puts "" # Newline
+    }
   end
 
   #method used to determine if any set exists, if not draw three more cards
