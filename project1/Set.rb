@@ -1,6 +1,11 @@
 # Project 1
 
+require './Runner.rb'
+require './Board.rb'
+
 #require_relative 'runner'
+	runner = Runner.new
+	board = Board.new
 	#Waits until  s is pressed to start game
 	def waitUntilStart
 		require 'io/console'
@@ -21,7 +26,6 @@
         puts "They all have the same color or have three different colors."
     end
     
-    waitUntilStart()
     printRules()
-    #TODO: Syntax errors in Runner
-    #Runner.waitUntilCallout()
+    waitUntilStart()
+    while(runner.waitUntilCallout())do end
