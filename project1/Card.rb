@@ -1,5 +1,6 @@
 #Create Card object, attributes, and instance methods to obtain the data
 class Card
+	# Source: https://www.rubyguides.com/2018/11/attr_accessor/
 	attr_accessor :color, :opacity, :shape, :number
 	def initialize(color,opacity,shape,number)
 		#Take integer inputs and match them to a type
