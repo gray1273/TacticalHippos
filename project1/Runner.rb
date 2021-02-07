@@ -1,4 +1,4 @@
-# Thompson.3623
+require './Deck.rb'
 
 class Runner
 	# Scores for each player
@@ -30,7 +30,7 @@ class Runner
 			readChar = STDIN.getch
 		end
 		if readChar != 'q' then
-			processCallout(readChar == 'z', 4)
+			processCallout(readChar == 'z', Deck.getCurrent().length / 3)
 		end
 		return readChar != 'q'
 	end
