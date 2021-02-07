@@ -17,7 +17,9 @@ class Runner
 	def p2Score
 		@p2Score
 	end
-
+    def printPlayerScores
+            puts "Player 1 Score: #{@p1Score.to_s}   Player 2 Score: #{@p2Score.to_s}"
+    end
 	#Waits until either z or m is pressed (the button that either player uses to call out a set) or q (to quit)
 	def waitUntilCallout
 		# Source: https://stackoverflow.com/questions/39964008/read-a-single-char-from-stdin-without-pressing-enter/39967524

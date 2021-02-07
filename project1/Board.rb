@@ -6,7 +6,21 @@ class Board
 
   #print the in used cards
   def printCurrentCards()
-    puts Deck.inUseCards
+    @current = Deck.getCurrent()
+    rowLength = @current.length / 3
+    # Print Column headings
+    print "     " # Extra spacing so it doesn't label the row headings with a column head
+    rowLength.times { |i| print "---#{i.to_s}---" }
+    puts "" #newline
+    
+    # Print the cards
+    3.times { |i|
+      print "#{(i+65).chr}:   "
+      rowLength.times { |j|
+        print @current[i * rowLength + j].consoleString
+      }
+      puts "" # Newline
+    }
   end
 
   #method used to determine if any set exists, if not draw three more cards
