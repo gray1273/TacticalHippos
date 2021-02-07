@@ -5,13 +5,17 @@ class Board
   #print the in used cards
   def printCurrentCards()
     @current = Deck.getCurrent()
+    rowLength = @current.length / 3
     # Print Column headings
-    puts "----A--------B--------C----"
+    print "     " # Extra spacing so it doesn't label the row headings with a column head
+    rowLength.times { |i| print "---#{i.to_s}---" }
+    puts "" #newline
+    
     # Print the cards
-    (@current.length / 3).times { |i|
-      print "#{i.to_s}"
-      3.times { |j|
-        print "   |   " + @current[3*i + j].consoleString
+    3.times { |i|
+      print "#{(i+65).chr}:   "
+      rowLength.times { |j|
+        print @current[i * rowLength + j].consoleString
       }
       puts "" # Newline
     }
