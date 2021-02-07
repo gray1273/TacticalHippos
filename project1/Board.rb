@@ -1,5 +1,7 @@
 #Create Board object, check potential sets in the inUseCard.
 
+require './Deck.rb'
+
 class Board
 
   #print the in used cards

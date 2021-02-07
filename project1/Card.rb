@@ -19,19 +19,28 @@ class Card
 		
 		if(opacity == 1)
 			@opacity = "Open"
+			@opacityOpen = 0
+			@opacityClosed = 0
 		elsif(opacity == 2)
 			@opacity = "Striped"
+			@opacityOpen = 3
+			@opacityClosed = 23
 		else
 			@opacity = "Solid"
+			@opacityOpen = 4
+			@opacityClosed = 24
 		end
 		
 		#Match an integer to a shape value
 		if(shape == 1)
 			@shape = "Diamond"
+			@shapeChar = 'V'
 		elsif(shape == 2)
 			@shape = "Squiggles"
+			@shapeChar = '~'
 		else
 			@shape = "Circles"
+			@shapeChar = 'O'
 		end	
 		#The number entered can just be used
 		@number = number
@@ -39,7 +48,14 @@ class Card
 	
 	#Create an ouput string with the card and its values
 	def consoleString
-		"Color: \e[#{@colorKey}m#{@color}\e[0m, Opacity: #{@opacity}, Shape: #{@shape}, Number: #{@number}"
+		if(number == 1)
+			"[\e[#{@opacityOpen}m\e[#{@colorKey}m  #{@shapeChar} \e[0m \e[#{@opacityClosed}m]"
+		elsif(number == 2)
+			"[\e[#{@opacityOpen}m\e[#{@colorKey}m#{@shapeChar} #{@shapeChar}  \e[0m\e[#{@opacityClosed}m]"
+		else
+			"[\e[#{@opacityOpen}m\e[#{@colorKey}m#{@shapeChar} #{@shapeChar} #{@shapeChar}\e[0m\e[#{@opacityClosed}m]"
+		end
+		
 	#Color codes gotten from website at URL: https://stackoverflow.com/questions/1489183/how-can-i-use-ruby-to-colorize-the-text-output-to-a-terminal
 	end
 	
@@ -63,7 +79,8 @@ class Card
 	
 end
 #Test code and examples on how to initialize and use instance methods 
-#test = Card.new(3,2,1,3)
+#color, opacity, shape, number
+#test = Card.new(3,1,2,2)
 #puts test.consoleString
 
 
