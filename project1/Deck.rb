@@ -1,5 +1,6 @@
-
 # Controls a card deck for the game of Set.
+
+require './Card.rb'
 
 class Deck
   
