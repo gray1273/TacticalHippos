@@ -23,7 +23,7 @@ class Board
     }
   end
 
-  #method used to determine if any set exists, if not draw three more cards
+  #method taking the card in use as an array(Deck.getCurrent)and used to determine if any set exists, if not draw three more cards
   def containSet(inUseCards)
     
     #set the indicator as the boolean expression indcating is there a set or not
@@ -76,4 +76,22 @@ class Board
     end
     return indicator
   end
+
+  #method used to match the string that the user entered with cards.
+  def getCard (inputStr)
+    
+    @cardArray = inputStr.split(' ')
+    @cardOne = cardArray[0]
+    @cardTwo = cardArray[1]
+    @cardThree = cardArray[2]
+    
+    #TO-DO match these three cards with the card objects.
+
+    @indicator = checkSet(cardOne,cardTwo,cardThree)
+    return indicator
+
+
+  end
+
+
 end
