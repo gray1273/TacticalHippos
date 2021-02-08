@@ -44,8 +44,7 @@ class Runner
 	# => player: true = p1, false = p2
 	# => columns: # of columns being displayed on the board (4 to 6)
 	def processCallout(player)
-		setString = @board.getValidSetInput()
-		validSet = @board.
+		validSet = @board.getCard(@board.getValidSetInput())
 		if (validSet && player) then
 			@p1Score += 1
 		elsif (validSet)

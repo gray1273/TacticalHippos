@@ -129,7 +129,7 @@ class Board
       setString.upcase
       cardStrings = setString.split
       cardStrings.each{ |s| 
-        if ((s[0] == 'A' || s[0] == 'B' || s[0] == 'C') && (s[1].to_i <= columnCount)) then
+        if ((s[0] == 'A' || s[0] == 'B' || s[0] == 'C') && (s[1].to_i <= columnCount())) then
           invalidInput = false
         end
       }
