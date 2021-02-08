@@ -27,18 +27,18 @@ class Board
   def containSet(inUseCards)
     
     #set the indicator as the boolean expression indcating is there a set or not
-    @indicator = false
+    indicator = false
     
     #begin the loop to loop through all the combinations
-    @indexOne = 0
+    indexOne = 0
     while index < inUseCards.length && indicator!
-      @cardOne = inUseCards[indexOne]
-      @indexTwo = indexOne + 1
+      cardOne = inUseCards[indexOne]
+      indexTwo = indexOne + 1
       while indexTwo < inUseCards.length && indicator!
-        @cardTwo = inUseCards[indexTwo]
-        @indexThree = indexTwo + 1
+        cardTwo = inUseCards[indexTwo]
+        indexThree = indexTwo + 1
         while indexThree < inUseCards.length && indicator!
-          @cardThree = inUseCards[indexThree]
+          cardThree = inUseCards[indexThree]
           indicator = checkSet(cardOne,cardTwo,cardThree)
           if (indicator!)
             indexThree += 1
@@ -61,7 +61,7 @@ class Board
 
 #the function that check to see if a given combination of cards is a set
   def checkSet(a,b,c)
-    @indicator = true
+    indicator = true
     if (!((a.get_number == b.get_number) && (b.get_number == c.get_number) || (a.get_number != b.get_number) && (a.get_number != c.get_number) && (b.get_number != c.get_number))) 
       indicator = false
     end
@@ -79,19 +79,43 @@ class Board
 
   #method used to match the string that the user entered with cards.
   def getCard (inputStr)
-    
-    @cardArray = inputStr.split(' ')
-    @cardOne = cardArray[0]
-    @cardTwo = cardArray[1]
-    @cardThree = cardArray[2]
-    
-    #TO-DO match these three cards with the card objects.
+    #seperate three card notations using space
+    cardArray = inputStr.split(' ')
 
-    @indicator = checkSet(cardOne,cardTwo,cardThree)
+    #get the col name and row number to get the index of the card in the inUseCards object
+    tempOne = cardArray[0]
+    cardOneCol = tempOne.first(1)
+    cardOneRow = tempOne.last(1)
+    tempTwo = cardArray[1]
+    cardTwoCol = tempTwo.first(1)
+    cardTwoRow = tempTwo.last(1)
+    tempThree = cardArray[2]
+    cardThreeCol = tempThree.first(1)
+    cardThreeRow = tempThree.last(1)
+    @cardObj = Deck.getCurrent()
+    rowLength = @cardObj.length / 3
+
+    #get three card objects and pass it to checkSet
+    cardOne = @cardObj[getIndex(cardOneCol,cardOneRow,rowLength)]
+    cardTwo = @cardObj[getIndex(cardTwoCol,cardTwoRow,rowLength)]
+    cardThree = @cardObj[getIndex(cardThreeCol,cardThreeRow,rowLength)]
+    indicator = checkSet(cardOne,cardTwo,cardThree)
+    
     return indicator
-
-
   end
 
+  #the method that take the col number and row number then return the index in the array
+  def getIndex(colNum,rowNum,rowLength)
+    index = 0
+    if(colNum = "A")
+      index = rowNum
+    elsif (colNum = "B")
+      index = rowLength + rowNum
+    else
+      index = rowLength * 2 + rowNum
+    end
+    
+    return index
+  end
 
 end
