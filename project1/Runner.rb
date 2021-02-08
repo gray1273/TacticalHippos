@@ -1,13 +1,15 @@
-require './Deck.rb'
+require './Board.rb'
 
 class Runner
 	# Scores for each player
 	@p1Score
 	@p1Score
+	@board
 	#Constructor for class
 	def initialize
 		@p1Score = 0
 		@p2Score = 0
+		@board = Board.new
 	end
 
 	#Methods to get scores for each player
@@ -30,7 +32,9 @@ class Runner
 			readChar = STDIN.getch
 		end
 		if readChar != 'q' then
-			processCallout(readChar == 'z', Deck.getCurrent().length / 3)
+			processCallout(readChar == 'z')
+		else
+			puts "Player #{@p1Score > @p2Score ? 1 : 2} wins! Final score: #{@p1Score} to #{@p2Score}"
 		end
 		return readChar != 'q'
 	end
@@ -39,25 +43,9 @@ class Runner
 	# Inputs:
 	# => player: true = p1, false = p2
 	# => columns: # of columns being displayed on the board (4 to 6)
-	def processCallout(player, columns)
-		setString = ""
-		invalidInput = true
-		while invalidInput do
-			puts "Enter three card names separated by spaces, e.g. \"A1 B2 C3\""
-			setString = gets
-			setString.upcase
-			cardStrings = setString.split
-			cardStrings.each{ |s| 
-				if ((s[0] == 'A' || s[0] == 'B' || s[0] == 'C') && (s[1].to_i <= columns)) then
-					invalidInput = false
-				end
-			}
-			if invalidInput then
-				puts "Invalid input. Try again."
-			end
-		end
-		# TODO: call method that checks set
-		validSet = true
+	def processCallout(player)
+		setString = @board.getValidSetInput()
+		validSet = @board.
 		if (validSet && player) then
 			@p1Score += 1
 		elsif (validSet)

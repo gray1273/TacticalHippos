@@ -117,5 +117,26 @@ class Board
     
     return index
   end
-
+  def columnCount
+    return @deck.getCurrent().length / 3
+  end
+  def getValidSetInput
+    setString = ""
+    invalidInput = true
+    while invalidInput do
+      puts "Enter three card names separated by spaces, e.g. \"A1 B2 C3\""
+      setString = gets
+      setString.upcase
+      cardStrings = setString.split
+      cardStrings.each{ |s| 
+        if ((s[0] == 'A' || s[0] == 'B' || s[0] == 'C') && (s[1].to_i <= columnCount)) then
+          invalidInput = false
+        end
+      }
+      if invalidInput then
+        puts "Invalid input. Try again."
+      end
+    end
+    return setString
+  end
 end
