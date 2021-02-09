@@ -48,15 +48,20 @@ class Runner
 	# => player: true = p1, false = p2
 	# => columns: # of columns being displayed on the board (4 to 6)
 	def processCallout(player)
-		validSet = @board.getCard(@board.getValidSetInput())
-		if (validSet && player) then
-			@p1Score += 1
-			puts "That is a correct set! Player 1 earns 1 point."
-		elsif (validSet)
-			@p2Score += 1
-			puts "That is a correct set! Player 2 earns 1 point."
-		else
-			puts "Sorry, that is not a valid set."
-		end
+		set = @board.getCard(@board.getValidSetInput())
+                puts "Length is: " + set.length.to_s
+                valid = @board.checkSet(set[0], set[1], set[2])
+                if (valid) then
+                  @board.removeCards(set)
+		  if (player) then
+	            @p1Score += 1
+		    puts "That is a correct set! Player 1 earns 1 point."
+                  else
+		    @p2Score += 1
+		    puts "That is a correct set! Player 2 earns 1 point."
+		  end
+                else
+                  puts "Sorry, that is not a valid set."
+                end
 	end
 end

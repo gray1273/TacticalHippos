@@ -37,19 +37,19 @@ class Deck
 
   # Removes cards from in-use
   # @param *cards: Variable argument, pass each card as a separate parameter
-  def putBack(*cards)
-    @inUseCards = @inUseCards - @cards
-    @usedCards = @usedCards + @cards
+  def putBack(cards)
+    @inUseCards = @inUseCards - cards
+    @usedCards = @usedCards + cards
   end
   
   # Adds a specified number of cards to the in-use
   # @param count How many cards
   # @return The cards removed
   def get(count = 3)
-    @cards = @baseCards[0, count]
-    @inUseCards.concat @cards
-    @baseCards = @baseCards - @cards
-    return @cards
+    cards = @baseCards[0, count]
+    @inUseCards.concat cards
+    @baseCards = @baseCards - cards
+    return cards
   end
   
   # Returns the cards that should be displayed on the screen

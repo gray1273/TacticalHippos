@@ -104,7 +104,7 @@ class Board
     end
 
     #get three card objects and pass it to checkSet
-    return checkSet(cards[0], cards[1], cards[2])
+    return cards
   end
 
   #the method that take the col number and row number then return the index in the array
@@ -132,7 +132,7 @@ class Board
       setString.upcase
       cardStrings = setString.split
       cardStrings.each{ |s| 
-        if ((s[0] == 'A' || s[0] == 'B' || s[0] == 'C') && (s[1].to_i <= columnCount())) then
+        if ((s[0] == 'A' || s[0] == 'B' || s[0] == 'C') && (s[1].to_i < columnCount())) then
           invalidInput = false
         end
       }
@@ -141,5 +141,11 @@ class Board
       end
     end
     return setString
+  end
+  
+  # Given 3 cards, removes them from the deck
+  def removeCards(array)
+    @deck.putBack array
+    @deck.get 
   end
 end
