@@ -24,6 +24,7 @@ class Runner
     end
 	#Waits until either z or m is pressed (the button that either player uses to call out a set) or q (to quit)
 	def waitUntilCallout
+		@board.printCurrentCards()
 		# Source: https://stackoverflow.com/questions/39964008/read-a-single-char-from-stdin-without-pressing-enter/39967524
 		require 'io/console'
 		readChar = ' ';
@@ -33,8 +34,10 @@ class Runner
 		end
 		if readChar != 'q' then
 			processCallout(readChar == 'z')
-		else
+		elsif @p1Score != @p2Score
 			puts "Player #{@p1Score > @p2Score ? 1 : 2} wins! Final score: #{@p1Score} to #{@p2Score}"
+		else
+			puts "It's a tie! Final score: #{@p1Score} to #{@p2Score}"
 		end
 		return readChar != 'q'
 	end

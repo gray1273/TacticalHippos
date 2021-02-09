@@ -4,10 +4,20 @@ require './Deck.rb'
 
 class Board
 
+  @deck
+
+  def initialize
+    @deck = Deck.new
+  end
+
+  def deck
+    @deck
+  end
+
   #print the in used cards
   def printCurrentCards()
-    @current = Deck.getCurrent()
-    rowLength = @current.length / 3
+    @current = @deck.getCurrent()
+    rowLength = columnCount()
     # Print Column headings
     print "     " # Extra spacing so it doesn't label the row headings with a column head
     rowLength.times { |i| print "---#{i.to_s}---" }
@@ -54,7 +64,7 @@ class Board
     end
 
     if (indicator!) #if indicator shows that we do not have a set
-      Deck.inUseCards.get(3)
+      @deck.inUseCards.get(3)
     end
     return indicator
   end
@@ -83,33 +93,26 @@ class Board
     cardArray = inputStr.split(' ')
 
     #get the col name and row number to get the index of the card in the inUseCards object
-    tempOne = cardArray[0]
-    cardOneCol = tempOne.first(1)
-    cardOneRow = tempOne.last(1)
-    tempTwo = cardArray[1]
-    cardTwoCol = tempTwo.first(1)
-    cardTwoRow = tempTwo.last(1)
-    tempThree = cardArray[2]
-    cardThreeCol = tempThree.first(1)
-    cardThreeRow = tempThree.last(1)
-    @cardObj = Deck.getCurrent()
-    rowLength = @cardObj.length / 3
+    cardObj = @deck.getCurrent()
+    rowLength = columnCount()
+
+    cards = Array.new 3
+
+    for i in 0..2
+      temp = cardArray[i]
+      cards[i] = cardObj[getIndex(temp[0], temp[i].to_i, rowLength)]
+    end
 
     #get three card objects and pass it to checkSet
-    cardOne = @cardObj[getIndex(cardOneCol,cardOneRow,rowLength)]
-    cardTwo = @cardObj[getIndex(cardTwoCol,cardTwoRow,rowLength)]
-    cardThree = @cardObj[getIndex(cardThreeCol,cardThreeRow,rowLength)]
-    indicator = checkSet(cardOne,cardTwo,cardThree)
-    
-    return indicator
+    return checkSet(cards[0], cards[1], cards[2])
   end
 
   #the method that take the col number and row number then return the index in the array
   def getIndex(colNum,rowNum,rowLength)
     index = 0
-    if(colNum = "A")
+    if(colNum == "A")
       index = rowNum
-    elsif (colNum = "B")
+    elsif (colNum == "B")
       index = rowLength + rowNum
     else
       index = rowLength * 2 + rowNum
