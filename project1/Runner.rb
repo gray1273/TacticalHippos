@@ -30,7 +30,7 @@ class Runner
                 end
                 # if we have no set in the board, and not enough cards in base cards, we just return false
           if (!@board.containSet && @board.deck.baseCards.length < 3)
-                  puts "Game over! Run out of cards."
+                  puts "Game over! No set on the board and not enough cards to draw"
                   return false
                 end
 		@board.printCurrentCards()
