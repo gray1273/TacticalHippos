@@ -56,6 +56,9 @@ class Deck
   def getCurrent()
     return @inUseCards
   end
+  def baseCards
+  	@baseCards
+  end
 
 end
 
