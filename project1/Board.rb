@@ -34,14 +34,14 @@ class Board
   end
 
   #method taking the card in use as an array(Deck.getCurrent)and used to determine if any set exists, if not draw three more cards
-  def containSet(inUseCards)
-    
+  def containSet()
+    inUseCards = @deck.getCurrent()
     #set the indicator as the boolean expression indcating is there a set or not
     indicator = false
     
     #begin the loop to loop through all the combinations
     indexOne = 0
-    while index < inUseCards.length && indicator!
+    while indexOne < inUseCards.length && indicator!
       cardOne = inUseCards[indexOne]
       indexTwo = indexOne + 1
       while indexTwo < inUseCards.length && indicator!
@@ -64,7 +64,7 @@ class Board
     end
 
     if (indicator!) #if indicator shows that we do not have a set
-      @deck.inUseCards.get(3)
+      @deck.get(3)
     end
     return indicator
   end
