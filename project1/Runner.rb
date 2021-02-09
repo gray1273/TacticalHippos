@@ -24,6 +24,9 @@ class Runner
     end
 	#Waits until either z or m is pressed (the button that either player uses to call out a set) or q (to quit)
 	def waitUntilCallout
+                while(!@board.containSet)
+                  @board.deck.get 3
+                end
 		@board.printCurrentCards()
 		printPlayerScores
 		# Source: https://stackoverflow.com/questions/39964008/read-a-single-char-from-stdin-without-pressing-enter/39967524
@@ -52,7 +55,6 @@ class Runner
                 valid = @board.checkSet(set[0], set[1], set[2])
                 if (valid) then
                   @board.removeCards(set)
-                  @board.containSet()
 		  if (player) then
 	            @p1Score += 1
 		    puts "That is a correct set! Player 1 earns 1 point."

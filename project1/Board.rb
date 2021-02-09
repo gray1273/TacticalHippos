@@ -41,13 +41,13 @@ class Board
     
     #begin the loop to loop through all the combinations
     indexOne = 0
-    while indexOne < inUseCards.length && indicator!
+    while indexOne < inUseCards.length && !indicator
       cardOne = inUseCards[indexOne]
       indexTwo = indexOne + 1
-      while indexTwo < inUseCards.length && indicator!
+      while indexTwo < inUseCards.length && !indicator
         cardTwo = inUseCards[indexTwo]
         indexThree = indexTwo + 1
-        while indexThree < inUseCards.length && indicator!
+        while indexThree < inUseCards.length && !indicator
           cardThree = inUseCards[indexThree]
           indicator = indicator || checkSet(cardOne,cardTwo,cardThree)
           indexThree += 1
@@ -57,9 +57,6 @@ class Board
       indexOne += 1
     end
 
-    if (indicator!) #if indicator shows that we do not have a set
-      @deck.get(3)
-    end
     return indicator
   end
 
@@ -100,7 +97,6 @@ class Board
       cards[i] = cardObj[getIndex(temp[0], temp[1].to_i, rowLength)]
     end
 
-    #get three card objects and pass it to checkSet
     return cards
   end
 
@@ -127,7 +123,7 @@ class Board
       validInput = true
       puts "Enter three card names separated by spaces, e.g. \"A1 B2 C3\""
       setString = gets
-      setString.upcase
+      setString.upcase!
       cardStrings = setString.split
       cardStrings.each{ |s| 
         if (!(s[0] == 'A' || s[0] == 'B' || s[0] == 'C') || !(s[1].to_i < columnCount())) then
@@ -144,6 +140,8 @@ class Board
   # Given 3 cards, removes them from the deck
   def removeCards(array)
     @deck.putBack array
-    @deck.get 
+    if @deck.getCurrent.length < 12
+      @deck.get 3
+    end
   end
 end
