@@ -49,7 +49,7 @@ class Card
 	#Create an ouput string with the card and its values
 	def consoleString
 		if(number == 1)
-			"[\e[#{@opacityOpen}m\e[#{@colorKey}m  #{@shapeChar} \e[0m \e[#{@opacityClosed}m]"
+			"[\e[#{@opacityOpen}m\e[#{@colorKey}m  #{@shapeChar}  \e[0m\e[#{@opacityClosed}m]"
 		elsif(number == 2)
 			"[\e[#{@opacityOpen}m\e[#{@colorKey}m#{@shapeChar} #{@shapeChar}  \e[0m\e[#{@opacityClosed}m]"
 		else
