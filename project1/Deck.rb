@@ -32,7 +32,7 @@ class Deck
   
   # Shuffles baseCards (The whole deck, or remaining unseen cards)
   def shuffle
-    @baseCards.shuffle
+    @baseCards.shuffle!
   end
 
   # Removes cards from in-use
