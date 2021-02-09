@@ -24,8 +24,14 @@ class Runner
     end
 	#Waits until either z or m is pressed (the button that either player uses to call out a set) or q (to quit)
 	def waitUntilCallout
-                while(!@board.containSet)
+          #if no set exist in in use cards and we have more than three cards in base cards, draw three more from the base cards
+          while(!@board.containSet && @board.deck.baseCards.length > 3)
                   @board.deck.get 3
+                end
+                # if we have no set in the board, and not enough cards in base cards, we just return false
+          if (!@board.containSet && @board.deck.baseCards.length < 3)
+                  puts "Game over! Run out of cards."
+                  return false
                 end
 		@board.printCurrentCards()
 		printPlayerScores
