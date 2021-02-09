@@ -49,18 +49,12 @@ class Board
         indexThree = indexTwo + 1
         while indexThree < inUseCards.length && indicator!
           cardThree = inUseCards[indexThree]
-          indicator = checkSet(cardOne,cardTwo,cardThree)
-          if (indicator!)
-            indexThree += 1
-          end
+          indicator = indicator || checkSet(cardOne,cardTwo,cardThree)
+          indexThree += 1
         end
-        if (indicator!)
-          indexTwo += 1
-        end
+        indexTwo += 1
       end
-      if (indicator!)
-        indexOne += 1
-      end
+      indexOne += 1
     end
 
     if (indicator!) #if indicator shows that we do not have a set
