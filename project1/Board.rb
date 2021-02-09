@@ -4,9 +4,15 @@ require './Deck.rb'
 
 class Board
 
+  @deck
+
+  def initialize
+    @deck = Deck.new
+  end
+
   #print the in used cards
   def printCurrentCards()
-    @current = Deck.getCurrent()
+    @current = @deck.getCurrent()
     rowLength = @current.length / 3
     # Print Column headings
     print "     " # Extra spacing so it doesn't label the row headings with a column head
@@ -54,7 +60,7 @@ class Board
     end
 
     if (indicator!) #if indicator shows that we do not have a set
-      Deck.inUseCards.get(3)
+      @deck.inUseCards.get(3)
     end
     return indicator
   end
@@ -92,7 +98,7 @@ class Board
     tempThree = cardArray[2]
     cardThreeCol = tempThree.first(1)
     cardThreeRow = tempThree.last(1)
-    @cardObj = Deck.getCurrent()
+    @cardObj = @deck.getCurrent()
     rowLength = @cardObj.length / 3
 
     #get three card objects and pass it to checkSet
