@@ -23,7 +23,7 @@ class Runner
             puts "Player 1 Score: #{@p1Score.to_s}   Player 2 Score: #{@p2Score.to_s}"
     end
 	#Waits until either z or m is pressed (the button that either player uses to call out a set) or q (to quit)
-	def waitUntilCallout
+	def waitUntilCallout(startTime, difficulty)
           #if no set exist in in use cards and we have more than three cards in base cards, draw three more from the base cards
           while(!@board.containSet && @board.deck.baseCards.length >= 3)
                   @board.deck.get 3
@@ -47,10 +47,27 @@ class Runner
 		while (readChar != 'z' && readChar != 'm' && readChar != 'q') do
 			readChar = STDIN.getch
 		end
+
+		elapsedTime = Time.now - startTime
+		elapsedTime = elapsedTime.to_i
+		if difficulty == "easy"
+			withinTime = elapsedTime <= 5*60
+		elsif difficulty == "medium"
+			withinTime = elapsedTime <= 3*60
+		else
+			withinTime = elapsedTime <= 60
+		end
+
 		if readChar != 'q' then
 			processCallout(readChar == 'z')
 		elsif @p1Score != @p2Score
 			puts "Player #{@p1Score > @p2Score ? 1 : 2} wins! Final score: #{@p1Score} to #{@p2Score}"
+			if withinTime
+				print "You also completed within time! "
+			else
+				print "Unfortunately, you could not complete within time. "
+			end
+			print "You took " + elapsedTime.to_s + " seconds.\n"
 		else
 			puts "It's a tie! Final score: #{@p1Score} to #{@p2Score}"
 		end
