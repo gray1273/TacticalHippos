@@ -33,8 +33,10 @@ class Runner
 		end
 		if readChar != 'q' then
 			processCallout(readChar == 'z')
-		else
+		elsif @p1Score != @p2Score
 			puts "Player #{@p1Score > @p2Score ? 1 : 2} wins! Final score: #{@p1Score} to #{@p2Score}"
+		else
+			puts "It's a tie! Final score: #{@p1Score} to #{@p2Score}"
 		end
 		return readChar != 'q'
 	end
