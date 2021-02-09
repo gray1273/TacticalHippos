@@ -13,6 +13,10 @@ class Deck
     reset
   end
 
+  # def getAllCards
+  #   return @inUseCards.concat(@baseCards.concat(@usedCards))
+  # end
+
   # Resets the class to the same state as initialization
   def reset()
     @baseCards = Array.new

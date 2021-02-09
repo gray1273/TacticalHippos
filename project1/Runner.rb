@@ -25,6 +25,7 @@ class Runner
 	#Waits until either z or m is pressed (the button that either player uses to call out a set) or q (to quit)
 	def waitUntilCallout
 		@board.printCurrentCards()
+		printPlayerScores
 		# Source: https://stackoverflow.com/questions/39964008/read-a-single-char-from-stdin-without-pressing-enter/39967524
 		require 'io/console'
 		readChar = ' ';
@@ -50,8 +51,10 @@ class Runner
 		validSet = @board.getCard(@board.getValidSetInput())
 		if (validSet && player) then
 			@p1Score += 1
+			puts "That is a correct set! Player 1 earns 1 point."
 		elsif (validSet)
 			@p2Score += 1
+			puts "That is a correct set! Player 2 earns 1 point."
 		else
 			puts "Sorry, that is not a valid set."
 		end

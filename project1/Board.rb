@@ -100,7 +100,7 @@ class Board
 
     for i in 0..2
       temp = cardArray[i]
-      cards[i] = cardObj[getIndex(temp[0], temp[i].to_i, rowLength)]
+      cards[i] = cardObj[getIndex(temp[0], temp[1].to_i, rowLength)]
     end
 
     #get three card objects and pass it to checkSet

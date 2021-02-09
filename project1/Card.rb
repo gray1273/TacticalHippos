@@ -37,7 +37,7 @@ class Card
 			@shapeChar = 'V'
 		elsif(shape == 2)
 			@shape = "Squiggles"
-			@shapeChar = '~'
+			@shapeChar = 'S'
 		else
 			@shape = "Circles"
 			@shapeChar = 'O'
