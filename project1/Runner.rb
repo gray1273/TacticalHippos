@@ -49,7 +49,6 @@ class Runner
 	# => columns: # of columns being displayed on the board (4 to 6)
 	def processCallout(player)
 		set = @board.getCard(@board.getValidSetInput())
-                puts "Length is: " + set.length.to_s
                 valid = @board.checkSet(set[0], set[1], set[2])
                 if (valid) then
                   @board.removeCards(set)
