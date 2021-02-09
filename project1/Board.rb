@@ -84,6 +84,9 @@ class Board
     if (!((a.get_color == b.get_color) && (b.get_color == c.get_color) || (a.get_color != b.get_color) && (a.get_color != c.get_color) && (b.get_color != c.get_color))) 
       indicator = false
     end
+    if(a == b || a == c || b == c)
+      indicator = false
+    end
     return indicator
   end
 
