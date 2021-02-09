@@ -14,6 +14,7 @@ A set consists of three cards satisfying all of these conditions:
 - They all have the same color or have three different colors.
 
 ## Controls
+To Start the program, run "ruby Set.rb"
 
 Press 's' to start the game!
 Press [z] for Player 1 or [m] for Player 2. Press [q] to quit.
