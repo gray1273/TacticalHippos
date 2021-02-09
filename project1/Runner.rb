@@ -50,6 +50,7 @@ class Runner
 		validSet = @board.getCard(@board.getValidSetInput())
 		if (validSet && player) then
 			@p1Score += 1
+			
 		elsif (validSet)
 			@p2Score += 1
 		else
