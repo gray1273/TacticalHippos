@@ -31,6 +31,11 @@ class Runner
                 # if we have no set in the board, and not enough cards in base cards, we just return false
           if (!@board.containSet && @board.deck.baseCards.length < 3)
                   puts "Game over! No set on the board and not enough cards to draw"
+                  if @p1Score != @p2Score
+                    puts"Player #{@p1Score > @p2Score ? 1 : 2} wins! Final score: #{@p1Score} to #{@p2Score}"
+                  else
+                    puts "It is a tie! Final Score: #{@p1Score} to #{@p2Score}"
+                  end
                   return false
                 end
 		@board.printCurrentCards()
