@@ -6,29 +6,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="./style.css">
     <title>Game of Set</title>
 </head>
 
 <body>
+    <!-- https://getbootstrap.com/docs/4.0/layout/grid/ -->
     <div class="container">
-        <!-- Rules -->
-        <div class="row">
+        <!-- Title -->
+        <div class="row justify-content-center">
             <h1>Game of Set</h1>
-            <div class="rules">
-                <h2>Rules</h2>
-                <p> A set consists of three cards satisfying all of these conditions:</p>
-                <li> They all have the same number or have three different numbers.</li>
-                <li> They all have the same shape or have three different shapes.</li>
-                <li> They all have the same shading or have three different shadings.</li>
-                <li> They all have the same color or have three different colors.</li>
-            </div>
-        </div>
-        <!-- Buttons / Scores -->
-        <div class="row">
-            <div class="options">
-                <button id="start" onclick="">Start</button>
-                <button id="call" onclick="">Call Set</button>
-            </div>
         </div>
         <!-- Cards -->
         <div class="row justify-content-center no-gutters">
@@ -79,6 +66,33 @@
                 <div class="card card_4-3">
                     <img src="https://cdn2.bigcommerce.com/n-d57o0b/1kujmu/products/297/images/924/2D__57497.1440113502.480.480.png?c=2">
                 </div>
+            </div>
+        </div>
+        <!-- Buttons / Scores -->
+        <div class="row justify-content-center">
+            <!-- https://getbootstrap.com/docs/4.0/components/buttons/ -->
+            <div class="col-2 justify-content-center">
+                <button type="button" class="btn btn-success">Player 1</button>
+            </div>
+            <div class="col-2 text-center">
+                <p>1 | 1</p>
+            </div>
+            <div class="col-2 justify-content-center">
+                <button type="button" class="btn btn-success">Player 2</button>
+            </div>
+        </div>
+        <!-- Rules -->
+        <div class="row justify-content-center">
+            <!-- https://getbootstrap.com/docs/4.0/utilities/flex/ -->
+            <div class="d-flex flex-column justify-content-center">
+                <h2>Rules</h2>
+                <p> A set consists of three cards satisfying all of these conditions:</p>
+                <ul>
+                    <li> They all have the same number or have three different numbers.</li>
+                    <li> They all have the same shape or have three different shapes.</li>
+                    <li> They all have the same shading or have three different shadings.</li>
+                    <li> They all have the same color or have three different colors.</li>
+                </ul>
             </div>
         </div>
     </div>
