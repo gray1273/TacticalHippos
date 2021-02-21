@@ -4,3 +4,25 @@
 .callout-buttons{
 	padding: 1%;
 }
+.card{
+	height: 6em;
+}
+.icon{
+	margin:auto;
+}
+.fa-square{
+	transform:rotate(45deg);
+	font-size:1.5em;
+}
+.striped{
+	opacity:0.5;
+}
+.red{
+	color:red;
+}
+.green{
+	color:green;
+}
+.purple{
+	color:purple;
+}
