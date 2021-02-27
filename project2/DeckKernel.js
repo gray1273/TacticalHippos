@@ -12,47 +12,47 @@ function shuffleArray(array) {
 
 class DeckKernel {
 
-	var baseCards, inUseCards, usedCards;
-
-
 	constructor(){
-		reset();
+		this.baseCards = [];
+		this.inUseCards = [];
+		this.usedCards = [];
+		this.reset();
 	}
 	
 	reset(){
-		baseCards = [];
-		inUseCards = [];
-		usedCards = [];
+		this.baseCards = [];
+		this.inUseCards = [];
+		this.usedCards = [];
 		for(let i = 0; i < 3; i++){
 			for(let j = 0; j < 3; j++){
 				for(let k = 0; k < 3; k++){
 					for(let l = 0; l < 3; l++){
-						baseCards.push(new Card(i, j, k, l));
+						this.baseCards.push(new Card(i, j, k, l));
 					}
 				}
 			}
 		}
 		
-		shuffle();
-		get(12);
+		this.shuffle();
+		this.get(12);
 	}
 	
 	//
 	shuffle() {
-		shuffleArray(baseCards);
+		shuffleArray(this.baseCards);
 	}
 	
 	putBack(cards){
 		cards.forEach(function(card, index, array){
-			var pos = inUseCards.indexOf(card);
-			inUseCards.splice(pos);
-			usedCards.push(card);
+			var pos = this.inUseCards.indexOf(card);
+			this.inUseCards.splice(pos);
+			this.usedCards.push(card);
 		})
 	}
 	
-	get(var num){
+	get(num){
 		for(let i = 0; i < num; i++){
-			inUseCards.push(baseCards.shift());
+			this.inUseCards.push(this.baseCards.shift());
 		}
 	}
 }

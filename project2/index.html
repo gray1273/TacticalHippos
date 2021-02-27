@@ -12,6 +12,9 @@
     <!-- Custom Stylesheet -->
     <link rel="stylesheet" href="./style.css">
     <!-- Link to JS -->
+    <script src="./Card.js"></script>
+    <script src="./DeckKernel.js"></script>
+    <script src="./Board.js"></script>
     <script src="./runner.js"></script>
     <title>Game of Set</title>
 </head>
@@ -29,17 +32,17 @@
             <div class="col-6">
                 <!-- 1st Row -->
                 <div class="row justify-content-center">
-                    <a href="#" class="card col">
+                    <a href="#" id="c00" onclick="selectCard(0,0)" class="card col">
                         <i class="icon green fas fa-map fa-2x"></i>
                     </a>
-                    <a href="#" class="card col">
+                    <a href="#" id="c01" onclick="selectCard(0,1)" class="card col">
                         <i class="icon purple far fa-map fa-2x"></i>
                         <i class="icon purple far fa-map fa-2x"></i>
                     </a>
-                    <a href="#" class="card col">
+                    <a href="#" id="c02" onclick="selectCard(0,2)" class="card col">
                         <i class="icon red fas fa-map fa-2x"></i>
                     </a>
-                    <a href="#" class="card col">
+                    <a href="#" id="c03" onclick="selectCard(0,3)" class="card col">
                         <i class="icon green fas fa-map fa-2x striped"></i>
                         <i class="icon green fas fa-map fa-2x striped"></i>
                         <i class="icon green fas fa-map fa-2x striped"></i>

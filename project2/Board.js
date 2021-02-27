@@ -1,6 +1,7 @@
 class Board {
     constructor() {
         this.deck = new DeckKernel();
+        this.rowLength = 4;
     }
 
     //Find some way to code analagous version of printCurrentCards(requires display of cards)
@@ -64,26 +65,26 @@ class Board {
 
         for(let i = 0; i < 3; i++) {
             let temp = cardArray[i];
-            cards[i] = cardObj[this.getIndex(parseInt(temp[0]), parseInt(temp[1])];
+            cards[i] = cardObj[this.getIndex(parseInt(temp[0]), parseInt(temp[1]))];
         }
 
         return cards;
     }
 
     //the method that take the col number and row number then return the index in the array
-    getIndex(colNum, rowNum, rowLength) {
-        let index = 0;
-        if(colNum == "A") {
-            index = rowNum;
-        }
-        else if(colNum == "B") {
-            index = rowLength + rowNum;
-        }
-        else {
-            index = rowLength * 2 + rowNum;
-        }
-
-        return index;
+    getIndex(colNum, rowNum) {
+        // let index = 0;
+        // if(colNum == "A") {
+        //     index = rowNum;
+        // }
+        // else if(colNum == "B") {
+        //     index = rowLength + rowNum;
+        // }
+        // else {
+        //     index = rowLength * 2 + rowNum;
+        // }
+        return rowNum * this.rowLength + colNum;
+        // return index;
     }
 
     columnCount() {

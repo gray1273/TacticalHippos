@@ -1,5 +1,8 @@
-var p1Score = 0;
-var p2Score = 0;
+this.board = new Board();
+
+this.p1Score = 0;
+this.p2Score = 0;
+this.selectedCardIndeces = [-1, -1, -1];
 
 // Handling the button press for player 1
 function player1ButtonPress(){
@@ -7,8 +10,8 @@ function player1ButtonPress(){
 	//Run checkSet() on the 3 cards
 	//Replace true with checkSet() call
 	if(true){
-		p1Score++;
-		document.getElementById("player1Score").innerHTML = p1Score;
+		this.p1Score++;
+		document.getElementById("player1Score").innerHTML = this.p1Score;
 	}
 }
 // Handling the button press for player 2
@@ -17,9 +20,39 @@ function player2ButtonPress(){
 	//Run checkSet() on the 3 cards
 	//Replace true with checkSet() call
 	if(true){
-		p2Score++;
-		document.getElementById("player2Score").innerHTML = p2Score;
+		this.p2Score++;
+		document.getElementById("player2Score").innerHTML = this.p2Score;
 	}
+}
+function selectCard(row, col){
+	var foundCard = false;
+	//Check if card has already been selected
+	for (index in this.selectedCardIndeces){
+		if(selectedCardIndeces[index] == this.board.getIndex(row, col)){
+			// Card has already been selected, so deselect it
+			console.log("Card "+row+", "+col+" deselected.");
+			document.getElementById("c"+row+col).classList.remove("border");
+			document.getElementById("c"+row+col).classList.remove("border-info");
+			document.getElementById("c"+row+col).classList.remove("rounded");
+			selectedCardIndeces[index] = -1;
+			foundCard = true;
+		}
+	}
+	if(!foundCard){
+		//Check if there are open spots
+		for (index in this.selectedCardIndeces){
+			if(selectedCardIndeces[index] == -1 && !foundCard) {
+				//There is an empty spot for a card to fill, so select it
+				console.log("Card "+row+", "+col+" selected.")
+				document.getElementById("c"+row+col).classList.add("border");
+				document.getElementById("c"+row+col).classList.add("border-info");
+				document.getElementById("c"+row+col).classList.add("rounded");
+				selectedCardIndeces[index] = this.board.getIndex(row, col);
+				foundCard = true;
+			}
+		}
+	}
+	//Otherwise do nothing, since 3 cards are selected
 }
 
 /*the function that takes the start time and difficulties then return the boolean showing whether the player finished on time or not*/
@@ -67,11 +100,11 @@ function printAll(){
 /*the function that draw three more cards if there is no set on board and we got enough cards. If we dont have enough cards to draw from return false*/
 
 function drawIfNoSet(){
-	if (!Board.containSet() && Board.deck.baseCards.length < 3){
+	if (!this.board.containSet() && this.board.deck.baseCards.length < 3){
 		return false;
 	}
-	while (!Board.containSet() && Board.deck.baseCards.length >= 3) {
-		Board.deck.get(3);	
+	while (!this.board.containSet() && this.board.deck.baseCards.length >= 3) {
+		this.deck.get(3);	
 	}
 	return true;
 }
