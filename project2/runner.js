@@ -1,3 +1,27 @@
+var p1Score = 0;
+var p2Score = 0;
+
+// Handling the button press for player 1
+function player1ButtonPress(){
+	//Get 3 cards from user presses
+	//Run checkSet() on the 3 cards
+	//Replace true with checkSet() call
+	if(true){
+		p1Score++;
+		document.getElementById("player1Score").innerHTML = p1Score;
+	}
+}
+// Handling the button press for player 2
+function player2ButtonPress(){
+	//Get 3 cards from user presses
+	//Run checkSet() on the 3 cards
+	//Replace true with checkSet() call
+	if(true){
+		p2Score++;
+		document.getElementById("player2Score").innerHTML = p2Score;
+	}
+}
+
 /*the function that takes the start time and difficulties then return the boolean showing whether the player finished on time or not*/
 
 function timer(startTime, difficulty){
