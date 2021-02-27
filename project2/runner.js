@@ -33,7 +33,7 @@ function printAll(){
 	while(index < DeckKernel.inUseCards.length()){
 		rowNum = 1;
 		while (rowNum <= 3){
-			DeckKernel.inUseCards[index].printHTML(rowNum, ColNum);
+			DeckKernel.inUseCards[index].printHTML(rowNum, colNum);
 			rowNum += 1;
 		}
 		colNum += 1;
