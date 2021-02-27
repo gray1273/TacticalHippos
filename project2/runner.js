@@ -25,24 +25,34 @@ function player2ButtonPress(){
 	}
 }
 function selectCard(row, col){
+	var foundCard = false;
+	//Check if card has already been selected
 	for (index in this.selectedCardIndeces){
 		if(selectedCardIndeces[index] == this.board.getIndex(row, col)){
 			// Card has already been selected, so deselect it
 			console.log("Card "+row+", "+col+" deselected.");
-			document.getElementById("c00").classList.remove("border");
-			document.getElementById("c00").classList.remove("border-info");
-			document.getElementById("c00").classList.remove("rounded");
+			document.getElementById("c"+row+col).classList.remove("border");
+			document.getElementById("c"+row+col).classList.remove("border-info");
+			document.getElementById("c"+row+col).classList.remove("rounded");
 			selectedCardIndeces[index] = -1;
-		} else if(selectedCardIndeces[index] == -1) {
-			//There is an empty spot for a card to fill, so select it
-			console.log("Card "+row+", "+col+" selected.")
-			document.getElementById("c00").classList.add("border");
-			document.getElementById("c00").classList.add("border-info");
-			document.getElementById("c00").classList.add("rounded");
-			selectedCardIndeces[index] = this.board.getIndex(row, col);
+			foundCard = true;
 		}
-		//Otherwise do nothing, since 3 cards are selected
 	}
+	if(!foundCard){
+		//Check if there are open spots
+		for (index in this.selectedCardIndeces){
+			if(selectedCardIndeces[index] == -1 && !foundCard) {
+				//There is an empty spot for a card to fill, so select it
+				console.log("Card "+row+", "+col+" selected.")
+				document.getElementById("c"+row+col).classList.add("border");
+				document.getElementById("c"+row+col).classList.add("border-info");
+				document.getElementById("c"+row+col).classList.add("rounded");
+				selectedCardIndeces[index] = this.board.getIndex(row, col);
+				foundCard = true;
+			}
+		}
+	}
+	//Otherwise do nothing, since 3 cards are selected
 }
 
 /*the function that takes the start time and difficulties then return the boolean showing whether the player finished on time or not*/
