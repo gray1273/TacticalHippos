@@ -72,18 +72,18 @@ class Board {
 
     //the method that take the col number and row number then return the index in the array
     getIndex(colNum, rowNum, rowLength) {
-        let index = 0;
-        if(colNum == "A") {
-            index = rowNum;
-        }
-        else if(colNum == "B") {
-            index = rowLength + rowNum;
-        }
-        else {
-            index = rowLength * 2 + rowNum;
-        }
-
-        return index;
+        // let index = 0;
+        // if(colNum == "A") {
+        //     index = rowNum;
+        // }
+        // else if(colNum == "B") {
+        //     index = rowLength + rowNum;
+        // }
+        // else {
+        //     index = rowLength * 2 + rowNum;
+        // }
+        return rowNum * rowLength + colNum;
+        // return index;
     }
 
     columnCount() {
