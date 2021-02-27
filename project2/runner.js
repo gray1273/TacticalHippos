@@ -1,5 +1,8 @@
-var p1Score = 0;
-var p2Score = 0;
+this.board = new Board();
+
+this.p1Score = 0;
+this.p2Score = 0;
+this.selectedCardIndeces = [-1, -1, -1];
 
 // Handling the button press for player 1
 function player1ButtonPress(){
@@ -7,8 +10,8 @@ function player1ButtonPress(){
 	//Run checkSet() on the 3 cards
 	//Replace true with checkSet() call
 	if(true){
-		p1Score++;
-		document.getElementById("player1Score").innerHTML = p1Score;
+		this.p1Score++;
+		document.getElementById("player1Score").innerHTML = this.p1Score;
 	}
 }
 // Handling the button press for player 2
@@ -17,8 +20,14 @@ function player2ButtonPress(){
 	//Run checkSet() on the 3 cards
 	//Replace true with checkSet() call
 	if(true){
-		p2Score++;
-		document.getElementById("player2Score").innerHTML = p2Score;
+		this.p2Score++;
+		document.getElementById("player2Score").innerHTML = this.p2Score;
+	}
+}
+function selectCard(row, col){
+	
+	for (index in selectedCardIndeces){
+		// if(index == )
 	}
 }
 
@@ -67,11 +76,11 @@ function printAll(){
 /*the function that draw three more cards if there is no set on board and we got enough cards. If we dont have enough cards to draw from return false*/
 
 function drawIfNoSet(){
-	if (!Board.containSet() && Board.deck.baseCards.length < 3){
+	if (!this.board.containSet() && this.board.deck.baseCards.length < 3){
 		return false;
 	}
-	while (!Board.containSet() && Board.deck.baseCards.length >= 3) {
-		Board.deck.get(3);	
+	while (!this.board.containSet() && this.board.deck.baseCards.length >= 3) {
+		this.deck.get(3);	
 	}
 	return true;
 }
