@@ -78,7 +78,7 @@ function timer(startTime, difficulty){
 
 function locateCard(colNum, rowNum, rowLength){
 	var index = (rowNum - 1) * rowLength + colNum;
-	return DeckKernel.inUseCards[index];
+	return this.board.deck.inUseCards[index];
 }
 
 /*the function that prints all the card in use*/
@@ -87,10 +87,10 @@ function printAll(){
 	var index = 0;
 	var colNum = 1;
 	var rowNum = 1;
-	while(index < DeckKernel.inUseCards.length()){
+	while(index < this.board.deck.inUseCards.length()){
 		rowNum = 1;
 		while (rowNum <= 3){
-			DeckKernel.inUseCards[index].printHTML(rowNum, colNum);
+			this.board.deck.inUseCards[index].printHTML(rowNum, colNum);
 			rowNum += 1;
 		}
 		colNum += 1;
@@ -104,7 +104,7 @@ function drawIfNoSet(){
 		return false;
 	}
 	while (!this.board.containSet() && this.board.deck.baseCards.length >= 3) {
-		this.deck.get(3);	
+		this.board.deck.get(3);	
 	}
 	return true;
 }
