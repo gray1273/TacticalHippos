@@ -27,32 +27,48 @@ function player2ButtonPress(){
 function selectCard(row, col){
 	var foundCard = false;
 	//Check if card has already been selected
-	for (index in this.selectedCardIndeces){
-		if(selectedCardIndeces[index] == this.board.getIndex(row, col)){
+	this.selectedCardIndeces.forEach(function(item, index){
+		if(item == this.board.getIndex(row, col)){
 			// Card has already been selected, so deselect it
 			console.log("Card "+row+", "+col+" deselected.");
+			//Change CSS for selected element
 			document.getElementById("c"+row+col).classList.remove("border");
 			document.getElementById("c"+row+col).classList.remove("border-info");
 			document.getElementById("c"+row+col).classList.remove("rounded");
-			selectedCardIndeces[index] = -1;
+			//Do logic for selected card
+			this.selectedCardIndeces[index] = -1;
 			foundCard = true;
 		}
-	}
+	});
+	//Check if there are open spots
 	if(!foundCard){
-		//Check if there are open spots
-		for (index in this.selectedCardIndeces){
-			if(selectedCardIndeces[index] == -1 && !foundCard) {
+		this.selectedCardIndeces.forEach(function(item, index){
+			if(item == -1 && !foundCard) {
 				//There is an empty spot for a card to fill, so select it
 				console.log("Card "+row+", "+col+" selected.")
+				//Change CSS for selected element
 				document.getElementById("c"+row+col).classList.add("border");
 				document.getElementById("c"+row+col).classList.add("border-info");
 				document.getElementById("c"+row+col).classList.add("rounded");
-				selectedCardIndeces[index] = this.board.getIndex(row, col);
+				//Do logic for selected card
+				this.selectedCardIndeces[index] = this.board.getIndex(row, col);
 				foundCard = true;
 			}
-		}
+		});
 	}
-	//Otherwise do nothing, since 3 cards are selected
+	//Otherwise do nothing with adding cards, since 3 cards are selected
+	//Check if there are 3 cards selected
+	var allSelected = true;
+	this.selectedCardIndeces.forEach(function(item, index){
+		if(item == -1){
+			allSelected = false;
+		}
+	});
+	if(allSelected){
+		document.getElementById("submit-button").classList.remove("d-none");
+	} else {
+		document.getElementById("submit-button").classList.add("d-none");
+	}
 }
 
 /*the function that takes the start time and difficulties then return the boolean showing whether the player finished on time or not*/
