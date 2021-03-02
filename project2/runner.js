@@ -43,12 +43,12 @@ function player2ButtonPress(){
 	this.p1Selected = false
 	//Enable cards
 	this.enabled = true;
-	if(true){
+	/*if(true){
 		this.p2Score++;
 		//https://www.w3schools.com/js/js_htmldom_html.asp
 		document.getElementById("player2Score").innerHTML = this.p2Score;
-	}
-	//Disable cards
+	}*/
+	
 	//Wait until the submit function is called
 	//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises
 	console.log("Player 2: waiting for submit.");
@@ -61,7 +61,7 @@ function player2ButtonPress(){
 				document.getElementById("player2Score").innerHTML = this.p2Score;
 			}
 			this.submitted = false;
-			//Disable cards
+			
 		}
 	});
 }
