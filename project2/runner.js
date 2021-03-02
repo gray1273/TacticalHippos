@@ -163,6 +163,19 @@ async function submitCards(){
 	if(!this.board.containSet()){
 		//Game over, there are no sets remaining
 		//We know because printBoard() calls prepareBoard() which draws sets until there's a set or no cards remain i.e. if it returns without a set, no cards remain
+		var p1 = document.getElementById("player1Score");
+		var p2 = document.getElementById("player2Score");
+		p1.classList.add(".d-none");
+		p2.classList.add(".d-none");
+		var text
+		if(this.p1Score > this.p2Score){
+			text = "Player 1 has won!";
+		} else if(this.p1Score == this.p2Score) {
+			text = "There is a tie!";
+		} else {
+			text = "Player 2 has won!"
+		}
+		document.getElementById("board").innerHTML = "<p>" + text + "</p>";
 
 	}
 	this.selectedCardIndeces = [-1, -1, -1];
