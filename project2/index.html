@@ -32,58 +32,60 @@
         <div class="row justify-content-center">
             <div class="col-6">
                 <!-- 1st Row -->
-                <div class="row justify-content-center">
-                    <a href="#" id="c00" onclick="selectCard(0,0)" class="card col">
-                        <i class="icon green fas fa-map fa-2x"></i>
-                    </a>
-                    <a href="#" id="c01" onclick="selectCard(0,1)" class="card col">
-                        <i class="icon purple far fa-map fa-2x"></i>
-                        <i class="icon purple far fa-map fa-2x"></i>
-                    </a>
-                    <a href="#" id="c02" onclick="selectCard(0,2)" class="card col">
-                        <i class="icon red fas fa-map fa-2x"></i>
-                    </a>
-                    <a href="#" id="c03" onclick="selectCard(0,3)" class="card col">
-                        <i class="icon green fas fa-map fa-2x striped"></i>
-                        <i class="icon green fas fa-map fa-2x striped"></i>
-                        <i class="icon green fas fa-map fa-2x striped"></i>
-                    </a>
-                </div>
-                <!-- 2nd Row -->
-                <div class="row justify-content-center">
-                    <a href="#" class="card col">
-                        <i class="icon green fas fa-circle fa-2x"></i>
-                    </a>
-                    <a href="#" class="card col">
-                        <i class="icon purple far fa-circle fa-2x"></i>
-                        <i class="icon purple far fa-circle fa-2x"></i>
-                    </a>
-                    <a href="#" class="card col">
-                        <i class="icon red fas fa-circle fa-2x"></i>
-                    </a>
-                    <a href="#" class="card col">
-                        <i class="icon green fas fa-circle fa-2x striped"></i>
-                        <i class="icon green fas fa-circle fa-2x striped"></i>
-                        <i class="icon green fas fa-circle fa-2x striped"></i>
-                    </a>
-                </div>
-                <!-- 3rd Row -->
-                <div class="row justify-content-center">
-                    <a href="#" class="card col">
-                        <i class="icon green fas fa-square fa-2x"></i>
-                    </a>
-                    <a href="#" class="card col">
-                        <i class="icon purple far fa-square fa-2x"></i>
-                        <i class="icon purple far fa-square fa-2x"></i>
-                    </a>
-                    <a href="#" class="card col">
-                        <i class="icon red fas fa-square fa-2x"></i>
-                    </a>
-                    <a href="#" class="card col">
-                        <i class="icon green fas fa-square fa-2x striped"></i>
-                        <i class="icon green fas fa-square fa-2x striped"></i>
-                        <i class="icon green fas fa-square fa-2x striped"></i>
-                    </a>
+                <div class="row justify-content-center no-gutters">
+                    <div class="col">
+                        <a href="#" id="c00" onclick="selectCard(0,0)" class="card">
+                            <i class="icon green fas fa-map fa-2x"></i>
+                        </a>
+                        <a href="#" class="card">
+                            <i class="icon green fas fa-circle fa-2x"></i>
+                        </a>
+                        <a href="#" class="card">
+                            <i class="icon green fas fa-square fa-2x"></i>
+                        </a>
+                    </div>
+                    <div class="col">
+                        <a href="#" id="c01" onclick="selectCard(0,1)" class="card">
+                            <i class="icon purple far fa-map fa-2x"></i>
+                            <i class="icon purple far fa-map fa-2x"></i>
+                        </a>
+                        <a href="#" class="card">
+                            <i class="icon purple far fa-circle fa-2x"></i>
+                            <i class="icon purple far fa-circle fa-2x"></i>
+                        </a>
+                        <a href="#" class="card">
+                            <i class="icon purple far fa-square fa-2x"></i>
+                            <i class="icon purple far fa-square fa-2x"></i>
+                        </a>
+                    </div>
+                    <div class="col">
+                        <a href="#" id="c02" onclick="selectCard(0,2)" class="card">
+                            <i class="icon red fas fa-map fa-2x"></i>
+                        </a>
+                        <a href="#" class="card">
+                            <i class="icon red fas fa-circle fa-2x"></i>
+                        </a>
+                        <a href="#" class="card">
+                            <i class="icon red fas fa-square fa-2x"></i>
+                        </a>
+                    </div>
+                    <div class="col">
+                        <a href="#" id="c03" onclick="selectCard(0,3)" class="card">
+                            <i class="icon green fas fa-map fa-2x striped"></i>
+                            <i class="icon green fas fa-map fa-2x striped"></i>
+                            <i class="icon green fas fa-map fa-2x striped"></i>
+                        </a>
+                        <a href="#" class="card">
+                            <i class="icon green fas fa-circle fa-2x striped"></i>
+                            <i class="icon green fas fa-circle fa-2x striped"></i>
+                            <i class="icon green fas fa-circle fa-2x striped"></i>
+                        </a>
+                        <a href="#" class="card">
+                            <i class="icon green fas fa-square fa-2x striped"></i>
+                            <i class="icon green fas fa-square fa-2x striped"></i>
+                            <i class="icon green fas fa-square fa-2x striped"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -94,7 +96,7 @@
                 <button type="submit" onclick="player1ButtonPress()" class="btn btn-success">Player 1</button>
             </div>
             <div class="col-2 flex-column justify-content-center">
-                <div class="row no-gutter justify-content-center">
+                <div class="row no-gutters justify-content-center">
                     <p id="player1Score">0</p><p>|</p><p id="player2Score">0</p>
                 </div>
                 <button type="submit" onclick="submitCards()" id="submit-button" class="btn btn-info d-none">Submit</button>
