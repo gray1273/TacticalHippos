@@ -127,6 +127,8 @@ async function submitCards(){
 		document.getElementById(id).classList.remove("border");
 		document.getElementById(id).classList.remove("rounded");
 	});
+	this.board.removeCards(cards);
+	this.drawIfNoSet();
 	this.selectedCardIndeces = [-1, -1, -1];
 	console.log(this.isValidSet ? "Valid set found." : "Not a valid set.");
 	this.submitted = true;

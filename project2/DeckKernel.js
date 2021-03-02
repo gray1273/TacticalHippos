@@ -44,18 +44,19 @@ class DeckKernel {
 
 	putOnTop(cards){
 		cards.forEach(function(card, index, array){
-			var pos = window.board.deck.inUseCards.indexOf(card);
-			window.board.deck.inUseCards.splice(pos);
-			window.board.deck.baseCards.push(card);
+			var pos = this.inUseCards.indexOf(card);
+			this.inUseCards.splice(pos);
+			this.baseCards.push(card);
 		});
 	}
 
 	putBack(cards){
-		cards.forEach(function(card, index, array){
-			var pos = this.inUseCards.indexOf(card);
-			window.board.deck.inUseCards.splice(pos);
-			window.board.deck.usedCards.push(card);
-		})
+		for(let i = 0; i < cards.length; i++){
+			var index = this.inUseCards.indexOf(cards[i]);
+			var card = this.inUseCards[index]
+			this.inUseCards.splice(index);
+			this.usedCards.push(card);
+		}
 	}
 
 	get(num){
