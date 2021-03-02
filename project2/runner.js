@@ -129,6 +129,11 @@ async function submitCards(){
 	});
 	this.board.removeCards(cards);
 	this.board.printBoard();
+	if(!this.board.containSet()){
+		//Game over, there are no sets remaining
+		//We know because printBoard() calls prepareBoard() which draws sets until there's a set or no cards remain i.e. if it returns without a set, no cards remain
+
+	}
 	this.selectedCardIndeces = [-1, -1, -1];
 	console.log(this.isValidSet ? "Valid set found." : "Not a valid set.");
 	this.submitted = true;

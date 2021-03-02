@@ -29,7 +29,7 @@ class Board {
         if(this.deck.inUseCards.length < 12){
             this.deck.get(12 - this.deck.inUseCards.length);
         }
-	while(!this.containSet()){
+	while(!this.containSet() && this.deck.baseCards.length > 0){
 		console.log("Adding column...");
 		this.deck.get(3);
 	}

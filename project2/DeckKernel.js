@@ -11,14 +11,14 @@ function shuffleArray(array) {
 }
 
 class DeckKernel {
-
+	//Setup the board
 	constructor(){
 		this.baseCards = [];
 		this.inUseCards = [];
 		this.usedCards = [];
 		this.reset();
 	}
-
+	//Reset the board on game restart
 	reset(){
 		this.baseCards = [];
 		this.inUseCards = [];
@@ -37,11 +37,12 @@ class DeckKernel {
 		this.get(12);
 	}
 
-	//
+	//Shuffles the baseCards
 	shuffle() {
 		shuffleArray(this.baseCards);
 	}
 
+	//Puts the card back into the list of remaining cards so the game never ends???
 	putOnTop(cards){
 		console.log("putOnTop Running...");
 		cards.forEach(function(card, index, array){
@@ -50,7 +51,7 @@ class DeckKernel {
 			this.baseCards.push(card);
 		});
 	}
-
+	//Removes the card from inUse, adds it to usedCards
 	putBack(cards){
 		console.log("putBack Length: ", this.inUseCards.length);
 		for(let i = 0; i < cards.length; i++){
@@ -61,7 +62,7 @@ class DeckKernel {
 		}		
 		console.log("putBack Length: ", this.inUseCards.length);
 	}
-
+	//Adds num cards to the inUseCards
 	get(num){
 		for(let i = 0; i < num; i++){
 			this.inUseCards.push(this.baseCards.shift());
