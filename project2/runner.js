@@ -3,6 +3,8 @@ this.board = new Board();
 this.p1Score = 0;
 this.p2Score = 0;
 this.enabled = false;
+this.p1Selected = false;
+this.p2Selected = false;
 this.selectedCardIndeces = [-1, -1, -1];
 this.submitted = false;
 this.isValidSet = false;
@@ -16,6 +18,8 @@ window.onload = function onLoad() {
 
 // Handling the button press for player 1
 function player1ButtonPress(){
+	this.p1Selected = true;
+	this.p2Selected = true;
 	//Enable cards
 	this.enabled = true;
 	//Wait until the submit function is called
@@ -23,17 +27,21 @@ function player1ButtonPress(){
 	console.log("Player 1: waiting for submit.");
 	waitForSubmit()
 	.then(function(result){
-		console.log("Player 1: submitted.");
-		if(this.isValidSet){
-			this.p1Score++;
-			document.getElementById("player1Score").innerHTML = this.p1Score;
+		if(this.p1Selected){
+			console.log("Player 1: submitted.");
+			if(this.isValidSet){
+				this.p1Score++;
+				document.getElementById("player1Score").innerHTML = this.p1Score;
+			}
+			this.submitted = false;
+			//Disable cards
 		}
-		this.submitted = false;
-		//Disable cards
 	});
 }
 // Handling the button press for player 2
 function player2ButtonPress(){
+	this.p2Selected = true
+	this.p1Selected = false
 	//Enable cards
 	this.enabled = true;
 	if(true){
@@ -41,6 +49,21 @@ function player2ButtonPress(){
 		document.getElementById("player2Score").innerHTML = this.p2Score;
 	}
 	//Disable cards
+	//Wait until the submit function is called
+	//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises
+	console.log("Player 2: waiting for submit.");
+	waitForSubmit()
+	.then(function(result){
+		if(this.p2Selected){
+			console.log("Player 2: submitted.");
+			if(this.isValidSet){
+				this.p2Score++;
+				document.getElementById("player2Score").innerHTML = this.p2Score;
+			}
+			this.submitted = false;
+			//Disable cards
+		}
+	});
 }
 //https://stackoverflow.com/questions/3635924/how-can-i-make-a-program-wait-for-a-variable-change-in-javascript
 async function waitForSubmit(){
@@ -107,11 +130,14 @@ async function submitCards(){
 	for (var i = 0; i < this.selectedCardIndeces.length; i++) {
 		console.log(this.selectedCardIndeces[i]);
 		cards.push(this.board.deck.inUseCards[this.selectedCardIndeces[i]]);
+		console.log(cards[i].get_number, cards[i].get_color, cards[i].get_opacity, cards[i].get_shape);
 	}
+	console.log(this.board.checkSet(cards[0], cards[1], cards[2]));
 	this.isValidSet = this.board.checkSet(cards[0], cards[1], cards[2]);
+	console.log(this.isValidSet ? "Valid" : "Invalid");
 	this.selectedCardIndeces.forEach(function(item, index){
 		//https://nickthecoder.wordpress.com/2013/02/11/integer-division-in-javascript/
-		var id = "c"+Math.floor(item / this.board.rowLength)+Math.floor(item % this.board.rowLength);
+		var id = "c"+Math.floor(item / this.board.columnCount())+Math.floor(item % this.board.columnCount());
 		document.getElementById(id).classList.remove("border-info");
 		if(this.isValidSet){
 			document.getElementById(id).classList.add("border-success");
@@ -123,7 +149,7 @@ async function submitCards(){
 	await sleep(1000);
 	this.selectedCardIndeces.forEach(function(item, index){
 		//https://nickthecoder.wordpress.com/2013/02/11/integer-division-in-javascript/
-		var id = "c"+Math.floor(item / this.board.rowLength)+Math.floor(item % this.board.rowLength);
+		var id = "c"+Math.floor(item / this.board.columnCount())+Math.floor(item % this.board.columnCount());
 		if(this.isValidSet){
 			document.getElementById(id).classList.remove("border-success");
 		} else {
@@ -132,6 +158,13 @@ async function submitCards(){
 		document.getElementById(id).classList.remove("border");
 		document.getElementById(id).classList.remove("rounded");
 	});
+	this.board.removeCards(cards);
+	this.board.printBoard();
+	if(!this.board.containSet()){
+		//Game over, there are no sets remaining
+		//We know because printBoard() calls prepareBoard() which draws sets until there's a set or no cards remain i.e. if it returns without a set, no cards remain
+
+	}
 	this.selectedCardIndeces = [-1, -1, -1];
 	console.log(this.isValidSet ? "Valid set found." : "Not a valid set.");
 	this.enabled = false;

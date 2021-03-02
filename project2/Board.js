@@ -1,21 +1,21 @@
 class Board {
     constructor() {
         this.deck = new DeckKernel();
-        this.rowLength = 4;
         this.prepareBoard();
     }
 
     //Find some way to code analagous version of printCurrentCards(requires display of cards)
     printBoard(){
         this.prepareBoard();
+	console.log("Row Length: ", this.columnCount());
 
         var html = "";
-        var index = 0;
-        for(var i = 0; i < 4; i++) {
+        for(var i = 0; i < this.columnCount(); i++) {
+	    console.log("Running...");
             var col = "<div class=\"col\">\n";
             for(var j = 0; j < 3; j++) {
+		var index = this.getIndex(j, i);
                 col += this.deck.inUseCards[index].printHTML(j, i) + "\n";
-                index++;
             }
             col += "</div>\n";
             html += col;
@@ -26,20 +26,13 @@ class Board {
 
     // Get number of cards in board to 12, and add cards to board if there are no sets
     prepareBoard() {
-        this.rowLength = 4;
         if(this.deck.inUseCards.length < 12){
             this.deck.get(12 - this.deck.inUseCards.length);
-        } else if(this.deck.inUseCards.length > 12){
-            this.deck.putOnTop(this.deck.inUseCards.slice(12));
         }
-        if(!this.containSet()){
-            this.deck.get(3);
-            this.rowLength++;
-        }
-        if(!this.containSet()){
-            this.deck.get(3);
-            this.rowLength++;
-        }
+	while(!this.containSet() && this.deck.baseCards.length > 0){
+		console.log("Adding column...");
+		this.deck.get(3);
+	}
     }
 
     //method taking the card in use as an array(Deck.getCurrent)and used to determine if any set exists
@@ -74,24 +67,24 @@ class Board {
         let indicator = true;
         if (!(((a.get_number == b.get_number) && (b.get_number == c.get_number))
             || ((a.get_number != b.get_number) && (a.get_number != c.get_number) && (b.get_number != c.get_number))))
-          indicator = false
+          indicator = false;
 
         if (!(((a.get_shape == b.get_shape) && (b.get_shape == c.get_shape)) 
             || ((a.get_shape != b.get_shape) && (a.get_shape != c.get_shape) && (b.get_shape != c.get_shape))))
-          indicator = false
+          indicator = false;
 
         if (!(((a.get_opacity == b.get_opacity) && (b.get_opacity == c.get_opacity))
             || ((a.get_opacity != b.get_opacity) && (a.get_opacity != c.get_opacity) && (b.get_opacity != c.get_opacity))))
-          indicator = false
+          indicator = false;
 
         if (!(((a.get_color == b.get_color) && (b.get_color == c.get_color))
             || ((a.get_color != b.get_color) && (a.get_color != c.get_color) && (b.get_color != c.get_color))))
-          indicator = false
+          indicator = false;
 
         if(a == b || a == c || b == c)
-          indicator = false
+          indicator = false;
 
-        return indicator
+        return indicator;
     }
 
     //method used to match the string that the user entered with cards.
@@ -99,7 +92,6 @@ class Board {
         let cardArray = inputStr.split(" ");
 
         let cardObj = this.deck.inUseCards;
-        let rowLength = this.columnCount();
 
         let cards = [];
 
@@ -113,7 +105,7 @@ class Board {
 
     //the method that take the col number and row number then return the index in the array
     getIndex(rowNum, colNum) {
-        return rowNum * this.rowLength + colNum;
+        return rowNum * this.columnCount() + colNum;
     }
 
     columnCount() {
