@@ -4,25 +4,30 @@ this.p1Score = 0;
 this.p2Score = 0;
 this.selectedCardIndeces = [-1, -1, -1];
 this.submitted = false;
+this.isValidSet = false;
 
 function onLoad(){
 	this.board.printBoard();
+	console.log(this.board.checkSet(this.board.deck.inUseCards[0], this.board.deck.inUseCards[1], this.board.deck.inUseCards[2]));
+	console.log(this.board.checkSet(this.board.deck.inUseCards[0], this.board.deck.inUseCards[1], this.board.deck.inUseCards[3]));
 }
 
 // Handling the button press for player 1
 function player1ButtonPress(){
 	//Enable cards
-	var isValidSet = false;
 	//Wait until the submit function is called
+	//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises
 	console.log("Player 1: waiting for submit.");
-	waitForSubmit();
-	console.log("Player 1: submitted.");
-	if(true){
-		this.p1Score++;
-		document.getElementById("player1Score").innerHTML = this.p1Score;
-	}
-	this.submitted = false;
-	//Disable cards
+	waitForSubmit()
+	.then(function(result){
+		console.log("Player 1: submitted.");
+		if(this.isValidSet){
+			this.p1Score++;
+			document.getElementById("player1Score").innerHTML = this.p1Score;
+		}
+		this.submitted = false;
+		//Disable cards
+	});
 }
 // Handling the button press for player 2
 function player2ButtonPress(){
@@ -33,6 +38,7 @@ function player2ButtonPress(){
 	}
 	//Disable cards
 }
+//https://stackoverflow.com/questions/3635924/how-can-i-make-a-program-wait-for-a-variable-change-in-javascript
 async function waitForSubmit(){
 	while(!this.submitted){
 		await new Promise(resolve => setTimeout(resolve, 1000));
@@ -91,13 +97,15 @@ async function submitCards(){
 	document.getElementById("submit-button").classList.add("d-none");
 	var cards = [];
 	for (var i = 0; i < this.selectedCardIndeces.length; i++) {
+		console.log(this.selectedCardIndeces[i]);
 		cards.push(this.board.deck.inUseCards[this.selectedCardIndeces[i]]);
 	}
-	var isValidSet = this.board.checkSet(cards[0], cards[1], cards[2]);
+	this.isValidSet = this.board.checkSet(cards[0], cards[1], cards[2]);
 	this.selectedCardIndeces.forEach(function(item, index){
-		var id = "c"+Math.floor(index / this.board.rowLength)+Math.floor(index % this.board.rowLength);
+		//https://nickthecoder.wordpress.com/2013/02/11/integer-division-in-javascript/
+		var id = "c"+Math.floor(item / this.board.rowLength)+Math.floor(item % this.board.rowLength);
 		document.getElementById(id).classList.remove("border-info");
-		if(isValidSet){
+		if(this.isValidSet){
 			document.getElementById(id).classList.add("border-success");
 		} else {
 			document.getElementById(id).classList.add("border-danger");
@@ -106,8 +114,9 @@ async function submitCards(){
 	// https://www.sitepoint.com/delay-sleep-pause-wait/
 	await sleep(1000);
 	this.selectedCardIndeces.forEach(function(item, index){
-		var id = "c"+Math.floor(index / this.board.rowLength)+Math.floor(index % this.board.rowLength);
-		if(isValidSet){
+		//https://nickthecoder.wordpress.com/2013/02/11/integer-division-in-javascript/
+		var id = "c"+Math.floor(item / this.board.rowLength)+Math.floor(item % this.board.rowLength);
+		if(this.isValidSet){
 			document.getElementById(id).classList.remove("border-success");
 		} else {
 			document.getElementById(id).classList.remove("border-danger");
@@ -116,9 +125,8 @@ async function submitCards(){
 		document.getElementById(id).classList.remove("rounded");
 	});
 	this.selectedCardIndeces = [-1, -1, -1];
-	console.log(isValidSet ? "Valid set found." : "Not a valid set.");
+	console.log(this.isValidSet ? "Valid set found." : "Not a valid set.");
 	this.submitted = true;
-	return isValidSet;
 }
 
 // https://www.sitepoint.com/delay-sleep-pause-wait/

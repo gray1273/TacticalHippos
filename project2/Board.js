@@ -58,16 +58,20 @@ class Board {
     //the function that check to see if a given combination of cards is a set
     checkSet(a, b, c) {
         let indicator = true;
-        if (!((a.get_number == b.get_number) && (b.get_number == c.get_number) || (a.get_number != b.get_number) && (a.get_number != c.get_number) && (b.get_number != c.get_number)))
+        if (!(((a.get_number == b.get_number) && (b.get_number == c.get_number))
+            || ((a.get_number != b.get_number) && (a.get_number != c.get_number) && (b.get_number != c.get_number))))
           indicator = false
 
-        if (!((a.get_shape == b.get_shape) && (b.get_shape == c.get_shape) || (a.get_shape != b.get_shape) && (a.get_shape != c.get_shape) && (b.get_shape != c.get_shape)))
+        if (!(((a.get_shape == b.get_shape) && (b.get_shape == c.get_shape)) 
+            || ((a.get_shape != b.get_shape) && (a.get_shape != c.get_shape) && (b.get_shape != c.get_shape))))
           indicator = false
 
-        if (!((a.get_opacity == b.get_opacity) && (b.get_opacity == c.get_opacity) || (a.get_opacity != b.get_opacity) && (a.get_opacity != c.get_opacity) && (b.get_opacity != c.get_opacity)))
+        if (!(((a.get_opacity == b.get_opacity) && (b.get_opacity == c.get_opacity))
+            || ((a.get_opacity != b.get_opacity) && (a.get_opacity != c.get_opacity) && (b.get_opacity != c.get_opacity))))
           indicator = false
 
-        if (!((a.get_color == b.get_color) && (b.get_color == c.get_color) || (a.get_color != b.get_color) && (a.get_color != c.get_color) && (b.get_color != c.get_color)))
+        if (!(((a.get_color == b.get_color) && (b.get_color == c.get_color))
+            || ((a.get_color != b.get_color) && (a.get_color != c.get_color) && (b.get_color != c.get_color))))
           indicator = false
 
         if(a == b || a == c || b == c)
@@ -94,19 +98,8 @@ class Board {
     }
 
     //the method that take the col number and row number then return the index in the array
-    getIndex(colNum, rowNum) {
-        // let index = 0;
-        // if(colNum == "A") {
-        //     index = rowNum;
-        // }
-        // else if(colNum == "B") {
-        //     index = rowLength + rowNum;
-        // }
-        // else {
-        //     index = rowLength * 2 + rowNum;
-        // }
+    getIndex(rowNum, colNum) {
         return rowNum * this.rowLength + colNum;
-        // return index;
     }
 
     columnCount() {
