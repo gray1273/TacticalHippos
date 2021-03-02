@@ -43,25 +43,29 @@ class DeckKernel {
 	}
 
 	putOnTop(cards){
+		console.log("putOnTop Running...");
 		cards.forEach(function(card, index, array){
 			var pos = this.inUseCards.indexOf(card);
-			this.inUseCards.splice(pos);
+			this.inUseCards.splice(pos, 1);
 			this.baseCards.push(card);
 		});
 	}
 
 	putBack(cards){
+		console.log("putBack Length: ", this.inUseCards.length);
 		for(let i = 0; i < cards.length; i++){
 			var index = this.inUseCards.indexOf(cards[i]);
 			var card = this.inUseCards[index]
-			this.inUseCards.splice(index);
+			this.inUseCards.splice(index, 1);
 			this.usedCards.push(card);
-		}
+		}		
+		console.log("putBack Length: ", this.inUseCards.length);
 	}
 
 	get(num){
 		for(let i = 0; i < num; i++){
 			this.inUseCards.push(this.baseCards.shift());
 		}
+		console.log("get Length: ", this.inUseCards.length);
 	}
 }

@@ -106,7 +106,7 @@ async function submitCards(){
 	console.log(this.isValidSet ? "Valid" : "Invalid");
 	this.selectedCardIndeces.forEach(function(item, index){
 		//https://nickthecoder.wordpress.com/2013/02/11/integer-division-in-javascript/
-		var id = "c"+Math.floor(item / this.board.rowLength)+Math.floor(item % this.board.rowLength);
+		var id = "c"+Math.floor(item / this.board.columnCount())+Math.floor(item % this.board.columnCount());
 		document.getElementById(id).classList.remove("border-info");
 		if(this.isValidSet){
 			document.getElementById(id).classList.add("border-success");
@@ -118,7 +118,7 @@ async function submitCards(){
 	await sleep(1000);
 	this.selectedCardIndeces.forEach(function(item, index){
 		//https://nickthecoder.wordpress.com/2013/02/11/integer-division-in-javascript/
-		var id = "c"+Math.floor(item / this.board.rowLength)+Math.floor(item % this.board.rowLength);
+		var id = "c"+Math.floor(item / this.board.columnCount())+Math.floor(item % this.board.columnCount());
 		if(this.isValidSet){
 			document.getElementById(id).classList.remove("border-success");
 		} else {

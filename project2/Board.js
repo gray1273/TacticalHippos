@@ -1,16 +1,17 @@
 class Board {
     constructor() {
         this.deck = new DeckKernel();
-        this.rowLength = 4;
         this.prepareBoard();
     }
 
     //Find some way to code analagous version of printCurrentCards(requires display of cards)
     printBoard(){
         this.prepareBoard();
+	console.log("Row Length: ", this.columnCount());
 
         var html = "";
-        for(var i = 0; i < 4; i++) {
+        for(var i = 0; i < this.columnCount(); i++) {
+	    console.log("Running...");
             var col = "<div class=\"col\">\n";
             for(var j = 0; j < 3; j++) {
 		var index = this.getIndex(j, i);
@@ -25,15 +26,12 @@ class Board {
 
     // Get number of cards in board to 12, and add cards to board if there are no sets
     prepareBoard() {
-        this.rowLength = 4;
         if(this.deck.inUseCards.length < 12){
             this.deck.get(12 - this.deck.inUseCards.length);
-        } else if(this.deck.inUseCards.length > 12){
-            this.deck.putOnTop(this.deck.inUseCards.slice(12));
         }
 	while(!this.containSet()){
+		console.log("Adding column...");
 		this.deck.get(3);
-		this.rowLength++;
 	}
     }
 
@@ -94,7 +92,6 @@ class Board {
         let cardArray = inputStr.split(" ");
 
         let cardObj = this.deck.inUseCards;
-        let rowLength = this.columnCount();
 
         let cards = [];
 
@@ -108,7 +105,7 @@ class Board {
 
     //the method that take the col number and row number then return the index in the array
     getIndex(rowNum, colNum) {
-        return rowNum * this.rowLength + colNum;
+        return rowNum * this.columnCount() + colNum;
     }
 
     columnCount() {
