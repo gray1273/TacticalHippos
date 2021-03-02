@@ -44,17 +44,17 @@ class DeckKernel {
 
 	putOnTop(cards){
 		cards.forEach(function(card, index, array){
-			var pos = this.inUseCards.indexOf(card);
-			this.inUseCards.splice(pos);
-			this.baseCards.push(card);
+			var pos = window.board.deck.inUseCards.indexOf(card);
+			window.board.deck.inUseCards.splice(pos);
+			window.board.deck.baseCards.push(card);
 		});
 	}
 
 	putBack(cards){
 		cards.forEach(function(card, index, array){
 			var pos = this.inUseCards.indexOf(card);
-			this.inUseCards.splice(pos);
-			this.usedCards.push(card);
+			window.board.deck.inUseCards.splice(pos);
+			window.board.deck.usedCards.push(card);
 		})
 	}
 
