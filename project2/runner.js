@@ -11,9 +11,6 @@ this.isValidSet = false;
 
 window.onload = function onLoad() {
 	this.board.printBoard();
-	console.log(this.board.checkSet(this.board.deck.inUseCards[0], this.board.deck.inUseCards[1], this.board.deck.inUseCards[2]));
-	console.log(this.board.checkSet(this.board.deck.inUseCards[0], this.board.deck.inUseCards[1], this.board.deck.inUseCards[3]));
-	
 }
 
 // Handling the button press for player 1
@@ -27,10 +24,12 @@ function player1ButtonPress(){
 	console.log("Player 1: waiting for submit.");
 	waitForSubmit()
 	.then(function(result){
+		//Update Score
 		if(this.p1Selected){
 			console.log("Player 1: submitted.");
 			if(this.isValidSet){
 				this.p1Score++;
+				//https://www.w3schools.com/js/js_htmldom_html.asp
 				document.getElementById("player1Score").innerHTML = this.p1Score;
 			}
 			this.submitted = false;
@@ -46,6 +45,7 @@ function player2ButtonPress(){
 	this.enabled = true;
 	if(true){
 		this.p2Score++;
+		//https://www.w3schools.com/js/js_htmldom_html.asp
 		document.getElementById("player2Score").innerHTML = this.p2Score;
 	}
 	//Disable cards
@@ -84,6 +84,7 @@ function selectCard(row, col){
 			// Card has already been selected, so deselect it
 			console.log("Card "+row+", "+col+" deselected.");
 			//Change CSS for selected element
+			//https://developer.mozilla.org/en-US/docs/Web/API/Element/classList
 			document.getElementById("c"+row+col).classList.remove("border");
 			document.getElementById("c"+row+col).classList.remove("border-info");
 			document.getElementById("c"+row+col).classList.remove("rounded");
@@ -99,6 +100,7 @@ function selectCard(row, col){
 				//There is an empty spot for a card to fill, so select it
 				console.log("Card "+row+", "+col+" selected.")
 				//Change CSS for selected element
+				//https://developer.mozilla.org/en-US/docs/Web/API/Element/classList
 				document.getElementById("c"+row+col).classList.add("border");
 				document.getElementById("c"+row+col).classList.add("border-info");
 				document.getElementById("c"+row+col).classList.add("rounded");
@@ -117,8 +119,10 @@ function selectCard(row, col){
 		}
 	});
 	if(allSelected){
+		//https://developer.mozilla.org/en-US/docs/Web/API/Element/classList
 		document.getElementById("submit-button").classList.remove("d-none");
 	} else {
+		//https://developer.mozilla.org/en-US/docs/Web/API/Element/classList
 		document.getElementById("submit-button").classList.add("d-none");
 	}
 }
@@ -138,6 +142,7 @@ async function submitCards(){
 	this.selectedCardIndeces.forEach(function(item, index){
 		//https://nickthecoder.wordpress.com/2013/02/11/integer-division-in-javascript/
 		var id = "c"+Math.floor(item / this.board.columnCount())+Math.floor(item % this.board.columnCount());
+		//https://developer.mozilla.org/en-US/docs/Web/API/Element/classList
 		document.getElementById(id).classList.remove("border-info");
 		if(this.isValidSet){
 			document.getElementById(id).classList.add("border-success");
@@ -150,6 +155,7 @@ async function submitCards(){
 	this.selectedCardIndeces.forEach(function(item, index){
 		//https://nickthecoder.wordpress.com/2013/02/11/integer-division-in-javascript/
 		var id = "c"+Math.floor(item / this.board.columnCount())+Math.floor(item % this.board.columnCount());
+		//https://developer.mozilla.org/en-US/docs/Web/API/Element/classList
 		if(this.isValidSet){
 			document.getElementById(id).classList.remove("border-success");
 		} else {
