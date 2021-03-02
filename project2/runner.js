@@ -3,56 +3,127 @@ this.board = new Board();
 this.p1Score = 0;
 this.p2Score = 0;
 this.selectedCardIndeces = [-1, -1, -1];
+this.submitted = false;
+
+function onLoad(){
+	this.board.printBoard();
+}
 
 // Handling the button press for player 1
 function player1ButtonPress(){
-	//Get 3 cards from user presses
-	//Run checkSet() on the 3 cards
-	//Replace true with checkSet() call
+	//Enable cards
+	var isValidSet = false;
+	//Wait until the submit function is called
+	console.log("Player 1: waiting for submit.");
+	waitForSubmit();
+	console.log("Player 1: submitted.");
 	if(true){
 		this.p1Score++;
 		document.getElementById("player1Score").innerHTML = this.p1Score;
 	}
+	this.submitted = false;
+	//Disable cards
 }
 // Handling the button press for player 2
 function player2ButtonPress(){
-	//Get 3 cards from user presses
-	//Run checkSet() on the 3 cards
-	//Replace true with checkSet() call
+	//Enable cards
 	if(true){
 		this.p2Score++;
 		document.getElementById("player2Score").innerHTML = this.p2Score;
 	}
+	//Disable cards
 }
+async function waitForSubmit(){
+	while(!this.submitted){
+		await new Promise(resolve => setTimeout(resolve, 1000));
+	}
+}
+// Handling the press of a card
 function selectCard(row, col){
 	var foundCard = false;
 	//Check if card has already been selected
-	for (index in this.selectedCardIndeces){
-		if(selectedCardIndeces[index] == this.board.getIndex(row, col)){
+	this.selectedCardIndeces.forEach(function(item, index){
+		if(item == this.board.getIndex(row, col)){
 			// Card has already been selected, so deselect it
 			console.log("Card "+row+", "+col+" deselected.");
+			//Change CSS for selected element
 			document.getElementById("c"+row+col).classList.remove("border");
 			document.getElementById("c"+row+col).classList.remove("border-info");
 			document.getElementById("c"+row+col).classList.remove("rounded");
-			selectedCardIndeces[index] = -1;
+			//Do logic for selected card
+			this.selectedCardIndeces[index] = -1;
 			foundCard = true;
 		}
-	}
+	});
+	//Check if there are open spots
 	if(!foundCard){
-		//Check if there are open spots
-		for (index in this.selectedCardIndeces){
-			if(selectedCardIndeces[index] == -1 && !foundCard) {
+		this.selectedCardIndeces.forEach(function(item, index){
+			if(item == -1 && !foundCard) {
 				//There is an empty spot for a card to fill, so select it
 				console.log("Card "+row+", "+col+" selected.")
+				//Change CSS for selected element
 				document.getElementById("c"+row+col).classList.add("border");
 				document.getElementById("c"+row+col).classList.add("border-info");
 				document.getElementById("c"+row+col).classList.add("rounded");
-				selectedCardIndeces[index] = this.board.getIndex(row, col);
+				//Do logic for selected card
+				this.selectedCardIndeces[index] = this.board.getIndex(row, col);
 				foundCard = true;
 			}
-		}
+		});
 	}
-	//Otherwise do nothing, since 3 cards are selected
+	//Otherwise do nothing with adding cards, since 3 cards are selected
+	//Check if there are 3 cards selected
+	var allSelected = true;
+	this.selectedCardIndeces.forEach(function(item, index){
+		if(item == -1){
+			allSelected = false;
+		}
+	});
+	if(allSelected){
+		document.getElementById("submit-button").classList.remove("d-none");
+	} else {
+		document.getElementById("submit-button").classList.add("d-none");
+	}
+}
+
+// Handling the press of the submit button
+async function submitCards(){
+	document.getElementById("submit-button").classList.add("d-none");
+	var cards = [];
+	for (var i = 0; i < this.selectedCardIndeces.length; i++) {
+		cards.push(this.board.deck.inUseCards[this.selectedCardIndeces[i]]);
+	}
+	var isValidSet = this.board.checkSet(cards[0], cards[1], cards[2]);
+	this.selectedCardIndeces.forEach(function(item, index){
+		var id = "c"+Math.floor(index / this.board.rowLength)+Math.floor(index % this.board.rowLength);
+		document.getElementById(id).classList.remove("border-info");
+		if(isValidSet){
+			document.getElementById(id).classList.add("border-success");
+		} else {
+			document.getElementById(id).classList.add("border-danger");
+		}
+	});
+	// https://www.sitepoint.com/delay-sleep-pause-wait/
+	await sleep(1000);
+	this.selectedCardIndeces.forEach(function(item, index){
+		var id = "c"+Math.floor(index / this.board.rowLength)+Math.floor(index % this.board.rowLength);
+		if(isValidSet){
+			document.getElementById(id).classList.remove("border-success");
+		} else {
+			document.getElementById(id).classList.remove("border-danger");
+		}
+		document.getElementById(id).classList.remove("border");
+		document.getElementById(id).classList.remove("rounded");
+	});
+	this.selectedCardIndeces = [-1, -1, -1];
+	console.log(isValidSet ? "Valid set found." : "Not a valid set.");
+	this.submitted = true;
+	return isValidSet;
+}
+
+// https://www.sitepoint.com/delay-sleep-pause-wait/
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 /*the function that takes the start time and difficulties then return the boolean showing whether the player finished on time or not*/

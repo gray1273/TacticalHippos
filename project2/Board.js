@@ -2,9 +2,31 @@ class Board {
     constructor() {
         this.deck = new DeckKernel();
         this.rowLength = 4;
+        this.prepareBoard();
     }
 
     //Find some way to code analagous version of printCurrentCards(requires display of cards)
+    printBoard(){
+        this.prepareBoard();
+    }
+
+    // Get number of cards in board to 12, and add cards to board if there are no sets
+    prepareBoard() {
+        this.rowLength = 4;
+        if(this.deck.inUseCards.length < 12){
+            this.deck.get(12 - this.deck.inUseCards.length);
+        } else if(this.deck.inUseCards.length > 12){
+            this.deck.putOnTop(this.deck.inUseCards.slice(12));
+        }
+        if(!this.containSet()){
+            this.deck.get(3);
+            this.rowLength++;
+        }
+        if(!this.containSet()){
+            this.deck.get(3);
+            this.rowLength++;
+        }
+    }
 
     //method taking the card in use as an array(Deck.getCurrent)and used to determine if any set exists
     containSet() {
@@ -36,16 +58,16 @@ class Board {
     //the function that check to see if a given combination of cards is a set
     checkSet(a, b, c) {
         let indicator = true;
-        if (!((a.get_number() == b.get_number()) && (b.get_number() == c.get_number()) || (a.get_number() != b.get_number()) && (a.get_number() != c.get_number()) && (b.get_number() != c.get_number())))
+        if (!((a.get_number == b.get_number) && (b.get_number == c.get_number) || (a.get_number != b.get_number) && (a.get_number != c.get_number) && (b.get_number != c.get_number)))
           indicator = false
 
-        if (!((a.get_shape() == b.get_shape()) && (b.get_shape() == c.get_shape()) || (a.get_shape() != b.get_shape()) && (a.get_shape() != c.get_shape()) && (b.get_shape() != c.get_shape())))
+        if (!((a.get_shape == b.get_shape) && (b.get_shape == c.get_shape) || (a.get_shape != b.get_shape) && (a.get_shape != c.get_shape) && (b.get_shape != c.get_shape)))
           indicator = false
 
-        if (!((a.get_opacity() == b.get_opacity()) && (b.get_opacity() == c.get_opacity()) || (a.get_opacity() != b.get_opacity()) && (a.get_opacity() != c.get_opacity()) && (b.get_opacity() != c.get_opacity())))
+        if (!((a.get_opacity == b.get_opacity) && (b.get_opacity == c.get_opacity) || (a.get_opacity != b.get_opacity) && (a.get_opacity != c.get_opacity) && (b.get_opacity != c.get_opacity)))
           indicator = false
 
-        if (!((a.get_color() == b.get_color()) && (b.get_color() == c.get_color()) || (a.get_color() != b.get_color()) && (a.get_color() != c.get_color()) && (b.get_color() != c.get_color())))
+        if (!((a.get_color == b.get_color) && (b.get_color == c.get_color) || (a.get_color != b.get_color) && (a.get_color != c.get_color) && (b.get_color != c.get_color)))
           indicator = false
 
         if(a == b || a == c || b == c)
