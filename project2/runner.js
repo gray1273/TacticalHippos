@@ -2,6 +2,8 @@ this.board = new Board();
 
 this.p1Score = 0;
 this.p2Score = 0;
+this.p1Selected = false;
+this.p2Selected = false;
 this.selectedCardIndeces = [-1, -1, -1];
 this.submitted = false;
 this.isValidSet = false;
@@ -14,29 +16,45 @@ window.onload = function onLoad() {
 
 // Handling the button press for player 1
 function player1ButtonPress(){
+	this.p1Selected = true;
+	this.p2Selected = true;
 	//Enable cards
 	//Wait until the submit function is called
 	//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises
 	console.log("Player 1: waiting for submit.");
 	waitForSubmit()
 	.then(function(result){
-		console.log("Player 1: submitted.");
-		if(this.isValidSet){
-			this.p1Score++;
-			document.getElementById("player1Score").innerHTML = this.p1Score;
+		if(this.p1Selected){
+			console.log("Player 1: submitted.");
+			if(this.isValidSet){
+				this.p1Score++;
+				document.getElementById("player1Score").innerHTML = this.p1Score;
+			}
+			this.submitted = false;
+			//Disable cards
 		}
-		this.submitted = false;
-		//Disable cards
 	});
 }
 // Handling the button press for player 2
 function player2ButtonPress(){
+	this.p2Selected = true
+	this.p1Selected = false
 	//Enable cards
-	if(true){
-		this.p2Score++;
-		document.getElementById("player2Score").innerHTML = this.p2Score;
-	}
-	//Disable cards
+	//Wait until the submit function is called
+	//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises
+	console.log("Player 2: waiting for submit.");
+	waitForSubmit()
+	.then(function(result){
+		if(this.p2Selected){
+			console.log("Player 2: submitted.");
+			if(this.isValidSet){
+				this.p2Score++;
+				document.getElementById("player2Score").innerHTML = this.p2Score;
+			}
+			this.submitted = false;
+			//Disable cards
+		}
+	});
 }
 //https://stackoverflow.com/questions/3635924/how-can-i-make-a-program-wait-for-a-variable-change-in-javascript
 async function waitForSubmit(){
