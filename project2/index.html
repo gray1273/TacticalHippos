@@ -16,7 +16,7 @@
     <script src="./DeckKernel.js"></script>
     <script src="./Board.js"></script>
     <!-- https://www.w3schools.com/jsref/event_onload.asp -->
-    <script src="./runner.js" onload="onLoad()"></script>
+    <script src="./runner.js"></script>
     <title>Game of Set</title>
 </head>
 
@@ -32,8 +32,8 @@
         <div class="row justify-content-center">
             <div class="col-6">
                 <!-- 1st Row -->
-                <div class="row justify-content-center no-gutters">
-                    <div class="col">
+                <div class="row justify-content-center no-gutters" id="board">
+                    <!-- <div class="col">
                         <a href="#" id="c00" onclick="selectCard(0,0)" class="card">
                             <i class="icon green fas fa-map fa-2x"></i>
                         </a>
@@ -85,7 +85,7 @@
                             <i class="icon green fas fa-square fa-2x striped"></i>
                             <i class="icon green fas fa-square fa-2x striped"></i>
                         </a>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>

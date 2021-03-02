@@ -11,25 +11,25 @@ class Card{
     if(opacity == 1){
 	this.opacity = "open";
 	this.opacityTag = "fas";
-	}			
+	}
     else if(opacity == 2){
 	this.opacity = "striped";
 	this.opacityTag = "far";
-	}		
+	}
     else{
 	this.opacity = "solid";
 	this.opacityTag = "far";
 	}
-			
+
   //Match a number given for shape to a shape
     if(shape == 1)
 	this.shape = "square";
     else if(shape == 2)
-	this.shape = "map";	
+	this.shape = "map";
     else
 	this.shape = "circle";
-	
-			
+
+
   //Number correlates directly to a number
     this.number = number;
   }
@@ -57,7 +57,7 @@ class Card{
   		for(i = 0; i < this.number; i++){
   			ret += "<i class=\"icon " + this.color+" "+ this.opacityTag +" fa-"+this.shape+" fa-2x\"></i>\n"
   		}
-  	
+
   	}
   	//If the card is striped, print its attributes
   	else{
@@ -74,12 +74,12 @@ class Card{
 
 
 
-                        
-                    
+
+
 
 
 /*Example on usage
 var newCard = new Card(1,2,3,2);
 var temp = newCard.printHTML(2,3);
-console.log(temp); 
+console.log(temp);
 */

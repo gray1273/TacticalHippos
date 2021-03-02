@@ -18,7 +18,7 @@ class DeckKernel {
 		this.usedCards = [];
 		this.reset();
 	}
-	
+
 	reset(){
 		this.baseCards = [];
 		this.inUseCards = [];
@@ -26,17 +26,17 @@ class DeckKernel {
 		for(let i = 0; i < 3; i++){
 			for(let j = 0; j < 3; j++){
 				for(let k = 0; k < 3; k++){
-					for(let l = 0; l < 3; l++){
+					for(let l = 1; l < 4; l++){
 						this.baseCards.push(new Card(i, j, k, l));
 					}
 				}
 			}
 		}
-		
+
 		this.shuffle();
 		this.get(12);
 	}
-	
+
 	//
 	shuffle() {
 		shuffleArray(this.baseCards);
@@ -49,7 +49,7 @@ class DeckKernel {
 			this.baseCards.push(card);
 		});
 	}
-	
+
 	putBack(cards){
 		cards.forEach(function(card, index, array){
 			var pos = this.inUseCards.indexOf(card);
@@ -57,7 +57,7 @@ class DeckKernel {
 			this.usedCards.push(card);
 		})
 	}
-	
+
 	get(num){
 		for(let i = 0; i < num; i++){
 			this.inUseCards.push(this.baseCards.shift());

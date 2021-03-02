@@ -5,7 +5,7 @@ this.p2Score = 0;
 this.selectedCardIndeces = [-1, -1, -1];
 this.submitted = false;
 
-function onLoad(){
+window.onload = function onLoad() {
 	this.board.printBoard();
 }
 
@@ -142,7 +142,7 @@ function timer(startTime, difficulty){
 	else {
 		withinTime = elapsedTime < 60;
 	}
-	return withinTime;	
+	return withinTime;
 }
 
 /*the function that takes the clolum number, row number, and row length then locate the card object*/
@@ -175,7 +175,7 @@ function drawIfNoSet(){
 		return false;
 	}
 	while (!this.board.containSet() && this.board.deck.baseCards.length >= 3) {
-		this.board.deck.get(3);	
+		this.board.deck.get(3);
 	}
 	return true;
 }

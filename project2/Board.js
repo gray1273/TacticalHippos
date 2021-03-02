@@ -8,6 +8,20 @@ class Board {
     //Find some way to code analagous version of printCurrentCards(requires display of cards)
     printBoard(){
         this.prepareBoard();
+
+        var html = "";
+        var index = 0;
+        for(var i = 0; i < 4; i++) {
+            var col = "<div class=\"col\">\n";
+            for(var j = 0; j < 3; j++) {
+                col += this.deck.inUseCards[index].printHTML(j, i) + "\n";
+                index++;
+            }
+            col += "</div>\n";
+            html += col;
+        }
+
+        document.getElementById("board").innerHTML = html;
     }
 
     // Get number of cards in board to 12, and add cards to board if there are no sets
