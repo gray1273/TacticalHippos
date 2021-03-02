@@ -31,14 +31,10 @@ class Board {
         } else if(this.deck.inUseCards.length > 12){
             this.deck.putOnTop(this.deck.inUseCards.slice(12));
         }
-        if(!this.containSet()){
-            this.deck.get(3);
-            this.rowLength++;
-        }
-        if(!this.containSet()){
-            this.deck.get(3);
-            this.rowLength++;
-        }
+	while(!this.containSet()){
+		this.deck.get(3);
+		this.rowLength++;
+	}
     }
 
     //method taking the card in use as an array(Deck.getCurrent)and used to determine if any set exists
