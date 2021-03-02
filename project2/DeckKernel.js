@@ -41,6 +41,14 @@ class DeckKernel {
 	shuffle() {
 		shuffleArray(this.baseCards);
 	}
+
+	putOnTop(cards){
+		cards.forEach(function(card, index, array){
+			var pos = this.inUseCards.indexOf(card);
+			this.inUseCards.splice(pos);
+			this.baseCards.push(card);
+		});
+	}
 	
 	putBack(cards){
 		cards.forEach(function(card, index, array){
