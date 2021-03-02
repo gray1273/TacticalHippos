@@ -1,5 +1,9 @@
 class Card{
   constructor(color, opacity, shape, number) {
+    this.initialColor = color;
+    this.initialOpacity = opacity;
+    this.initialShape = shape;
+    this.initialNumber = number;
   //Match a number given for color to a color
     if(color == 1)
     	this.color = "green";
@@ -31,20 +35,20 @@ class Card{
 
 
   //Number correlates directly to a number
-    this.number = number;
+    this.number = number + 1;
   }
   //Accessor methods to get attributes from cards
   get get_color(){
-  	return this.color;
+  	return this.initialColor;
   }
   get get_opacity(){
-  	return this.opacity;
+  	return this.initialOpacity;
   }
   get get_shape(){
-  	return this.shape;
+  	return this.initialShape;
   }
   get get_number(){
-  	return this.number;
+  	return this.initialNumber;
   }
   //Print the HTML code for each card given a row and column input
   printHTML(row, col){

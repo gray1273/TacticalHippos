@@ -99,8 +99,11 @@ async function submitCards(){
 	for (var i = 0; i < this.selectedCardIndeces.length; i++) {
 		console.log(this.selectedCardIndeces[i]);
 		cards.push(this.board.deck.inUseCards[this.selectedCardIndeces[i]]);
+		console.log(cards[i].get_number, cards[i].get_color, cards[i].get_opacity, cards[i].get_shape);
 	}
+	console.log(this.board.checkSet(cards[0], cards[1], cards[2]));
 	this.isValidSet = this.board.checkSet(cards[0], cards[1], cards[2]);
+	console.log(this.isValidSet ? "Valid" : "Invalid");
 	this.selectedCardIndeces.forEach(function(item, index){
 		//https://nickthecoder.wordpress.com/2013/02/11/integer-division-in-javascript/
 		var id = "c"+Math.floor(item / this.board.rowLength)+Math.floor(item % this.board.rowLength);

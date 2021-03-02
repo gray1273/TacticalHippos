@@ -26,7 +26,7 @@ class DeckKernel {
 		for(let i = 0; i < 3; i++){
 			for(let j = 0; j < 3; j++){
 				for(let k = 0; k < 3; k++){
-					for(let l = 1; l < 4; l++){
+					for(let l = 0; l < 3; l++){
 						this.baseCards.push(new Card(i, j, k, l));
 					}
 				}

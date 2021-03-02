@@ -10,12 +10,11 @@ class Board {
         this.prepareBoard();
 
         var html = "";
-        var index = 0;
         for(var i = 0; i < 4; i++) {
             var col = "<div class=\"col\">\n";
             for(var j = 0; j < 3; j++) {
+		var index = this.getIndex(j, i);
                 col += this.deck.inUseCards[index].printHTML(j, i) + "\n";
-                index++;
             }
             col += "</div>\n";
             html += col;
@@ -74,24 +73,24 @@ class Board {
         let indicator = true;
         if (!(((a.get_number == b.get_number) && (b.get_number == c.get_number))
             || ((a.get_number != b.get_number) && (a.get_number != c.get_number) && (b.get_number != c.get_number))))
-          indicator = false
+          indicator = false;
 
         if (!(((a.get_shape == b.get_shape) && (b.get_shape == c.get_shape)) 
             || ((a.get_shape != b.get_shape) && (a.get_shape != c.get_shape) && (b.get_shape != c.get_shape))))
-          indicator = false
+          indicator = false;
 
         if (!(((a.get_opacity == b.get_opacity) && (b.get_opacity == c.get_opacity))
             || ((a.get_opacity != b.get_opacity) && (a.get_opacity != c.get_opacity) && (b.get_opacity != c.get_opacity))))
-          indicator = false
+          indicator = false;
 
         if (!(((a.get_color == b.get_color) && (b.get_color == c.get_color))
             || ((a.get_color != b.get_color) && (a.get_color != c.get_color) && (b.get_color != c.get_color))))
-          indicator = false
+          indicator = false;
 
         if(a == b || a == c || b == c)
-          indicator = false
+          indicator = false;
 
-        return indicator
+        return indicator;
     }
 
     //method used to match the string that the user entered with cards.
