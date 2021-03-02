@@ -14,15 +14,15 @@ class Card{
   //Match an opacity number to an opacity
     if(opacity == 1){
 	this.opacity = "open";
-	this.opacityTag = "fas";
+	this.opacityTag = "far";
 	}
     else if(opacity == 2){
 	this.opacity = "striped";
-	this.opacityTag = "far";
+	this.opacityTag = "fas";
 	}
     else{
 	this.opacity = "solid";
-	this.opacityTag = "far";
+	this.opacityTag = "fas";
 	}
 
   //Match a number given for shape to a shape
