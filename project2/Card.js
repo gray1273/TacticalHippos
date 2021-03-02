@@ -55,7 +55,7 @@ class Card{
   	var ret = "";
   	var i = 0;
   	//Add the header
-  	ret += "<a href=\"#\" id=\"c"+row+col+"\" onclick=\"selectCard("+row+","+col+")\"class=\"card\">\n"
+  	ret += "<a href=\"#\" id=\"c"+row+col+"\" onclick=\"cardHandler("+row+","+col+")\"class=\"card\">\n"
   	//If the card is not striped, print its attribute
   	if(this.opacity != "striped"){
   		for(i = 0; i < this.number; i++){

@@ -2,6 +2,7 @@ this.board = new Board();
 
 this.p1Score = 0;
 this.p2Score = 0;
+this.enabled = false;
 this.p1Selected = false;
 this.p2Selected = false;
 this.selectedCardIndeces = [-1, -1, -1];
@@ -12,6 +13,7 @@ window.onload = function onLoad() {
 	this.board.printBoard();
 	console.log(this.board.checkSet(this.board.deck.inUseCards[0], this.board.deck.inUseCards[1], this.board.deck.inUseCards[2]));
 	console.log(this.board.checkSet(this.board.deck.inUseCards[0], this.board.deck.inUseCards[1], this.board.deck.inUseCards[3]));
+	
 }
 
 // Handling the button press for player 1
@@ -19,6 +21,7 @@ function player1ButtonPress(){
 	this.p1Selected = true;
 	this.p2Selected = true;
 	//Enable cards
+	this.enabled = true;
 	//Wait until the submit function is called
 	//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises
 	console.log("Player 1: waiting for submit.");
@@ -40,6 +43,12 @@ function player2ButtonPress(){
 	this.p2Selected = true
 	this.p1Selected = false
 	//Enable cards
+	this.enabled = true;
+	if(true){
+		this.p2Score++;
+		document.getElementById("player2Score").innerHTML = this.p2Score;
+	}
+	//Disable cards
 	//Wait until the submit function is called
 	//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises
 	console.log("Player 2: waiting for submit.");
@@ -61,6 +70,10 @@ async function waitForSubmit(){
 	while(!this.submitted){
 		await new Promise(resolve => setTimeout(resolve, 1000));
 	}
+}
+function cardHandler(row,col){
+	if(this.enabled)
+		selectCard(row,col);
 }
 // Handling the press of a card
 function selectCard(row, col){
@@ -154,6 +167,7 @@ async function submitCards(){
 	}
 	this.selectedCardIndeces = [-1, -1, -1];
 	console.log(this.isValidSet ? "Valid set found." : "Not a valid set.");
+	this.enabled = false;
 	this.submitted = true;
 }
 
