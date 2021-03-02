@@ -33,7 +33,7 @@ class DeckKernel {
 			}
 		}
 		
-		//this.shuffle();
+		this.shuffle();
 		this.get(12);
 	}
 	
