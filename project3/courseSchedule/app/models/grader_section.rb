@@ -1,0 +1,2 @@
+class GraderSection < ApplicationRecord
+end
