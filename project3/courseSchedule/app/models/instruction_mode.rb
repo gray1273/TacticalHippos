@@ -1,0 +1,2 @@
+class InstructionMode < ApplicationRecord
+end
