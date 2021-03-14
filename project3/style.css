@@ -1,0 +1,23 @@
+.main-container{
+    margin: auto;
+    margin-top: 10px;
+    width: 700px;
+    float: left;
+}
+
+.class-container{
+    background: rgba(0, 0, 128, 0.3);
+}
+
+.section-container{
+    background: rgba(0, 255, 0, 0.1);
+}
+
+.peopleContainer{
+    display: flex;
+    justify-content: space-between;
+}
+
+p, h3, h4, h5, h6{
+    display: inline;
+}
