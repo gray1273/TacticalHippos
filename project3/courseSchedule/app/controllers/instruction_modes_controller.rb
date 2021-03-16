@@ -1,0 +1,3 @@
+class InstructionModesController < ApplicationController
+
+end
