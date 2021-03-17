@@ -1,0 +1,3 @@
+class SectionTypesController < ApplicationController
+
+end
