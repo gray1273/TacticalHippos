@@ -3,7 +3,7 @@ class CreateSections < ActiveRecord::Migration[6.0]
     create_table :sections do |t|
       t.integer :course_id
       t.integer :instructor_id
-      t.integer :sectionType_id
+      t.integer :section_type_id
       t.integer :term_id
       t.integer :instructionMode_id
       t.integer :location_id
