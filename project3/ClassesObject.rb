@@ -1,7 +1,7 @@
 #Create classes object
 class ClassesObject
-	attr_accessor :classNumber, :className, :description, :classSections, :numberOfSections, 
-	def initialize(classNumber, className, description)
+	attr_accessor :classNumber, :className, :description, :classSections, :numberOfSections
+	def initialize(classNumber, className, description, numberOfSections)
 		#Class course code, name of the class, and description provided of the class
 		@classNumber = classNumber
 		@className = className
