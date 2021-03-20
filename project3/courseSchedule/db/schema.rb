@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 2021_03_13_154920) do
   create_table "sections", force: :cascade do |t|
     t.integer "course_id"
     t.integer "instructor_id"
-    t.integer "sectionType_id"
+    t.integer "section_type_id"
     t.integer "term_id"
     t.integer "instructionMode_id"
     t.integer "location_id"
@@ -84,7 +84,7 @@ ActiveRecord::Schema.define(version: 2021_03_13_154920) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.integer "userType_id"
+    t.integer "user_type_id"
     t.string "first_name"
     t.string "last_name"
     t.string "email", default: "", null: false
