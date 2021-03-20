@@ -32,9 +32,9 @@ def scrapeWebsite(campus, term, depart)
 		
 		
 		#get basic info for each class
-		classNumber= indivClass.css('h3.ng-binding').text
-		className= indivClass.css('span.course-title.ng-binding').text
-		description= indivClass.css('p.ng-binding').text
+		classNumber= indivClass.css('h3.ng-binding').text.strip
+		className= indivClass.css('span.course-title.ng-binding').text.strip
+		description= indivClass.css('p.ng-binding').text.strip
 		classSections= indivClass.css('div.section-container.ng-scope')
 		numberOfSections = classSections.length
 		classInfo = ClassesObject.new(classNumber, className, description, numberOfSections)
@@ -42,16 +42,16 @@ def scrapeWebsite(campus, term, depart)
 		#Loops through each section that a class has
 		classSections.each do |classSection|
 			
-			sectionNumber= classSection.css('h4.subtitle.ng-binding').text
-			year= classSection.css('span.label.primary.ng-binding').text
-			term= classSection.css('span.darker.ng-binding').text
+			sectionNumber= classSection.css('h4.subtitle.ng-binding').text.strip
+			year= classSection.css('span.label.primary.ng-binding').text.strip
+			term= classSection.css('span.darker.ng-binding').text.strip
 			#Gets info from the meeting division with time and location specifics
 			meetingInfo= classSection.css('div.meeting.ng-scope')
-				professor= meetingInfo.css('li.right.ng-binding.ng-scope').text
-				time= meetingInfo.css('div.meeting-times.ng-binding').text
-				days= meetingInfo.css('p.sr-only.sr-only-focusable.ng-binding').text
-				building= meetingInfo.css('p.ng-binding').text
-				room= meetingInfo.css('span.ng-binding.ng-scope').text
+				professor= meetingInfo.css('li.right.ng-binding.ng-scope').text.strip
+				time= meetingInfo.css('div.meeting-times.ng-binding').text.strip
+				days= meetingInfo.css('p.sr-only.sr-only-focusable.ng-binding').text.strip
+				building= meetingInfo.css('p.ng-binding').text.strip
+				room= meetingInfo.css('span.ng-binding.ng-scope').text.strip
 				section = SectionObject.new(sectionNumber,year,term,professor,time,days,building,room)
 			#Appends SectionObject to the array in its ClassesObject
 			classInfo.classSections.append(section)
@@ -67,6 +67,9 @@ end
 
 #Usage
 #temp = Array.new
+#Campus = col
+#term = 1214 for summer 2021
+#depart = cse, ece, ETC
 #temp = scrapeWebsite("col", "1214", "cse") #NOTE: All 3 arguments must be strings!!
 #puts temp[1].classNumber
 #puts temp[1].className
