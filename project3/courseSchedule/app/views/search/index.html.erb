@@ -11,7 +11,7 @@
 
     <!-- Custom Stylesheet -->
     <%= stylesheet_link_tag 'style.css' %>
-    <%= javascript_pack_tag 'search.js' %>
+    <!--%= javascript_pack_tag 'search.js' %> -->
     <title>OSU Courses</title>
 </head>
 
@@ -27,7 +27,7 @@
                 <div class="dropdown">
                     <button class="btn btn-outline-dark btn-block dropdown-toggle" type="button" data-bs-toggle="dropdown" id="filterDropDown" aria-expanded="false">
                         Filter
-                        <span class="caret"></spawn>
+                        <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="filterDropDown">
                         <li><a class="dropdown-item" href="#">Class Name</a></li>
@@ -43,31 +43,36 @@
             </div>
             <!-- When searching/filtering data, add it like this -->
         </div>
-        <!-- When searching/filtering data, add it like this
+        <% Courses.each do |key, course| %>
         <div class="row">
             <div class="col-12">
-                <h3>CSE 2221&nbsp;</h3>
-                <p class="font-italic">Software 1: Software Components</p>
+                <h3><%=course.Number%>&nbsp;</h3>
+                <p class="font-italic"><%=course.Name%></p>
             </div>
             <div class="col-12">
-                <p>Class descriptionClass descriptionClass descriptionClass descriptionClass descriptionClass descriptionClass descriptionClass descriptionClass descriptionClass descriptionClass descriptionClass descriptionClass descriptionClass descriptionClass descriptionClass descriptionClass descriptionClass descriptionClass descriptionClass descriptionClass descriptionClass descriptionClass descriptionClass descriptionClass descriptionClass descriptionClass descriptionClass descriptionClass descriptionClass descriptionClass descriptionClass descriptionClass descriptionClass descriptionClass description</p>
+                <p><%=course.Description%></p>
             </div>
-            Copy this inside class containers to get section containers 
-            <div class="col"></div>  White space 
+            <% course.Sections.each do |key, section| %>
+            <div class="col"></div> 
             <div class="col-11 section-container">
-                <h4>Section 1020 (5396)</h4>
+                <h4><%=section.SectionNumber%></h4>
                 </br>
-                <p>Fall 2021 1/12/2021 - 4/25/2021</p>
+                <p><%=section.Semester%> <%=section.StartDate%> - <%=section.EndDate%></p>
                 </br></br>
-                <p>Dreese labs Room 300</p>
+                <p><%=section.BuildingName%> <%=section.RoomNumber%></p>
                 </br>
                 <div class="peopleContainer">
-                    <p>Graders: Billy Bob1, Billy Bob2, Billy Bob3</p>
-                    <p>Instructor: Billy Bob</p>
+                    <p>
+                        Graders: <%section.Graders.each do |key, name|%>
+                        <%=name%>
+                        <%end%>
+                    </p>
+                    <p>Instructor: section.InstructorName</p>
                 </div>
             </div>
+            <%end%>
         </div>
-        -->
+        <%end%>
         
     </div>
 </body>

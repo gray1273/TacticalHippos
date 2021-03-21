@@ -1,3 +1,4 @@
+/*
 var container = document.getElementById("main-container");
 
 
@@ -60,3 +61,6 @@ function requestAllData() {
 }
 
 display(requestAllData())
+
+
+*/
