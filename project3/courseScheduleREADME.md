@@ -26,7 +26,7 @@ Daquian Zuo
 
 ### Web Scraping and Login
 
-WRITE ONCE FINISHED
+`$ ruby Scraper.rb`
 
 ### Running the Program
 
@@ -34,13 +34,19 @@ In a browser, go to:
 
 `http://localhost:3000`
 
-and the main page will be shown.
+and the login page will be shown, which will redirect to the home page.
 
 
 ## Documentation
 
+### Controller
+
+Found in: `project3/courseSchedule/app/controllers/`
+
 ### Model
+
+Found in: `/project3/courseSchedule/app/models/`
 
 ### View
 
-### Controller
+Found in: `/project3/courseSchedule/app/views/`
