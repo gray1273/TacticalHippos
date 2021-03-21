@@ -6,6 +6,43 @@ require './SectionObject.rb'
 require 'watir'
 require 'webdrivers'
 
+def updateSections(section, updater)
+    #TODO set model's section data from updater
+    
+    
+    section.save
+end
+
+def updateCourse(course, updater)
+    course.title = updater.className
+    course.catalog_number = updater.classNumber
+    course.description = updater.description
+    
+    updater.courseSections.each do |newSection|
+        section = Course.sections.find_by section_number: newSection.sectionNumber
+        if section.blank? then
+            updateSection(Section.new, newSection)
+        else
+            updateSection(section, newSection)
+        end
+    end
+    
+    course.save
+end
+
+#Adds information to the model
+def addToModel(courses)
+    courses.each do |newCourse|
+        course = Course.find_by title: newCourse.className
+        if course.blank? then
+            updateCourse(Course.new, newCourse)
+        else
+            updateCourse(course, neCourse)
+        end
+    end
+end
+
+
 
 #Create mechanize agent
 #Campus = col
@@ -70,10 +107,11 @@ end
 #Campus = col
 #term = 1214 for summer 2021
 #depart = cse, ece, ETC
-#temp = scrapeWebsite("col", "1214", "cse") #NOTE: All 3 arguments must be strings!!
-#puts temp[1].classNumber
-#puts temp[1].className
-#puts temp[1].description
+temp = scrapeWebsite("col", "1214", "cse") #NOTE: All 3 arguments must be strings!!
+#addToModel(temp)
+puts "Class Number: " + temp[1].classNumber
+puts "Class Name: " + temp[1].className
+puts "Class Description: " + temp[1].description
 #puts temp[1].numberOfSections
 #numberOfSections can be used to run a for loop for each classSection
 #puts temp[1].classSections[0].sectionNumber
