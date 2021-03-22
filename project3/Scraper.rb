@@ -52,7 +52,7 @@ def addToModel(courses)
         if course.blank? then
             updateCourse(Course.new, newCourse)
         else
-            updateCourse(course, neCourse)
+            updateCourse(course, newCourse)
         end
     end
 end

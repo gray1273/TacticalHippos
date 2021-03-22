@@ -5,9 +5,9 @@ one:
   instructor_id: 
   section_number: 
   class_number: 
-  term: MyString
-  instruction_mode: MyString
-  location: MyString
+  term_id: 
+  instruction_mode_id: 
+  location_id: 
   start_date: 
   end_date: 
   days_of_week: MyString
@@ -19,11 +19,12 @@ two:
   instructor_id: 
   section_number: 
   class_number: 
-  term: MyString
-  instruction_mode: MyString
-  location: MyString
+  term_id: 
+  instruction_mode_id: 
+  location_id: 
   start_date: 
   end_date: 
   days_of_week: MyString
   start_time: 
   end_time: 
+    
