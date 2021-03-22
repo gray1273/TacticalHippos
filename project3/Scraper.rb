@@ -5,17 +5,31 @@ require './ClassesObject.rb'
 require './SectionObject.rb'
 require 'watir'
 require 'webdrivers'
+require './courseSchedule/app/models/course.rb'
+require './courseSchedule/app/models/section.rb'
+require './courseSchedule/app/models/user.rb'
+require './courseSchedule/app/models/season.rb'
 
+
+#Given a section, updates it to the webscraped information
 def updateSections(section, updater)
     #TODO set model's section data from updater
     
-    
+    section.section_name = updater.sectionNumber
+    #season = seasons.find_by title: updater.term
+    #term = terms.find_by year: updater.year, season_id: season
+    #section.term_id = term
+    section.instructor_id = (users.find updater.professor) or nil
+    section.days_of_week = updater.days
+    section.location = updater.building + updater.room
+
     section.save
 end
 
+#Given a course, updates it to the webscraped information
 def updateCourse(course, updater)
     course.title = updater.className
-    course.catalog_number = updater.classNumber
+    course.course_name = updater.classNumber
     course.description = updater.description
     
     updater.courseSections.each do |newSection|
@@ -25,6 +39,7 @@ def updateCourse(course, updater)
         else
             updateSection(section, newSection)
         end
+        course.sections << section
     end
     
     course.save
@@ -108,11 +123,11 @@ end
 #term = 1214 for summer 2021
 #depart = cse, ece, ETC
 temp = scrapeWebsite("col", "1214", "cse") #NOTE: All 3 arguments must be strings!!
-#addToModel(temp)
-puts "Class Number: " + temp[1].classNumber
-puts "Class Name: " + temp[1].className
-puts "Class Description: " + temp[1].description
-#puts temp[1].numberOfSections
+addToModel(temp)
+#puts "Class Number: " + temp[1].classNumber
+#puts "Class Name: " + temp[1].className
+#puts "Class Description: " + temp[1].description
+#puts temp[1].classSections.length
 #numberOfSections can be used to run a for loop for each classSection
 #puts temp[1].classSections[0].sectionNumber
 #puts temp[1].classSections[0].year
