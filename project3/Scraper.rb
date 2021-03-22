@@ -6,10 +6,19 @@ require './SectionObject.rb'
 require 'watir'
 require 'webdrivers'
 
+
 def updateSections(section, updater)
     #TODO set model's section data from updater
     
-    
+    section.section_number = updater.sectionNumber
+    season = seasons.find_by title: updater.term
+    term = terms.find_by year: updater.year, season_id: season
+    section.term_id = term
+    section.instructor_id = users.find updater.professor
+    section.start_time = updater.time
+    section.days_of_week = updater.days
+    section.location = updater.building + updater.room
+
     section.save
 end
 
@@ -25,6 +34,7 @@ def updateCourse(course, updater)
         else
             updateSection(section, newSection)
         end
+        course.sections << section
     end
     
     course.save
@@ -109,10 +119,10 @@ end
 #depart = cse, ece, ETC
 temp = scrapeWebsite("col", "1214", "cse") #NOTE: All 3 arguments must be strings!!
 #addToModel(temp)
-puts "Class Number: " + temp[1].classNumber
-puts "Class Name: " + temp[1].className
-puts "Class Description: " + temp[1].description
-#puts temp[1].numberOfSections
+#puts "Class Number: " + temp[1].classNumber
+#puts "Class Name: " + temp[1].className
+#puts "Class Description: " + temp[1].description
+#puts temp[1].classSections.length
 #numberOfSections can be used to run a for loop for each classSection
 #puts temp[1].classSections[0].sectionNumber
 #puts temp[1].classSections[0].year
