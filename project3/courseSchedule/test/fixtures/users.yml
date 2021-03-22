@@ -1,15 +1,15 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  id: 
-  type: 
-  firstName: MyString
-  lastName: MyString
-  email: MyString
+# one:
+#   id: 
+#   user_type_id: 
+#   first_name: MyString
+#   last_name: MyString
+#   email: "test1@test.com"
 
-two:
-  id: 
-  type: 
-  firstName: MyString
-  lastName: MyString
-  email: MyString
+# two:
+#   id: 
+#   user_type_id: 
+#   first_name: MyString
+#   last_name: MyString
+#   email: "test2@test.com"
