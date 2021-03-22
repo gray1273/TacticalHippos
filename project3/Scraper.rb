@@ -5,6 +5,11 @@ require './ClassesObject.rb'
 require './SectionObject.rb'
 require 'watir'
 require 'webdrivers'
+require './courseSchedule/app/models/course.rb'
+require './courseSchedule/app/models/section.rb'
+require './courseSchedule/app/models/user.rb'
+require './courseSchedule/app/models/season.rb'
+
 
 #Given a section, updates it to the webscraped information
 def updateSections(section, updater)
