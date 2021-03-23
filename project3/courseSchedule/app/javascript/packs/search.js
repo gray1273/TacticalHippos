@@ -1,4 +1,3 @@
-var search = document.getElementById("search");
 
 //https://stackoverflow.com/questions/7524585/how-do-i-get-the-information-from-a-meta-tag-with-javascript
 //Returns the content of meta information
@@ -14,12 +13,26 @@ function getMeta(metaName) {
   return '';
 }
 
-search.addEventListener("keyup", function(event) {
-    if(event.keyCode === 13){
-        event.preventDefault();
-        window.location.replace(getMeta("baseURL") + search.value)
+function listenForEnter(){
+    var search = document.getElementById("searchForm");
+    search.addEventListener("keyup", function(event) {
+        if(event.keyCode === 13){
+            event.preventDefault();
+            console.log(getMeta("baseURL"));
+            console.log("Value:" + search.value);
+            window.location.replace("/search/?class_name=" + encodeURIComponent(search.value))
+        }
+    })
+}
+
+var checkExist = setInterval(function() {
+    if (document.getElementById("searchForm")) {
+        listenForEnter();
+        clearInterval(checkExist);
     }
-})
+}, 100);
+
+
 /*
 
 var container = document.getElementById("main-container");
