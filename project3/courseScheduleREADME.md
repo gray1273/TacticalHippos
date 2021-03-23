@@ -37,6 +37,8 @@ In a browser, go to:
 
 and the login page will be shown, which will redirect to the home page.
 
+If you would like to search the database for classes you can go to:
+`http://localhost:3000/search`
 
 ## Documentation
 
