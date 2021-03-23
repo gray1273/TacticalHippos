@@ -1,4 +1,27 @@
+var search = document.getElementById("search");
+
+//https://stackoverflow.com/questions/7524585/how-do-i-get-the-information-from-a-meta-tag-with-javascript
+//Returns the content of meta information
+function getMeta(metaName) {
+  const metas = document.getElementsByTagName('meta');
+
+  for (let i = 0; i < metas.length; i++) {
+    if (metas[i].getAttribute('name') === metaName) {
+      return metas[i].getAttribute('content');
+    }
+  }
+
+  return '';
+}
+
+search.addEventListener("keyup", function(event) {
+    if(event.keyCode === 13){
+        event.preventDefault();
+        window.location.replace(getMeta("baseURL") + search.value)
+    }
+})
 /*
+
 var container = document.getElementById("main-container");
 
 
