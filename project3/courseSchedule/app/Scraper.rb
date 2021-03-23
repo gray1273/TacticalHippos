@@ -80,11 +80,14 @@ def scrapeWebsite(campus, term, depart)
 	totalClasses = parseMain.css('div.course.ng-scope')
 	totalClasses.each do |indivClass|
 		
-		
 		#get basic info for each class
 		classNumber= indivClass.css('h3.ng-binding').text.strip
 		className= indivClass.css('span.course-title.ng-binding').text.strip
-		description= indivClass.css('p.ng-binding').text.strip
+		#Makes sure only course code is in the attribute classNumber
+		classNumber = classNumber[0..9]
+		#Adds a new location for description so it only gets this 'p.ng-binding' css element
+		descriptionLocation = indivClass.css('div.col-md-12.light.course-info')
+		description= descriptionLocation.css('p.ng-binding').text.strip
 		classSections= indivClass.css('div.section-container.ng-scope')
 		numberOfSections = classSections.length
 		classInfo = ClassesObject.new(classNumber, className, description, numberOfSections)
@@ -131,7 +134,11 @@ end
 #term = 1214 for summer 2021
 #depart = cse, ece, ETC
 temp = scrapeWebsite("col", "1214", "cse") #NOTE: All 3 arguments must be strings!!
+#temp.each do |course|
+#	puts course.classNumber
+#end
 addToModel(temp)
+
 #puts "Class Number: " + temp[1].classNumber
 #puts "Class Name: " + temp[1].className
 #puts "Class Description: " + temp[1].description
