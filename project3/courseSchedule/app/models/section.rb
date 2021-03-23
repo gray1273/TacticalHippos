@@ -5,5 +5,5 @@ class Section < ApplicationRecord
 	has_one :term
 	has_one :instruction_mode
 	has_one :location
-	has_many :users, :through => :grader_sections
+	has_many :users, through: :grader_sections
 end

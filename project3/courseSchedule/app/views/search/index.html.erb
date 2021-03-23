@@ -46,31 +46,31 @@
             </div>
             <!-- When searching/filtering data, add it like this -->
         </div>
-        <% Courses.each do |key, course| %>
+        <% @Courses.each do |course| %>
         <div class="row">
             <div class="col-12">
-                <h3><%=course.Number%>&nbsp;</h3>
-                <p class="font-italic"><%=course.Name%></p>
+                <h3><%=course.course_name%>&nbsp;</h3>
+                <p class="font-italic"><%=course.title%></p>
             </div>
             <div class="col-12">
-                <p><%=course.Description%></p>
+                <p><%=course.description%></p>
             </div>
-            <% course.Sections.each do |key, section| %>
+            <% course.sections.each do |section| %>
             <div class="col"></div> 
             <div class="col-11 section-container">
-                <h4><%=section.SectionNumber%></h4>
+                <h4><%=section.section_name%></h4>
                 </br>
-                <p><%=section.Semester%> <%=section.StartDate%> - <%=section.EndDate%></p>
+                <p><%=section.term_id%> <%=section.start_date%> - <%=section.end_date%></p>
                 </br></br>
-                <p><%=section.BuildingName%> <%=section.RoomNumber%></p>
-                </br>
+                <p><%=section.location_id%></p>
+                </br> 
                 <div class="peopleContainer">
-                    <p>
-                        Graders: <%section.Graders.each do |key, name|%>
-                        <%=name%>
-                        <%end%>
-                    </p>
-                    <p>Instructor: section.InstructorName</p>
+                    <!--<p>
+                        Graders: <section.users.each do |grader|%>
+                        <=grader.user_id%>
+                        <end%>
+                    </p>-->
+                    <p>Instructor: <%=section.instructor_id%></p>
                 </div>
             </div>
             <%end%>

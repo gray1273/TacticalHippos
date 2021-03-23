@@ -10,10 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_22_195129) do
+ActiveRecord::Schema.define(version: 2021_03_23_124639) do
 
   create_table "courses", force: :cascade do |t|
-    t.integer "catalog_number"
+    t.integer "course_id"
     t.string "title"
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
@@ -57,9 +57,9 @@ ActiveRecord::Schema.define(version: 2021_03_22_195129) do
     t.integer "instructor_id"
     t.integer "section_type_id"
     t.integer "term_id"
-    t.integer "instruction_mode_id"
+    t.integer "instructionMode_id"
     t.integer "location_id"
-    t.integer "section_number"
+    t.integer "section_id"
     t.integer "class_number"
     t.string "location"
     t.string "days_of_week"

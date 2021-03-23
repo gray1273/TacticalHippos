@@ -8,5 +8,6 @@ class SearchController < ApplicationController
                 @Courses.where(key.to_sym => value);
             end
         end
+        render Courses: @Courses
     end    
 end

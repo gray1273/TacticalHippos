@@ -5,23 +5,22 @@ require './ClassesObject.rb'
 require './SectionObject.rb'
 require 'watir'
 require 'webdrivers'
-require './courseSchedule/app/models/course.rb'
-require './courseSchedule/app/models/section.rb'
-require './courseSchedule/app/models/user.rb'
-require './courseSchedule/app/models/season.rb'
+require './models/course.rb'
+require './models/section.rb'
+require './models/user.rb'
+require './models/season.rb'
 
 
 #Given a section, updates it to the webscraped information
-def updateSections(section, updater)
+def updateSection(section, updater)
     #TODO set model's section data from updater
     
     section.section_name = updater.sectionNumber
-    #season = seasons.find_by title: updater.term
-    #term = terms.find_by year: updater.year, season_id: season
-    #section.term_id = term
-    section.instructor_id = (users.find updater.professor) or nil
+    season = Season.find_or_create_by title: updater.term
+    section.term_id = Term.find_or_create_by year: updater.year, season_id: season
+    section.instructor_id = (User.find_or_create_by first_name: updater.professor) or nil
     section.days_of_week = updater.days
-    section.location = updater.building + updater.room
+    #section.location = Location.find_or_create_by location: updater.building + updater.room
 
     section.save
 end
@@ -32,13 +31,12 @@ def updateCourse(course, updater)
     course.course_name = updater.classNumber
     course.description = updater.description
     
-    updater.courseSections.each do |newSection|
-        section = Course.sections.find_by section_number: newSection.sectionNumber
+    updater.classSections.each do |newSection|
+        section = course.sections.find_by section_name: newSection.sectionNumber
         if section.blank? then
-            updateSection(Section.new, newSection)
-        else
-            updateSection(section, newSection)
+            section = Section.new
         end
+        updateSection(section, newSection)
         course.sections << section
     end
     
@@ -116,6 +114,16 @@ def scrapeWebsite(campus, term, depart)
 	#puts classInfoArray.length
 return classInfoArray
 end
+
+=begin
+class Scraper
+    def initialize
+        @temp = scrapeWebsite("col", "1214", "cse");
+        addToModel(temp)
+        return temp
+    end
+end
+=end
 
 #Usage
 #temp = Array.new

@@ -26,7 +26,8 @@ Daquian Zuo
 
 ### Web Scraping and Login
 
-`$ ruby Scraper.rb`
+`$ cd courseSchedule/app`
+`$ rails runner Scraper.rb`
 
 ### Running the Program
 
