@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(version: 2021_03_23_124639) do
     t.integer "instructor_id"
     t.integer "section_type_id"
     t.integer "term_id"
-    t.integer "instructionMode_id"
+    t.integer "instruction_mode_id"
     t.integer "location_id"
     t.integer "section_id"
     t.integer "class_number"
