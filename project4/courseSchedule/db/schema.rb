@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_08_022650) do
+ActiveRecord::Schema.define(version: 2021_04_09_033045) do
 
   create_table "courses", force: :cascade do |t|
     t.integer "course_id"
@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 2021_04_08_022650) do
   end
 
   create_table "section_types", force: :cascade do |t|
-    t.string "type"
+    t.string "title"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 2021_04_08_022650) do
     t.integer "term_id"
     t.integer "instruction_mode_id"
     t.integer "location_id"
-    t.integer "section_id"
+    t.integer "section_number"
     t.integer "class_number"
     t.string "location"
     t.string "days_of_week"
@@ -69,7 +69,6 @@ ActiveRecord::Schema.define(version: 2021_04_08_022650) do
     t.time "end_time"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "section_name"
   end
 
   create_table "terms", force: :cascade do |t|
@@ -80,7 +79,7 @@ ActiveRecord::Schema.define(version: 2021_04_08_022650) do
   end
 
   create_table "user_types", force: :cascade do |t|
-    t.string "title_string"
+    t.string "title"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

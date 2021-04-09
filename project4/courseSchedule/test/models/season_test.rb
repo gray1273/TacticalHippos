@@ -1,9 +1,6 @@
 require 'test_helper'
 
 class SeasonTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
   def test_uniqueness
   	Season.find_or_create_by(:title => "Autumn")
   	Season.find_or_create_by(:title => "Autumn")
