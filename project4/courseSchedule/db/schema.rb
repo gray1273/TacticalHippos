@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_23_124639) do
+ActiveRecord::Schema.define(version: 2021_04_13_025217) do
 
   create_table "courses", force: :cascade do |t|
     t.integer "course_id"
@@ -40,6 +40,16 @@ ActiveRecord::Schema.define(version: 2021_03_23_124639) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "recommendations", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "course_id"
+    t.integer "section_id"
+    t.integer "instructor_id"
+    t.integer "recommendation_type"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "seasons", force: :cascade do |t|
     t.string "title"
     t.datetime "created_at", precision: 6, null: false
@@ -57,7 +67,7 @@ ActiveRecord::Schema.define(version: 2021_03_23_124639) do
     t.integer "instructor_id"
     t.integer "section_type_id"
     t.integer "term_id"
-    t.integer "instructionMode_id"
+    t.integer "instruction_mode_id"
     t.integer "location_id"
     t.integer "section_id"
     t.integer "class_number"
