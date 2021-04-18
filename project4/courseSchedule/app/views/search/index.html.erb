@@ -11,7 +11,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
 
     <!-- Custom Stylesheet -->
-    <%= stylesheet_link_tag 'style.css' %>
+    <%= stylesheet_link_tag 'search.css' %>
     <%= javascript_pack_tag 'search.js' %> 
     <title>OSU Courses</title>
 </head>
@@ -22,8 +22,6 @@
 
 <body>
     <!-- https://getbootstrap.com/docs/4.0/layout/grid/ -->
-    <div class="container main-container" id="main-container">
-        <div class="row justify-content-center">
 <!--
             <div class="col-2">
                 <div class="dropdown">
@@ -37,48 +35,14 @@
                 </div>
             </div>
 -->
-            <div class="col-12">
-                <form action=""> 
-                    <div class="form-group">
-                        <input class="form-control" id="searchForm" placeholder="What would you like to search for?"/>
-                    </div>
-                </form>
-            </div>
-            <!-- When searching/filtering data, add it like this -->
+    <form action="" id="search-bar"> 
+        <div class="form-group">
+            <input class="form-control" id="searchForm" placeholder="What would you like to search for?"/>
         </div>
-        <% @Courses.each do |course| %>
-        <div class="row">
-            <div class="col-12">
-                <h3><%=course.course_name%>&nbsp;</h3>
-                <p class="font-italic"><%=course.title%></p>
-            </div>
-            <div class="col-12">
-                <p><%=course.description%></p>
-            </div>
-            <% course.sections.each do |section| %>
-            <div class="col"></div> 
-            <div class="col-11 section-container">
-                <h4><%=section.section_name%></h4>
-                </br>
-                <p><%=section.term_id%> <%=section.start_date%> - <%=section.end_date%></p>
-                </br></br>
-                <p><%=section.location_id%></p>
-                </br> 
-                <div class="peopleContainer">
-                    <!--<p>
-                        Graders: <section.users.each do |grader|%>
-                        <=grader.user_id%>
-                        <end%>
-                    </p>-->
-                    <p>Instructor: <%=section.instructor_id%></p>
-                </div>
-            </div>
-            <%end%>
-        </div>
-        <%end%>
-        
-    </div>
+    </form>
+    <%= render "layouts/course_list" %>
 </body>
 
 
 </html>
+
