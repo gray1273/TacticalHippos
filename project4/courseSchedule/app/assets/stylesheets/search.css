@@ -1,0 +1,10 @@
+#base-container{
+    display: block;
+}
+
+#search-bar{
+    width: 700px;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
