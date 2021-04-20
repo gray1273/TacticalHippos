@@ -21,6 +21,15 @@ class SeasonsController < ApplicationController
     end
   end
 
+  # def createOrFind
+  #   begin
+  #     @season = Season.find_by title: params[:title]
+  #   rescue ActiveRecord::RecordNotFound => e
+  #     @season = Season.create(params)
+  #   end
+  #   return @season
+  # end
+
   def edit
     @season = Season.find(params[:id])
   end

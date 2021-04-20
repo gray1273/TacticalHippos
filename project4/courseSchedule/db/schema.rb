@@ -10,10 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_14_023933) do
+ActiveRecord::Schema.define(version: 2021_04_20_022547) do
 
   create_table "courses", force: :cascade do |t|
-    t.integer "course_id"
     t.string "title"
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
@@ -33,6 +32,13 @@ ActiveRecord::Schema.define(version: 2021_04_14_023933) do
 
   create_table "instruction_modes", force: :cascade do |t|
     t.string "mode"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "instructors", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -61,7 +67,7 @@ ActiveRecord::Schema.define(version: 2021_04_14_023933) do
   end
 
   create_table "section_types", force: :cascade do |t|
-    t.string "type"
+    t.string "title"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -71,11 +77,10 @@ ActiveRecord::Schema.define(version: 2021_04_14_023933) do
     t.integer "instructor_id"
     t.integer "section_type_id"
     t.integer "term_id"
-    t.integer "instructionMode_id"
+    t.integer "instruction_mode_id"
     t.integer "location_id"
-    t.integer "section_id"
+    t.integer "section_number"
     t.integer "class_number"
-    t.string "location"
     t.string "days_of_week"
     t.date "start_date"
     t.date "end_date"
@@ -83,7 +88,6 @@ ActiveRecord::Schema.define(version: 2021_04_14_023933) do
     t.time "end_time"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "section_name"
   end
 
   create_table "terms", force: :cascade do |t|
@@ -94,7 +98,7 @@ ActiveRecord::Schema.define(version: 2021_04_14_023933) do
   end
 
   create_table "user_types", force: :cascade do |t|
-    t.string "title_string"
+    t.string "title"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

@@ -44,7 +44,7 @@ def index
 
   private
     def term_params
-      params.require(:term).permit(:year, :season_id)
+      params.require(:term).permit(:season_attributes, :year)
     end
 
 end
