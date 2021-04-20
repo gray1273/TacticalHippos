@@ -110,6 +110,11 @@ Contains representations of each table in the database. The tables include:
   - string days_of_week
   - time start_time
   - time end_time
+- Instructor
+  - int id
+  - int user_id
+  - string first_name
+  - string last_name
 - Section Type
   - int id
   - string type (Lab, Lecture)
