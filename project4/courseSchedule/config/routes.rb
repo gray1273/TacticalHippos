@@ -4,11 +4,13 @@ Rails.application.routes.draw do
   get 'assign', to: 'grader_assignment#index'
   get 'search', to: 'search#index'
   get 'my_applications', to: 'my_grader_applications#index'
+  get 'my_sections', to: 'grader_sections#get_grader_sections'
+  get 'all_sections', to: 'grader_sections#get_all_sections'
   get 'apply', to: 'grader_application#index'
   post 'apply', to: 'grader_application#edit'
   root to: 'search#index'
   #devise_scope :user do
   #  root :to => "devise/sessions#new"
-  #  get 
+  #  get
   #end
 end

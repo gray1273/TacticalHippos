@@ -8,6 +8,16 @@ class GraderSectionsController < ApplicationController
     @grader_section = GraderSection.find(params[:id])
   end
 
+  def get_grader_sections
+    @grader_sections = GraderSection.where(:grader_id => current_user.id, status: :accepted)
+    render 'index'
+  end
+
+  def get_all_sections
+    @grader_sections = GraderSection.all
+    render 'index'
+  end
+
   def new
     @grader_section = GraderSection.new
   end
