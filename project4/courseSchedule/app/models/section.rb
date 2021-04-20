@@ -9,7 +9,7 @@ class Section < ApplicationRecord
 
 	scope :filter_by_course, -> (course) { where("course LIKE ?", "#{name}%") }
 	scope :filter_by_instructor, -> (instructor) { where instructor: instructor }
-	scope :filter_by_section_type, -> (section_type) { where(section_type: section_type}
+	scope :filter_by_section_type, -> (section_type) { where section_type: section_type}
 	scope :filter_by_term, -> (term) { where term: term }
 	scope :filter_by_instruction_mode, -> (instruction_mode) { where instruction_mode: instruction_mode }
 	scope :filter_by_location, -> (location) { where location: location }
