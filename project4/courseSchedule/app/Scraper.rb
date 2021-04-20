@@ -1,14 +1,14 @@
 #Create webscraper
 require 'rubygems'
 require 'nokogiri'
-require './ClassesObject.rb'
-require './SectionObject.rb'
+require_relative 'ClassesObject.rb'
+require_relative 'SectionObject.rb'
 require 'watir'
 require 'webdrivers'
-require './models/course.rb'
-require './models/section.rb'
-require './models/user.rb'
-require './models/season.rb'
+require_relative 'models/course.rb'
+require_relative 'models/section.rb'
+require_relative 'models/user.rb'
+require_relative 'models/season.rb'
 
 
 #Given a section, updates it to the webscraped information
@@ -27,8 +27,8 @@ end
 
 #Given a course, updates it to the webscraped information
 def updateCourse(course, updater)
-    course.title = updater.className
-    course.course_name = updater.classNumber
+    course.title = updater.courseTitle
+    course.course_name = updater.courseName
     course.description = updater.description
     
     updater.classSections.each do |newSection|
@@ -46,7 +46,7 @@ end
 #Adds information to the model
 def addToModel(courses)
     courses.each do |newCourse|
-        course = Course.find_by title: newCourse.className
+        course = Course.find_by title: newCourse.courseTitle
         if course.blank? then
             updateCourse(Course.new, newCourse)
         else
@@ -72,25 +72,27 @@ def scrapeWebsite(campus, term, depart)
 	
 	
 	
-	classInfoArray = Array.new
+	courseInfoArray = Array.new
 	parseMain = Nokogiri::HTML(browser.html)
-	totalClasses = Array.new
+	totalCourses = Array.new
 	
 	#Find all the classes on the page
-	totalClasses = parseMain.css('div.course.ng-scope')
-	totalClasses.each do |indivClass|
+	totalCourses = parseMain.css('div.course.ng-scope')
+	totalCourses.each do |individualCourse|
 		
 		#get basic info for each class
-		classNumber= indivClass.css('h3.ng-binding').text.strip
-		className= indivClass.css('span.course-title.ng-binding').text.strip
-		#Makes sure only course code is in the attribute classNumber
-		classNumber = classNumber[0..9]
+		courseName = individualCourse.css('h3.ng-binding').text.strip
+		courseTitle = individualCourse.css('span.course-title.ng-binding').text.strip
+
 		#Adds a new location for description so it only gets this 'p.ng-binding' css element
-		descriptionLocation = indivClass.css('div.col-md-12.light.course-info')
-		description= descriptionLocation.css('p.ng-binding').text.strip
-		classSections= indivClass.css('div.section-container.ng-scope')
+		descriptionLocation = individualCourse.css('div.col-md-12.light.course-info')
+		courseDescription= descriptionLocation.css('p.ng-binding').text.strip
+
+		puts individualCourse.css('div.col-md-12.light.course-info').css('p.ng-binding').text.strip
+		puts courseDescription
+		classSections= individualCourse.css('div.section-container.ng-scope')
 		numberOfSections = classSections.length
-		classInfo = ClassesObject.new(classNumber, className, description, numberOfSections)
+		courseInfo = ClassesObject.new(courseName, courseTitle, courseDescription, numberOfSections)
 		
 		#Loops through each section that a class has
 		classSections.each do |classSection|
@@ -107,15 +109,15 @@ def scrapeWebsite(campus, term, depart)
 				room= meetingInfo.css('span.ng-binding.ng-scope').text.strip
 				section = SectionObject.new(sectionNumber,year,term,professor,time,days,building,room)
 			#Appends SectionObject to the array in its ClassesObject
-			classInfo.classSections.append(section)
+			courseInfo.classSections.append(section)
 		end
 		#Adds the ClassesObject to the output array
-		classInfoArray.append(classInfo)	
+		courseInfoArray.append(courseInfo)	
 	end	
 	
 	#puts parseMain
-	#puts classInfoArray.length
-return classInfoArray
+	#puts courseInfoArray.length
+return courseInfoArray
 end
 
 =begin
@@ -135,12 +137,12 @@ end
 #depart = cse, ece, ETC
 temp = scrapeWebsite("col", "1214", "cse") #NOTE: All 3 arguments must be strings!!
 #temp.each do |course|
-#	puts course.classNumber
+#	puts course.courseName
 #end
 addToModel(temp)
 
-#puts "Class Number: " + temp[1].classNumber
-#puts "Class Name: " + temp[1].className
+#puts "Class Number: " + temp[1].courseName
+#puts "Class Name: " + temp[1].courseTitle
 #puts "Class Description: " + temp[1].description
 #puts temp[1].classSections.length
 #numberOfSections can be used to run a for loop for each classSection
