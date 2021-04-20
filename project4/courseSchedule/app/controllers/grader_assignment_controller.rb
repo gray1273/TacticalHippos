@@ -2,7 +2,14 @@ class GraderAssignmentController < ApplicationController
 
     #Should eventually let them specifically search the courses
     def index
-        @Courses = Course.all
+        @CheckBox = true
+        puts user_signed_in?
+        puts current_user
+        puts current_user.user_type_id
+        puts "printed"
+        if user_signed_in? then
+            @Courses = Course.all
+        end
     end
 
     #Handle grader assignments from client
