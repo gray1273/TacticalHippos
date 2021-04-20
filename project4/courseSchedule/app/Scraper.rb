@@ -68,7 +68,7 @@ def scrapeWebsite(campus, term, depart)
 	browser.element(css: "h1.loading-courses").wait_until_present
 	#div.course.ng-scope
 	
-	sectionController = SectionsController.new
+	# sectionController = SectionsController.new
 	
 	#classInfoArray = Array.new
 	parseMain = Nokogiri::HTML(browser.html)
@@ -220,7 +220,7 @@ def scrapeWebsite(campus, term, depart)
 			end
 			
 			puts "#{startTimeHour}:#{startTimeMinute}-#{endTimeHour}:#{endTimeMinute}|#{startDateYear}/#{startDateMonth}/#{startDateDay}-#{endDateYear}/#{endDateMonth}/#{endDateDay}"
-			sectionController.create_safely(course,
+			SectionsController.create_safely(course,
 											sectionNumber,
 											classNumber,
 											instructorFirstName,

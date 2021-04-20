@@ -133,6 +133,7 @@ class SectionTest < ActiveSupport::TestCase
   	assert_equal 14, testSection.end_time.hour, testSection.end_time.inspect
   	assert_equal 5, testSection.end_time.min, testSection.end_time.inspect
 
+    assert_equal 1, Course.count
   	assert_equal 1, Instructor.count
   	assert_equal 1, SectionType.count
   	assert_equal 1, Term.count

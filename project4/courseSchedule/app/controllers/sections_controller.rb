@@ -23,7 +23,7 @@ class SectionsController < ApplicationController
     end
   end
 
-  def create_safely(course, 
+  def self.create_safely(course, 
                     section_number, 
                     class_number, 
                     instructor_first_name, 
