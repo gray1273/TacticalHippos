@@ -20,6 +20,18 @@
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
+  
+  
+  
+  
+  <label for="user_type">Choose a user type</label>
+  <select name = "user_type">
+    <option value = "Grader">Grader</option>
+    <option value = "Instructor">Instructor</option>
+    <option value = "Student">Student</option>
+  </select>
+  
+
 
   <div class="actions">
     <%= f.submit "Sign up" %>
