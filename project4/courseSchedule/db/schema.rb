@@ -21,10 +21,13 @@ ActiveRecord::Schema.define(version: 2021_04_20_022547) do
   end
 
   create_table "grader_sections", force: :cascade do |t|
-    t.integer "user_id"
     t.integer "section_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "course_id"
+    t.integer "application_id"
+    t.integer "preference"
+    t.integer "status"
   end
 
   create_table "instruction_modes", force: :cascade do |t|
@@ -44,6 +47,17 @@ ActiveRecord::Schema.define(version: 2021_04_20_022547) do
     t.string "location"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "recommendations", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "course_id"
+    t.integer "section_id"
+    t.integer "instructor_id"
+    t.integer "recommendation_type"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "description"
   end
 
   create_table "seasons", force: :cascade do |t|
