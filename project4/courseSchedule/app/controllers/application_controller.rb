@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
     def temp 
-        render html: "project 4 temp application controller message"
+        render "layouts/application"
     end
     
 end
