@@ -14,15 +14,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.find_or_create_by(
-      :user_id => current_user.id,
-      :first_name => first_name,
-      :last_name => last_name,
-      :user_type => UserType.find_or_create_by(
-        :title => type
-      ),
-      :email => email
-    )
+    @user = User.new(user_params.merge(user_id: current_user.id))
     if @user.save
       redirect_to @user
     else
@@ -53,9 +45,13 @@ class UsersController < ApplicationController
     redirect_to root_path
   end
 
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:first_name, :last_name, :type, :email)
+  end
+
   private
     def user_params
-      params.require(:user).permit(:first_name, :last_name,:email)
+      params.require(:user).permit(:first_name, :last_name, :type, :email)
     end
 
   #before filters
