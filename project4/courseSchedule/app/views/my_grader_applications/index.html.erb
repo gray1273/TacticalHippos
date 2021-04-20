@@ -1,0 +1,25 @@
+
+
+    <div class="container main-container" id="list-container">
+        <% @Applications.each do |application| section = application.section%>
+        <div class="row">
+            <div class="col-12 section-container">
+                <h4><%=section.section_number%></h4>
+                </br>
+                <p><%=section.term_id%> <%=section.start_date%> - <%=section.end_date%></p>
+                </br></br>
+                <p><%=section.location_id%></p>
+                </br>
+                <div class="peopleContainer">
+<!--<p>
+                        Graders: <section.users.each do |grader|%>
+                        <=grader.user_id%>
+                        <end%>
+                    </p>-->
+                    <p>Instructor: <%=section.instructor_id%></p>
+                </div>
+            </div>
+        </div>
+        <%end%>
+    </div>
+
