@@ -1,4 +1,4 @@
-<% content_for :head do %>
+<% content_for :navbar do %>
     <link rel="stylesheet" href="/assets/navbar.css"> 
 <% end %>
 
@@ -6,8 +6,12 @@
     <div class='container'>
         <nav>
             <ul>
+            <li><%= link_to "Apply", '/apply' %></li>
+            <li><%= link_to "Assign", '/assign' %></li>
+            <li><%= link_to "Search", '/search' %></li>
             <li><%= link_to "Login", '/users/sign_in' %></li>
             <li><%= link_to "Sign Up", '/users/sign_up' %></li>
+            <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %> </li>
             </ul>
         </nav>
 </header>
