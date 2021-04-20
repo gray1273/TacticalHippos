@@ -14,16 +14,8 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params.merge(user_id: current_user.id))
-    if @user.save
-      redirect_to @user
-    else
-      render :new
-    end
-  end
-
-  def self.create_safely(first_name, last_name, type, email)
-    return User.find_or_create_by(
+    @user = User.find_or_create_by(
+      :user_id => current_user.id,
       :first_name => first_name,
       :last_name => last_name,
       :user_type => UserType.find_or_create_by(
@@ -31,6 +23,11 @@ class UsersController < ApplicationController
       ),
       :email => email
     )
+    if @user.save
+      redirect_to @user
+    else
+      render :new
+    end
   end
 
   def edit
