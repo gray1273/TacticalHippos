@@ -12,8 +12,8 @@ class SearchController < ApplicationController
         if params[:class_name] then
             puts "Searching for it!!!", params[:class_name]
             msg = "%#{params[:class_name]}%"
-            @Courses = Course.where("title LIKE ? OR description LIKE ? OR class_name LIKE ?", msg, msg, msg)
-            
+            @Courses = Course.where("title LIKE ? OR description LIKE ? OR course_name LIKE ?", msg, msg, msg)
+            puts @Courses
         else
             @Courses = Course.where nil
         end

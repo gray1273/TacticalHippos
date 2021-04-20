@@ -1,6 +1,6 @@
 class GraderSection < ApplicationRecord
-	belongs_to :application
-    belongs_to :course
-	belongs_to :section, option: true
+	has_one :grader
+    has_one :course
+	has_one :section 
     enum status: [:accepted, :rejected, :applied]
 end
