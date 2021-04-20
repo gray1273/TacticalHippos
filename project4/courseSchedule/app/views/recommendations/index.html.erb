@@ -1,0 +1,13 @@
+<% if @recommendation.blank? %>
+<p>There are not any recommendations currently.</p>
+<% else %>
+<p>These are the current recommendations</p>
+
+<ul id = "recommendations">
+   <% @recommendation.each do |c| %>
+   <li><%= link_to c.course_id, {:action => 'show', :id => c.id} -%></li>
+   <% end %>
+</ul>
+
+<% end %>
+<p><%= link_to "Add New Recommendation", {:action => 'new' }%></p>

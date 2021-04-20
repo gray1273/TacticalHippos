@@ -1,0 +1,29 @@
+<h1>Add new Recommendation</h1>
+
+<%= form_tag :action => 'create' do %>
+
+<p><label for = "recommendations_user_id">Student Name</label>:
+<%= text_field 'recommendations', 'student name' %></p>
+
+<p><label for = "recommendations_course_id">Course</label>:
+<%= text_field 'recommendations', 'course' %></p>
+
+<p><label for = "recommendations_section_id">Section</label>:
+<%= text_field 'recommendations', 'section' %></p>
+
+<p><label for = "recommendations_instructor_id">Instructor</label>:
+<%= text_field 'recommendations', 'instructor' %></p>
+
+
+<p><label for = "recommendations_recommendation_type">Recommendation Type</label>:
+<%= collection_select(:recommendations, :recommendation_type) %></p>
+
+
+<p><label for = "recommendations_description">Description</label><br/>
+<%= text_area 'recommendations', 'description' %></p>
+
+
+<%= submit_tag "Create" %>
+
+<% end -%>
+<%= link_to 'Back', {:action => 'index'} %>

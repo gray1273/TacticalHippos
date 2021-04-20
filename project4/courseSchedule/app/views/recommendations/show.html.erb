@@ -1,0 +1,14 @@
+<h1>Recommendation</h1>
+
+<p>
+   <strong>Student: </strong> $<%= @recommendation.user_id %><br />
+   <strong>Course:</strong> <%= @recommendation.course_id %><br />
+   <strong>Section:</strong> <%= @recommendation.section_id %><br />
+   
+</p>
+
+<p><%= @recommendation.description %></p>
+
+<hr />
+
+<%= link_to 'Back', {:action => 'index'} %>
