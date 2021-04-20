@@ -67,10 +67,11 @@ class SectionsController < ApplicationController
       :section_number => section_number,
       :class_number => class_number,
       :days_of_week => days_of_week,
-      :start_date => Date.new(start_date_year,start_date_month,start_date_day),
-      :end_date => Date.new(end_date_year,end_date_month,end_date_day),
-      :start_time => Time.new(2000,1,1,start_time_hour,start_time_minute,00,"+00:00"),
-      :end_time => Time.new(2000,1,1,end_time_hour,end_time_minute,00,"+00:00")
+      :start_date => (start_date_year == -1? nil : Date.new(start_date_year,start_date_month,start_date_day)),
+      :end_date => (end_date_year == -1? nil : Date.new(end_date_year,end_date_month,end_date_day)),
+      #ensure that the times are in range using a ternary statement. Fills in null if the time is not proper. Hour is %24 because sometimes the website scrapes 24 instead of 0.
+      :start_time => ((start_time_hour < 0 || start_time_hour > 24 || start_time_minute < 0 || start_time_minute > 59)? nil : Time.new(2000,"jan",1,start_time_hour%24,start_time_minute,00,"+00:00")),
+      :end_time => ((end_time_hour < 0 || start_time_hour > 24 || start_time_minute < 0 || start_time_minute > 59)? nil : Time.new(2000,"jan",1,end_time_hour%24,end_time_minute,00,"+00:00"))
     )
   end
 
