@@ -5,7 +5,7 @@
 
 <ul id = "recommendations">
    <% @recommendation.each do |c| %>
-   <li><%= link_to c.title, {:action => 'show', :id => c.id} -%></li>
+   <li><%= link_to c.course_id, {:action => 'show', :id => c.id} -%></li>
    <% end %>
 </ul>
 
