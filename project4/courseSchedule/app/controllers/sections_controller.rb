@@ -21,7 +21,7 @@ class SectionsController < ApplicationController
     end
   end
 
-  def create_safely(course_id, 
+  def create_safely(course, 
                     section_number, 
                     class_number, 
                     instructor_first_name, 
@@ -42,14 +42,10 @@ class SectionsController < ApplicationController
                     end_time_hour, 
                     end_time_minute)
     return Section.find_or_create_by(
-      :course_id => course_id,
-      :user => User.find_or_create_by(
-        :user_type => UserType.find_or_create_by(
-          :title => "Instructor"
-        ),
+      :course => course,
+      :instructor => Instructor.find_or_create_by(
         :first_name => instructor_first_name,
         :last_name => instructor_last_name,
-        :email => ""
       ),
       :section_type => SectionType.find_or_create_by(
         :title => type

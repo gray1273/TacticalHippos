@@ -10,10 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_20_014447) do
+ActiveRecord::Schema.define(version: 2021_04_20_022547) do
 
   create_table "courses", force: :cascade do |t|
-    t.integer "course_id"
     t.string "title"
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
@@ -68,7 +67,6 @@ ActiveRecord::Schema.define(version: 2021_04_20_014447) do
     t.integer "location_id"
     t.integer "section_number"
     t.integer "class_number"
-    t.string "location"
     t.string "days_of_week"
     t.date "start_date"
     t.date "end_date"
