@@ -1,5 +1,7 @@
 class SectionsController < ApplicationController
 
+  before_action :instructor_user, only: [:show, :edit, :update, :destroy]
+
   def index
     @sections = Section.all
   end
@@ -98,4 +100,7 @@ class SectionsController < ApplicationController
       params.require(:section).permit(:section_number, :class_number, :days_of_week,:location,:start_date,:end_date,:start_time,:end_time)
     end
 
+    def instructor_user
+      @instructor_user = Instructor.find(params[:id])
+    end
 end

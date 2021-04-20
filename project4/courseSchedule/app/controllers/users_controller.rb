@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_action :logged_in_user, only: [:edit, :update]
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def index
     @users = User.all
@@ -31,8 +31,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 
     if @user.update(user_params)
+      flash[:success] = "Profile updated."
       redirect_to @user
     else
+      flash[:success] = "Failed to update the profile."
       render :edit
     end
   end
@@ -49,4 +51,10 @@ class UsersController < ApplicationController
       params.require(:user).permit(:first_name, :last_name,:email)
     end
 
-end
+  #before filters
+
+  def set_user
+    @user = User.find(params[:id])
+  end
+
+  end

@@ -1,6 +1,8 @@
 class RecommendationsController < ApplicationController
 
-def index
+  before_action :instructor_user, only: [:show, :edit, :update, :destroy]
+
+  def index
     @recommendation = Recommendations.all
   end
 
@@ -47,4 +49,7 @@ def index
       params.require(:user_type).permit(:title_string)
     end
 
+    def instructor_user
+      @instructor_user = Instructor.find(params[:id])
+    end
 end
