@@ -60,6 +60,14 @@ If you would like to search the database for classes you can go to:
 
 ## Documentation
 
+### Routes
+
+`/users/sign_in`: Login
+
+`/my_sections`: Grader / Instructor home
+
+`/all_sections`: Admin home
+
 ### Controller
 
 Found in: `project3/courseSchedule/app/controllers/`
