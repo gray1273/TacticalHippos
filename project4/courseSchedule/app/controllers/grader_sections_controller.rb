@@ -31,7 +31,7 @@ class GraderSectionsController < ApplicationController
     if @grader_section.update(grader_section_params)
       redirect_to @grader_section
     else
-      render:edit
+      render :edit
     end
   end
 

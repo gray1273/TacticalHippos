@@ -31,7 +31,7 @@ def index
     if @instruction_mode.update(instruction_mode_params)
       redirect_to @instruction_mode
     else
-      render:edit
+      render :edit
     end
   end
 

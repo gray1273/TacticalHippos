@@ -31,7 +31,7 @@ def index
     if @term.update(term_params)
       redirect_to @term
     else
-      render:edit
+      render :edit
     end
   end
 

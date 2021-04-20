@@ -31,7 +31,7 @@ def index
     if @user_type.update(user_type_params)
       redirect_to @user_type
     else
-      render:edit
+      render :edit
     end
   end
 

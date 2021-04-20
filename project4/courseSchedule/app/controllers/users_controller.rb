@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
 
-def index
+  before_action :logged_in_user, only: [:edit, :update]
+
+  def index
     @users = User.all
   end
 
@@ -31,7 +33,7 @@ def index
     if @user.update(user_params)
       redirect_to @user
     else
-      render:edit
+      render :edit
     end
   end
 

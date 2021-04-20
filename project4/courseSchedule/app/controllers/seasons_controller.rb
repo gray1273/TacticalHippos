@@ -40,7 +40,7 @@ class SeasonsController < ApplicationController
     if @season.update(season_params)
       redirect_to @season
     else
-      render:edit
+      render :edit
     end
   end
 

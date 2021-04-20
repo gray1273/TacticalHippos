@@ -31,7 +31,7 @@ def index
     if @location.update(location_params)
       redirect_to @location
     else
-      render:edit
+      render :edit
     end
   end
 

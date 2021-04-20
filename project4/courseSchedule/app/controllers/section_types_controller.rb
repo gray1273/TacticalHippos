@@ -31,7 +31,7 @@ def index
     if @section_type.update(section_type_params)
       redirect_to @section_type
     else
-      render:edit
+      render :edit
     end
   end
 

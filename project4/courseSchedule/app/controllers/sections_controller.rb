@@ -82,7 +82,7 @@ class SectionsController < ApplicationController
     if @section.update(section_params)
       redirect_to @section
     else
-      render:edit
+      render :edit
     end
   end
 
