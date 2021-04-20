@@ -21,7 +21,26 @@ class SectionsController < ApplicationController
     end
   end
 
-  def create_safely(course_id, section_number, class_number, instructor_first_name, instructor_last_name, type, term, instruction_mode, location, start_date_year, start_date_month, start_date_day, end_date_year, end_date_month, end_date_day, start_time_hour, start_time_minute, end_time_hour, end_time_minute)
+  def create_safely(course_id, 
+                    section_number, 
+                    class_number, 
+                    instructor_first_name, 
+                    instructor_last_name, 
+                    type, 
+                    term, 
+                    instruction_mode, 
+                    location, 
+                    start_date_year, 
+                    start_date_month, 
+                    start_date_day, 
+                    end_date_year, 
+                    end_date_month, 
+                    end_date_day, 
+                    days_of_week, 
+                    start_time_hour, 
+                    start_time_minute, 
+                    end_time_hour, 
+                    end_time_minute)
     return Section.find_or_create_by(
       :course_id => course_id,
       :user => User.find_or_create_by(
@@ -49,6 +68,7 @@ class SectionsController < ApplicationController
       ),
       :section_number => section_number,
       :class_number => class_number,
+      :days_of_week => days_of_week,
       :start_date => Date.new(start_date_year,start_date_month,start_date_day),
       :end_date => Date.new(end_date_year,end_date_month,end_date_day),
       :start_time => Time.new(2000,1,1,start_time_hour,start_time_minute,00,"+00:00"),
