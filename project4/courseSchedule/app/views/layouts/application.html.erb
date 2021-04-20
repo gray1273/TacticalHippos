@@ -1,27 +1,48 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>CourseSchedule</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     
         <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <% if content_for?(:head) %>
-        <%= yield(:head) %>
-    <% end %>
 
+    <!-- ADD BOOSTRAP STUFF -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="baseURL" content="<%=request.original_url%>">
+<!-- Bootstrap: CSS package, really cool and really pretty. https://getbootstrap.com/ -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous"/>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+
+    <!-- Add head information -->
+    <% if content_for? :head %>
+        <%= yield :head %>
+    <% end %>
+    
+    <!-- Add course_list_head information -->
+    <% if content_for? :course_list_head %>
+        <%= yield :course_list_head %>
+    <% end %>
+    
+    <% if content_for? :navbar %>
+        <%= yield :navbar %>
+    <% end %>
 
   </head>
 
   <body>
   
-  <%= render 'layouts/navbar' %>
+  <!-- Add a success one? -->
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+
+    <%= render 'layouts/navbar' %>
 
     <%= yield %>
   </body>
 
 
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
 </html>

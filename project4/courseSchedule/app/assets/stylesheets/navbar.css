@@ -3,6 +3,7 @@ ul {
     margin: 0;
     padding: 0;
     overflow: hidden;
+    width: 100%;
     background-color: rgb(25, 25, 100);
   }
   
