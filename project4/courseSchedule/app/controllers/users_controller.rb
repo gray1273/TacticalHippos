@@ -22,6 +22,17 @@ class UsersController < ApplicationController
     end
   end
 
+  def self.create_safely(first_name, last_name, type, email)
+    return User.find_or_create_by(
+      :first_name => first_name,
+      :last_name => last_name,
+      :user_type => UserType.find_or_create_by(
+        :title => type
+      ),
+      :email => email
+    )
+  end
+
   def edit
     @user = User.find(params[:id])
   end
