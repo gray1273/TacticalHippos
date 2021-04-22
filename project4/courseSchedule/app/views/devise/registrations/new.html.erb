@@ -3,13 +3,24 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
 
   <div class="field">
-    <%= f.label :password %>
+    <label for="user_first_name">First Name</label><br>
+    <input autocomplete="first_name" type="first_name" value="" name="user[first_name]" id="user_first_name">
+  </div> 
+
+  <div class="field">
+    <label for="user_last_name">Last Name</label><br>
+    <input autocomplete="last_name" type="last_name" value="" name="user[last_name]" id="user_last_name">
+  </div> 
+
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autocomplete: "email" %>
+  </div>
+
+  <div class="field"> <%= f.label :password %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
@@ -21,17 +32,12 @@
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
   
-  
-  
-  
-  <label for="user_type">Choose a user type</label>
-  <select name = "user_type">
+  <label for="user_user_type">Choose a user type</label>
+  <select name="user[user_type]">
     <option value = "Grader">Grader</option>
     <option value = "Instructor">Instructor</option>
-    <option value = "Student">Student</option>
+    <option value = "Administrator">Administrator</option>
   </select>
-  
-
 
   <div class="actions">
     <%= f.submit "Sign up" %>
