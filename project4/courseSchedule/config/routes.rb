@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get 'search', to: 'search#index'
   get 'my_applications', to: 'my_grader_applications#index'
   get 'apply', to: 'grader_application#index'
+  post 'users/sign_up', to: 'users_controller#create'
   post 'apply', to: 'grader_application#edit'
   root to: 'search#index'
   #devise_scope :user do

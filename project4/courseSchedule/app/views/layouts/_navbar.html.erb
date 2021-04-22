@@ -6,23 +6,23 @@
     <div class='container'>
         <nav>
             <ul>
-            <% if current_user != nil and current_user.user_type != nil and current_user.user_type.title == "Grader" then %>
+            <!--% if current_user != nil and current_user.user_type != nil and current_user.user_type.title == "Grader" then %-->
                 <% puts 'grader' %>
                 <li><%= link_to "Apply", '/apply' %></li>
                 <li><%= link_to "My Applications", '/my_applications' %></li>
                 <!-- REMOVE THE LINK BELOW THIS WHEN USER_TYPE IS FUNCTIONAL -->
                 <li><%= link_to "Assign", '/assign' %></li>
-            <% elsif current_user != nil and current_user.user_type.title == "Admin" then %>
+            <!--% elsif current_user != nil and current_user.user_type.title == "Admin" then %-->
                 <% puts 'admin' %>
                 <li><%= link_to "Assign", '/assign' %></li>
-            <% elsif current_user != nil and current_user.user_type.title == "Instructor" then %>
+            <!--% elsif current_user != nil and current_user.user_type.title == "Instructor" then %-->
                 <% puts 'instructor' %>
-            <% end %>
+            <!--% end %-->
             <li><%= link_to "Search", '/search' %></li>
             <li><%= link_to "Login", '/users/sign_in' %></li>
             <li><%= link_to "Sign Up", '/users/sign_up' %></li>
             <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %> </li>
-            <li><%= link_to "Edit Profile", edit_user_registration_path, :method => :update %> </li>
+            <!-- <li><= link_to "Edit Profile", edit_user_registration_path, :method => :update %> </li> -->
             <!--<li><= link_to "Profile", edit_user_path(current_user) %> </li> -->
             </ul>
         </nav>
