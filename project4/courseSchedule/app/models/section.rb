@@ -6,7 +6,7 @@ class Section < ApplicationRecord
 	belongs_to :instruction_mode
 	belongs_to :location
 	has_many :users, through: :grader_sections
-    belongs_to :grader_sections
+    has_many :grader_sections
 
 	scope :filter_by_course, -> (course) { where("course LIKE ?", "#{name}%") }
 	scope :filter_by_instructor, -> (instructor) { where instructor: instructor }
