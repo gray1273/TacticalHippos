@@ -12,11 +12,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    puts "Running 3"
-    puts params
     params[:user][:user_type_id] = UserType.find_or_create_by(title: params[:user][:user_type]).id
     params[:user][:user_type] = nil
-    puts params
     super
 #    user_params = params[:user]
 #    @user = User.new(
