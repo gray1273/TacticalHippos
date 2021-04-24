@@ -9,9 +9,18 @@ class Users::SessionsController < Devise::SessionsController
   # end
 
   # POST /resource/sign_in
-  # def create
-  #   super
-  # end
+  def create
+    puts "Running!"
+    user = User.find_by( email: params[:user][:email] )
+    if user and user.user_type.title == "Instructor" then    
+      # instances = Instructor.where( :first_name => user.first_name, :last_name => user.last_name )
+      # instances.each
+      instructor = Instructor.find_by( :first_name => user.first_name, :last_name => user.last_name )
+      instructor.instructor_id = user.id
+      instructor.save
+    end
+    super
+  end
 
   # DELETE /resource/sign_out
   # def destroy
