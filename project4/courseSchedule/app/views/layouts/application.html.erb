@@ -36,8 +36,13 @@
   <body>
   
   <!-- Add a success one? -->
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <!--https://stackoverflow.com/questions/7702488/how-to-hide-a-pages-div-if-an-attribute-is-blank-on-a-page-->
+    <% unless notice.blank? %>
+        <p class="notice"><%= notice %></p>
+    <% end %>
+    <% unless alert.blank? %>
+        <p class="alert"><%= alert %></p>
+    <% end %>
 
     <%= render 'layouts/navbar' %>
 

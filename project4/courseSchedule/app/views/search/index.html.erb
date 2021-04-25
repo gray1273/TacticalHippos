@@ -26,12 +26,14 @@
                 </div>
             </div>
 -->
-    <form action="/search" id="search-bar" method="GET"> 
-        <div class="form-group">
-            <input type="text" class="form-control" id="searchForm" placeholder="What would you like to search for?"/>
-        </div>
-    </form>
-    <%= render "layouts/course_list" %>
+    <div class="container">
+        <form action="/search" id="search-bar" method="GET"> 
+            <div class="form-group">
+                <input type="text" class="form-control" id="searchForm" placeholder="What would you like to search for?"/>
+            </div>
+        </form>
+        <%= render "layouts/course_list" %>
+    </div>
 </body>
 
 

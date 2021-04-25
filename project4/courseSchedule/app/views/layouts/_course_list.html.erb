@@ -6,45 +6,48 @@
 
 
 <!-- < content_for :search do %> -->
-    <div class="container main-container" id="list-container">
+    <div class="main-container" id="list-container">
         <% @Courses.each do |course| %>
-        <div class="row">
-            <div class="col-12">
-                <h3><%=course.course_name%>&nbsp;</h3>
-                <p class="font-italic"><%=course.title%></p>
-            </div>
-            <div class="col-12">
-                <p><%=course.description%></p>
-            </div>
-            <% course.sections.each do |section| %>
-            <div class="col"></div> 
-            <div class="col-11 section-container">
-                <h4><%=section.section_number%></h4>
-                </br>
-                <p><%=section.term_id%> <%=section.start_date%> - <%=section.end_date%></p>
-                </br></br>
-                <p><%=section.location_id%></p>
-                </br> 
-                <div class="peopleContainer">
-                    <!--<p>
-                        Graders: <section.users.each do |grader|%>
-                        <=grader.user_id%>
-                        <end%>
-                    </p>-->
-                    <p>Instructor: <%=section.instructor_id%></p>
+            <div class="row bg-light">
+                <div class="col">
+                    <div class="row">
+                        <h3><%=course.course_name%>&nbsp;</h3>
+                        <p class="font-italic"><%=course.title%></p>
+                        <p><%=course.description%></p>
+                    </div>
+                    
+                    <% course.sections.each do |section| %>
+                        <div class="row">
+                            <div class="col-1"></div>
+                            <div class="col section-container">
+                                <h4><%=section.section_number%></h4>
+                                </br>
+                                <p><%=section.term_id%> <%=section.start_date%> - <%=section.end_date%></p>
+                                </br></br>
+                                <p><%=section.location_id%></p>
+                                </br> 
+                                <div class="peopleContainer">
+                                    <!--<p>
+                                        Graders: <section.users.each do |grader|%>
+                                        <=grader.user_id%>
+                                        <end%>
+                                    </p>-->
+                                    <p>Instructor: <%=section.instructor_id%></p>
+                                </div>
+                            </div>
+                        </div>
+                        <% if @TextForButton then %>
+                            <div class="col-10"></div>
+                            <div class="col-2 user-affect-button">
+                                <form action="<%=@PathForButton%>" method="post">
+                                    <input type="text" class="hidden" name="section_id" value="<%= section.id %>" />
+                                    <button type="submit" class="btn btn-outline-primary disappear"><%= @TextForButton %> </button>
+                                </form>
+                            </div>
+                        <%end%>
+                    <%end%>
                 </div>
             </div>
-            <% if @TextForButton then %>
-                <div class="col-10"></div>
-                <div class="col-2 user-affect-button">
-                <form action="<%=@PathForButton%>" method="post">
-                    <input type="text" class="hidden" name="section_id" value="<%= section.id %>" />
-                    <button type="submit" class="btn btn-outline-primary disappear"><%= @TextForButton %> </button>
-                </form>
-                </div>
-            <% end %>
-            <%end%>
-        </div>
         <%end%>
         
     </div>
