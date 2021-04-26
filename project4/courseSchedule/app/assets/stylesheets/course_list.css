@@ -16,12 +16,18 @@
     float: left;
 }
 
-.class-container{
-    background: rgba(0, 0, 128, 0.3);
+.course-container{
+    background: rgba(0, 0, 128, 0.1);
+    margin-bottom: 1em;
+}
+.course-information{
+    padding: 1em;
 }
 
 .section-container{
-    background: rgba(0, 255, 0, 0.1);
+    background: rgba(25, 25, 100, 0.1);
+    margin-bottom: 1em;
+    padding: 1em;
 }
 
 .peopleContainer{

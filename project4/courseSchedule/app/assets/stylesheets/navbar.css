@@ -22,6 +22,3 @@ li a {
 li a:hover {
   background-color: rgb(25, 25, 200);
 }
-.navbar{
-  max-width: 100% !important;
-}

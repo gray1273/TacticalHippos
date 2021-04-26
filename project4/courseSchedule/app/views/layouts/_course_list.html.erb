@@ -6,48 +6,59 @@
 
 
 <!-- < content_for :search do %> -->
-    <div class="main-container" id="list-container">
-        <% @Courses.each do |course| %>
-            <div class="row bg-light">
-                <div class="col">
-                    <div class="row">
-                        <h3><%=course.course_name%>&nbsp;</h3>
-                        <p class="font-italic"><%=course.title%></p>
-                        <p><%=course.description%></p>
-                    </div>
-                    
-                    <% course.sections.each do |section| %>
-                        <div class="row">
-                            <div class="col-1"></div>
-                            <div class="col section-container">
-                                <h4><%=section.section_number%></h4>
-                                </br>
-                                <p><%=section.term_id%> <%=section.start_date%> - <%=section.end_date%></p>
-                                </br></br>
-                                <p><%=section.location_id%></p>
-                                </br> 
-                                <div class="peopleContainer">
-                                    <!--<p>
-                                        Graders: <section.users.each do |grader|%>
-                                        <=grader.user_id%>
-                                        <end%>
-                                    </p>-->
-                                    <p>Instructor: <%=section.instructor_id%></p>
+    <div class="row justify-content-center">
+        <div class="col-10">
+            <% @Courses.each do |course| %>
+                    <div class="row course-container">
+                        <div class="col">
+                            <div class="row course-information">
+                                <div class="col d-flex flex-column">
+                                    <h3><%=course.course_name%>&nbsp;</h3>
+                                    <div class="font-italic"><%=course.title%></div>
+                                    <div><%=course.description%></div>
                                 </div>
                             </div>
+                            
+                            <% course.sections.each do |section| %>
+                                <div class="row">
+                                    <div class="col-1"></div>
+                                    <div class="col section-container">
+                                        <div class="row">
+                                            <div class="col">
+                                                <h4>Section <%=section.section_number%> (<%=section.class_number%>)</h4>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col d-flex flex-column">
+                                                <div><%=section.section_type.title%></div>
+                                                <div>Instructor: <%=section.instructor.first_name%> <%=section.instructor.last_name%></div>
+                                                <div><%=section.instruction_mode.mode%></div>
+                                                <!--https://www.tutorialspoint.com/ruby/ruby_date_time.htm-->
+                                                <div><%=section.location.location%></div>
+                                            </div>
+                                            <div class="col d-flex flex-column">
+                                                <div><%=section.term.season.title%> <%=section.term.year%></div>
+                                                <div><%=(section.start_date.nil? || section.end_date.nil?)? "No start/end date" : "#{section.start_date.strftime("%m/%d/%Y")} - #{section.end_date.strftime("%m/%d/%Y")}"%></div>
+                                                <div><%=(section.days_of_week.eql? "")? "No days of week" : section.days_of_week%></div>
+                                                <div><%=(section.start_time.nil? || section.end_time.nil?)? "No start/end time" : "#{section.start_time.strftime("%H:%M")} - #{section.end_date.strftime("%H:%M")}"%></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-1"></div>
+                                </div>
+                                <% if @TextForButton then %>
+                                    <div class="col-10"></div>
+                                    <div class="col-2 user-affect-button">
+                                        <form action="<%=@PathForButton%>" method="post">
+                                            <input type="text" class="hidden" name="section_id" value="<%= section.id %>" />
+                                            <button type="submit" class="btn btn-outline-primary disappear"><%= @TextForButton %> </button>
+                                        </form>
+                                    </div>
+                                <%end%>
+                            <%end%>
                         </div>
-                        <% if @TextForButton then %>
-                            <div class="col-10"></div>
-                            <div class="col-2 user-affect-button">
-                                <form action="<%=@PathForButton%>" method="post">
-                                    <input type="text" class="hidden" name="section_id" value="<%= section.id %>" />
-                                    <button type="submit" class="btn btn-outline-primary disappear"><%= @TextForButton %> </button>
-                                </form>
-                            </div>
-                        <%end%>
-                    <%end%>
-                </div>
+                    </div>
+                <%end%>
             </div>
-        <%end%>
-        
     </div>
