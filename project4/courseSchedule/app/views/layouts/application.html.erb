@@ -34,7 +34,7 @@
   </head>
 
   <body>
-  
+
   <!-- Add a success one? -->
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
@@ -42,6 +42,14 @@
     <%= render 'layouts/navbar' %>
 
     <%= yield %>
+
+    <% if current_user != nil and current_user.user_type != nil and current_user.user_type.title == "Administrator" then %>
+    <div id= "webscrape">
+  <p>Click the button to scrap the data from the course website! </p>
+  <%= button_to "Scrap the data", '/webscrape', method: :get%>
+</div>
+<% end %>
+
   </body>
 
 
