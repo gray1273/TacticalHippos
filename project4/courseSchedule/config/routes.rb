@@ -9,6 +9,11 @@ Rails.application.routes.draw do
   get 'apply', to: 'grader_application#index'
   post 'users/sign_up', to: 'users_controller#create'
   post 'apply', to: 'grader_application#edit'
+  get 'recommendations', to: 'recommendations#index'
+  get 'recommendations/show', to: 'recommendations#show'
+  get 'recommendations/new', to: 'recommendations#new'
+  post 'recommendations', to: 'recommendations#create'
+  get 'recommendations/destroy', to: 'recommendations#destroy'
   root to: 'search#index'
   #devise_scope :user do
   #  root :to => "devise/sessions#new"
