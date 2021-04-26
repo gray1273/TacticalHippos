@@ -12,3 +12,5 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # application.js, application.css, and all non-JS/CSS in the app/assets
 # folder are already added.
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
+# https://stackoverflow.com/questions/57888098/how-can-i-include-javascript-file-in-the-rails-assets-pipeline
+Rails.application.config.assets.precompile += %w(section.js)

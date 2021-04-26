@@ -2,10 +2,14 @@
 <% content_for :course_list_head do %>
     <%= stylesheet_link_tag 'course_list.css' %>
     <%= javascript_pack_tag 'course_list.js' %>
+    <%= javascript_include_tag 'section.js' %>
 <% end %>
 
 
 <!-- < content_for :search do %> -->
+    <%if current_user != nil and current_user.user_type.title == "Grader" then%>
+        <%graderSections = GraderSection.where(grader_id: current_user.id)%>
+    <%end%>
     <div class="row justify-content-center">
         <div class="col-10">
             <% @Courses.each do |course| %>
@@ -21,6 +25,7 @@
                             
                             <% course.sections.each do |section| %>
                                 <div class="row">
+                                    <!--https://getbootstrap.com/docs/4.0/utilities/flex/-->
                                     <div class="col-1"></div>
                                     <div class="col section-container">
                                         <div class="row">
@@ -44,7 +49,33 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
+                                    <div id="section-<%=section.id%>" class="col-1 user-information d-flex flex-column justify-content-center section-container">
+                                        <!--https://getbootstrap.com/docs/4.0/components/forms/-->
+                                        <%if current_user != nil and current_user.user_type.title == "Grader" then%>
+                                            <!--https://stackoverflow.com/questions/11376746/how-can-i-check-if-an-object-with-specific-property-exists-in-a-ruby-array-->
+                                            <!--https://getbootstrap.com/docs/4.0/components/forms/-->
+                                            <%graderSectionIndex = graderSections.find_index {|gs| gs.section_id == section.id}%>
+                                            <%unless graderSectionIndex.nil?%>
+                                                <%graderSection = graderSections[graderSectionIndex]%>
+                                                <%if graderSection.status == :applied%>
+                                                    <div>Applied</div>
+                                                <%elsif graderSection.status == :accepted%>
+                                                    <div>Accepted</div>
+                                                <%else%>
+                                                    <div>Rejected</div>
+                                                <%end%>
+                                            <%else%>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value="" id="section-<%=section.id%>-checkbox" onchange="toggleGraderSection(<%=section.id%>)">
+                                                    <label class="form-check-label" for="section-<%=section.id%>-checkbox">Apply</label>
+                                                </div>
+                                            <%end%>
+                                        <%elsif current_user != nil and current_user.user_type.title == "Instructor" then%>
+                                            <%if section.instructor.instructor_id == current_user.id%>
+                                                <div>Instructing</div>
+                                            <%end%>
+                                        <%end%>
+                                    </div>
                                     <div class="col-1"></div>
                                 </div>
                                 <% if @TextForButton then %>

@@ -1,0 +1,15 @@
+//https://stackoverflow.com/questions/40055382/how-to-call-javascript-function-only-when-checkbox-is-checked/40055438
+//https://stackoverflow.com/questions/17650776/add-remove-html-inside-div-using-javascript
+function toggleGraderSection(id){
+	if(document.getElementById("section-"+id+"-checkbox").checked){
+	    const div = document.createElement('div');
+	    div.id = "section-"+id+"-button"
+	    div.innerHTML = 'CHECKED';
+	    document.getElementById("section-"+id).appendChild(div);
+  	} else {
+    	document.getElementById("section-"+id).removeChild(document.getElementById("section-"+id+"-button"));
+  	}
+}
+function test(){
+
+}
