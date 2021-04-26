@@ -2,9 +2,15 @@
 <html>
     <head></head>
     <body>
-        <%= render :partial => "navbar" %>
-
-        <h1>View Page</h1>
-        <p>User Type: <%= @user_type %> </p>
+        <% if @user_type == "GRADER" %>
+            <p>Grader</p>
+            <p><%= @data.length %></p>
+        <% elsif @user_type == "INSTRUCTOR" %>
+            <p>Instructor</p>
+            <p><%= @data.length %></p>
+        <% else %>
+            <p>Administator</p>
+            <p><%= @data.length %></p>
+        <% end %>
     </body>
 </html>
