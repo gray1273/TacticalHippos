@@ -1,6 +1,6 @@
 class ViewSectionsController < ApplicationController
     def index
-        puts "User type" + user.user_type
-        @user_type = user.user_type
+        puts "User type" + current_user.user_type
+        @user_type = current_user.user_type
     end
 end
