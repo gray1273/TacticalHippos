@@ -108,12 +108,13 @@
             }
 
             console.log(modalOpenLinks);
-            modalOpenLinks.forEach(function(link) {
-                link.onclick = handleClick(event);
-            });
+            for(let i = 0; i < modalOpenLinks.length(); i++)
+                modalOpenLinks[i].onclick = handleClick;
+
             modelCloseButton.onclick = function() {
                 modal.style.display = "none";
             }
+
             window.onclick = function(event) {
                 if(event.target == modal)
                     modal.style.display = "none";
