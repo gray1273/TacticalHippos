@@ -9,7 +9,7 @@ class ViewSectionsController < ApplicationController
                 @data = get_grader_sections
             when "INSTRUCTOR"
                 @data = get_instructor_sections
-            when "Admin"
+            when "ADMINISTRATOR"
                 @data = get_admin_data
             else
                 raise "User Type Error"
