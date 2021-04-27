@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <% tab_title = {"GRADER" => "My Sections", "INSTRUCTOR" => "My Sections", "ADMINISTRATOR" => "Master View"} %>
+        <title><%= tab_title[@user_type] %></title>
+    </head>
+    <body>
+        <!--Graders are shown their current sections and sections they applied to-->
+        <% if @user_type == "GRADER" %>
+            <h3>Currently Grading</h3>
+            <ol>
+                <% @data[0].each do |grader_section| %>
+                    <li><p><%= grader_section.course.title + ", " + grader_section.section.section_number %></p></li>
+                    <br>
+                <% end %>
+            </ol>
+            <h3>Pending Applications</h3>
+            <ol>
+                <% @data[1].each do |grader_section| %>
+                    <li><p><%= grader_section.course.title + ", " + grader_section.section.section_number %></p></li>
+                    <br>
+                <% end %>
+            </ol>
+        <!--Instructors are shown their current sections-->
+        <% elsif @user_type == "INSTRUCTOR" %>
+            <h3>Currently Grading</h3>
+            <ol>
+                <% @data.each do |section| %>
+                    <li><p><%= section.course.tital + ", " + section.section_number %></p></li>
+                    <br>
+                <% end %>
+            </ol>
+        <!--Administrators are shown all sections and all users-->
+        <% elsif @user_type == "ADMINISTRATOR" %>
+            <h3>Courses</h3>
+            <ol>
+                <% @data[0].each do |course| %>
+                    <li><p><%= course.course_name + (course.title.length > 0 ? " - " + course.title : "") %></p></li>
+                    <br>
+                    <ol>
+                        <% course.sections.each do |section| %>
+                            <li><p><%= section.section_number %></p></li>
+                            <br>
+                        <% end %>
+                    </ol>
+                <% end %>
+            </ol>
+            <h3>Users</h3>
+            <ol>
+                <% @data[1].each do |user| %>
+                    <li><p><%= user.first_name + " " + user.last_name + " : " + user.user_type.title %></p></li>
+		            <br>
+                <% end %>
+            </ol>
+        <% else %>
+            <% puts "Cannot display information - user type error" %>
+        <% end %>
+    </body>
+</html>

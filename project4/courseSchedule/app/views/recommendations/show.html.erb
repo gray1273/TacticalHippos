@@ -1,13 +1,20 @@
 <h1>Recommendation</h1>
-
 <p>
-   <strong>Student: </strong> $<%= @recommendation.user_id %><br />
+   <strong>Student: </strong> <%= @recommendation.user_id %><br />
    <strong>Course:</strong> <%= @recommendation.course_id %><br />
    <strong>Section:</strong> <%= @recommendation.section_id %><br />
+   <strong>Instructor:</strong> <%= @recommendation.instructor_id %><br />
+   <strong>Description: </strong><%= @recommendation.description %><br />
+   <strong>Type:</strong> 
    
+   <% if @recommendation.recommendation_type == 0 then %>
+   <p>Recommend student for all sections of the course</p>
+   <%elsif @recommendation.recommendation_type == 1 then%>
+   <p>Recommend student for specific section<p>
+   <%end%>
 </p>
 
-<p><%= @recommendation.description %></p>
+
 
 <hr />
 
