@@ -11,12 +11,14 @@
             <ol>
                 <% @data[0].each do |grader_section| %>
                     <li><p><%= grader_section.course.title %>, <%= grader_section.section.section_number %></p></li>
+                    <br>
                 <% end %>
             </ol>
             <h3>Pending Applications</h3>
             <ol>
                 <% @data[1].each do |grader_section| %>
                     <li><p><%= grader_section.course.title %>, <%= grader_section.section.section_number %></p></li>
+                    <br>
                 <% end %>
             </ol>
         <!--Instructors are shown their current sections-->
@@ -25,6 +27,7 @@
             <ol>
                 <% @data.each do |section| %>
                     <li><p><%= section.course.tital %>, <%= section.section_number %></p></li>
+                    <br>
                 <% end %>
             </ol>
         <!--Administrators are shown all sections and all users-->
@@ -33,6 +36,13 @@
             <ol>
                 <% @data[0].each do |course| %>
                     <li><p><%= course.title %></p></li>
+                    <br>
+                    <ol>
+                        <% course.sections.each do |section| %>
+                            <li><p><%= section.section_number %></p></li>
+                            <br>
+                        <% end %>
+                    </ol>
                 <% end %>
             </ol>
             <h3>Users</h3>

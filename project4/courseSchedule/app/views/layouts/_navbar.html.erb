@@ -6,15 +6,15 @@
     <div class='container'>
         <nav>
             <ul>
-            <% if current_user != nil and current_user.user_type != nil and current_user.user_type.title == "Grader" then %>
+            <% if current_user != nil and current_user.user_type != nil and current_user.user_type.title.downcase == "grader" then %>
                 <% puts 'grader' %>
                 <li><%= link_to "Apply", '/apply' %></li>
                 <li><%= link_to "My Sections", '/view' %></li>
-            <% elsif current_user != nil and current_user.user_type.title == "Administator" then %>
+            <% elsif current_user != nil and current_user.user_type.title.downcase == "administrator" then %>
                 <% puts 'admin' %>
                 <li><%= link_to "Assign", '/assign' %></li>
                 <li><%= link_to "All Sections", '/view' %></li>
-            <% elsif current_user != nil and current_user.user_type.title == "Instructor" then %>
+            <% elsif current_user != nil and current_user.user_type.title.downcase == "instructor" then %>
                 <% puts 'instructor' %>
                 <li><%= link_to "My Sections", '/view' %></li>
             <% end %>
