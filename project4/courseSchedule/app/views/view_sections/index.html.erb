@@ -9,13 +9,19 @@
             <p>Instructor</p>
             <p><%= @data.length %></p>
         <% else %>
-            <p>Administator</p>
-	    <% puts @data.length %>
-	    <% puts @data[1] %>
-            <% @data[1].each do |user| %>
-              <p>First name: <%= user.first_name %></p>
-	      <p>Last Name: <%= user.last_name  %></p>
-	    <% end %>
+            <h2>Administrator View</h2>
+            <h3>Sections</h3>
+            <ol>
+                <% @data[0].each do |section| %>
+                    <li><p><%= section.section_type.title %></p></li>
+                <% end %>
+            </ol>
+            <h3>Users</h3>
+            <ol>
+                <% @data[1].each do |user| %>
+                    <li><p><%= user.first_name %> <%= user.last_name %>: <%= user.user_types.title %></p></li>
+                <% end %>
+            </ol>
         <% end %>
     </body>
 </html>
