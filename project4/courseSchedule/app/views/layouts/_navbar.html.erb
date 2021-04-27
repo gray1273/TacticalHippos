@@ -9,7 +9,6 @@
             <% if current_user != nil and current_user.user_type != nil and current_user.user_type.title == "Grader" then %>
                 <% puts 'grader' %>
                 <li><%= link_to "Apply", '/apply' %></li>
-                <li><%= link_to "My Applications", '/my_applications' %></li>
                 <li><%= link_to "My Sections", '/view' %></li>
             <% elsif current_user != nil and current_user.user_type.title == "Administator" then %>
                 <% puts 'admin' %>

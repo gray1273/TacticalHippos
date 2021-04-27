@@ -12,7 +12,7 @@ class ViewSectionsController < ApplicationController
             when "ADMINISTRATOR"
                 @data = get_admin_data
             else
-                raise "User Type Error"
+                puts "User Type Error"
             end
         end
     end
@@ -36,11 +36,11 @@ class ViewSectionsController < ApplicationController
         return instructor_sections
     end
 
-    #Return all sections, instructors, and graders
+    #Return all courses and users
     def get_admin_data
         admin_data = []
 
-        admin_data << Section.all
+        admin_data << Course.all
         admin_data << User.all
 
         return admin_data

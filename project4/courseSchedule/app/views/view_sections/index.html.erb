@@ -1,19 +1,38 @@
 <!DOCTYPE html>
 <html>
-    <head></head>
+    <head>
+        <% tab_title = {"GRADER" => "My Sections", "INSTRUCTOR" => "My Sections", "ADMINISTRATOR" => "Master View"} %>
+        <title><%= tab_title[@user_type] %></title>
+    </head>
     <body>
+        <!--Graders are shown their current sections and sections they applied to-->
         <% if @user_type == "GRADER" %>
-            <p>Grader</p>
-            <p><%= @data.length %></p>
+            <h3>Currently Grading</h3>
+            <ol>
+                <% @data[0].each do |grader_section| %>
+                    <li><p><%= grader_section.course.title %>, <%= grader_section.section.section_number %></p></li>
+                <% end %>
+            </ol>
+            <h3>Pending Applications</h3>
+            <ol>
+                <% @data[1].each do |grader_section| %>
+                    <li><p><%= grader_section.course.title %>, <%= grader_section.section.section_number %></p></li>
+                <% end %>
+            </ol>
+        <!--Instructors are shown their current sections-->
         <% elsif @user_type == "INSTRUCTOR" %>
-            <p>Instructor</p>
-            <p><%= @data.length %></p>
-        <% else %>
-            <h2>Administrator View</h2>
+            <h3>Currently Grading</h3>
+            <ol>
+                <% @data.each do |section| %>
+                    <li><p><%= section.course.tital %>, <%= section.section_number %></p></li>
+                <% end %>
+            </ol>
+        <!--Administrators are shown all sections and all users-->
+        <% elsif @user_type == "ADMINISTRATOR" %>
             <h3>Courses</h3>
             <ol>
-                <% @data[0].each do |section| %>
-                    <li><p><%= section.course.title %></p></li>
+                <% @data[0].each do |course| %>
+                    <li><p><%= course.title %></p></li>
                 <% end %>
             </ol>
             <h3>Users</h3>
@@ -23,6 +42,8 @@
 		            <br>
                 <% end %>
             </ol>
+        <% else %>
+            <% puts "Cannot display information - user type error" %>
         <% end %>
     </body>
 </html>
