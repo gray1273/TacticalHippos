@@ -54,4 +54,5 @@ class RecommendationsController < ApplicationController
       params.require(:recommendation).permit(:user_id, :course_id, :section_id, :instructor_id, :description, :recommendation_type)
     end
 
+
 end
