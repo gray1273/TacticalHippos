@@ -10,14 +10,14 @@
             <h3>Currently Grading</h3>
             <ol>
                 <% @data[0].each do |grader_section| %>
-                    <li><p><%= grader_section.course.title %>, <%= grader_section.section.section_number %></p></li>
+                    <li><p><%= grader_section.course.title + ", " + grader_section.section.section_number %></p></li>
                     <br>
                 <% end %>
             </ol>
             <h3>Pending Applications</h3>
             <ol>
                 <% @data[1].each do |grader_section| %>
-                    <li><p><%= grader_section.course.title %>, <%= grader_section.section.section_number %></p></li>
+                    <li><p><%= grader_section.course.title + ", " + grader_section.section.section_number %></p></li>
                     <br>
                 <% end %>
             </ol>
@@ -26,7 +26,7 @@
             <h3>Currently Grading</h3>
             <ol>
                 <% @data.each do |section| %>
-                    <li><p><%= section.course.tital %>, <%= section.section_number %></p></li>
+                    <li><p><%= section.course.tital + ", " + section.section_number %></p></li>
                     <br>
                 <% end %>
             </ol>
@@ -35,7 +35,7 @@
             <h3>Courses</h3>
             <ol>
                 <% @data[0].each do |course| %>
-                    <li><p><%= course.course_name %><%=course.title.length > 0 ? " - " + course.title : "" %></p></li>
+                    <li><p><%= course.course_name + (course.title.length > 0 ? " - " + course.title : "") %></p></li>
                     <br>
                     <ol>
                         <% course.sections.each do |section| %>
@@ -48,7 +48,7 @@
             <h3>Users</h3>
             <ol>
                 <% @data[1].each do |user| %>
-                    <li><p><%= user.first_name %> <%= user.last_name %>: <%= user.user_type.title %></p></li>
+                    <li><p><%= user.first_name + " " + user.last_name + " : " + user.user_type.title %></p></li>
 		            <br>
                 <% end %>
             </ol>
