@@ -31,9 +31,11 @@
                 <tr>
                     <td><p><%= course.course_name %></p></td>
                     <td>
-                        <% course.sections.grader_sections.each do |grader_section| %>
-                            <p><%= grader_section.user.first_name + grader_section.user.last_name %></p>
-                            <br>
+                        <% course.sections.each do |section| %>
+                            <% section.grader_sections.each do |grader_section| %>
+                                <p><%= grader_section.user.first_name + grader_section.user.last_name %></p>
+                                <br>
+                            <% end %>
                         <% end %>
                     </td>
                     <td class="edit-button">Edit</td>
