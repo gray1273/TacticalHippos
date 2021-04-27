@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get 'search', to: 'search#index'
   get 'apply', to: 'grader_application#index'
   get 'view', to: 'view_sections#index'
+  get '/grader_assignment/edit', to: 'grader_assignment#edit'
   post 'users/sign_up', to: 'users_controller#create'
   post 'apply', to: 'grader_application#edit'
   root to: 'search#index'
