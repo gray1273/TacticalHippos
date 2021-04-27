@@ -94,6 +94,8 @@
             </div>
         </div>
         <script>
+            alert("Test 1");
+
             let modal = document.getElementById("form-container");
 
             let modalOpenLinks = document.getElementsByClassName("edit-button");
@@ -102,9 +104,10 @@
             function handleClick(event) {
                 // modal.style.display = "block";
                 // document.getElementById("section-id").setAttribute("value", event.getAttribute("value"));
-                alert("Test");
+                alert("Test 2");
             }
 
+            console.log(modalOpenLinks);
             modalOpenLinks.forEach(function(link) {
                 link.onclick = handleClick(event);
             });
