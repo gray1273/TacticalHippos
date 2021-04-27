@@ -21,12 +21,14 @@
     <%= f.label "Description" %><br />
     <%= f.text_field :description%>
   </div>
+  <div class="field">
+    <%= f.label "Recommendation Type: Enter 0 or 1" %>
+    <br /><%= f.number_field :recommendation_type%><br />
+    <%= f.label "0 = Recommend student for all sections of the course"%><br />
+    <%= f.label "1 = Recommend student for specific section with instructor"%>
+    
+  </div>
   
-  <label for="cars">Type of Recommendation:</label>
-<select name="recommendation type" id="cars">
-    <option value= :recommendation_type >Recommend Student for all sections of course</option>
-    <option value= recommendation_type >Request student for specific sections with instructor</option>
-  </optgroup>
-  <br><%=f.submit "Create"%>
+<p><%=f.submit "Create"%></p>
 <%end%>
 <%= link_to 'Back', {:action => 'index'} %>
