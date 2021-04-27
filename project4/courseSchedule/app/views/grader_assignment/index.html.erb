@@ -85,7 +85,7 @@
                     <% @graders.each do |grader| %>
                         <% grader_id = grader.id %>
                         <input type="checkbox" id=<%= grader_id %> name=<%= grader_id %>/>
-                        <label for=<%= grader_id %>><% grader_name = grader.first_name + " " + grader.last_name %></label>
+                        <label for=<%= grader_id %>><%= grader.first_name + " " + grader.last_name %></label>
                         <br>
                     <% end %>
                     <input type="hidden" id="section-id" name="section_id"/>
