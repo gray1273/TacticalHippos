@@ -2,7 +2,7 @@ class GraderAssignmentController < ApplicationController
     def index
         if user_signed_in?
             @courses = Course.all
-            @graders = User.joins(:user_types).where(:user_types.title => "Grader")
+            @graders = User.joins(:user_types).where('user_types.title = "Grader"')
         end
     end
 
