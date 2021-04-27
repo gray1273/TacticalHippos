@@ -14,8 +14,8 @@
                 <tr>
                     <td><p><%= course.course_name %></p></td>
                     <td>
-                        <% course.sections.grader_sections.each do |grader_section| %>
-                            <% puts grader_section.methods %>
+                        <% course.sections.each do |section| %>
+                            <% puts section.methods %>
                         <% end %>
                     </td>
                     <td>Edit</td>
