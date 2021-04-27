@@ -13,9 +13,6 @@
     <%end%>
     <div class="row justify-content-center">
         <div class="col-10">
-            <div id="apply-all-button" style="display: none;">
-                <%= button_to "Apply All", {controller: "grader_sections", action: "create_many"}, class: "btn btn-success", params: {selectedSections} %>
-            </div>
             <% @Courses.each do |course| %>
                     <div class="row course-container">
                         <div class="col">

@@ -27,7 +27,7 @@ class GraderSectionsController < ApplicationController
     if @grader_section.save
       # redirect_to @grader_section
     else
-      render :new
+      # render :new
     end
   end
 
