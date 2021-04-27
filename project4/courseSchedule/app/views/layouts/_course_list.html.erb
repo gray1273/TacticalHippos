@@ -9,9 +9,13 @@
 <!-- < content_for :search do %> -->
     <%if current_user != nil and current_user.user_type.title == "Grader" then%>
         <%graderSections = GraderSection.where(grader_id: current_user.id)%>
+        <%selectedSections = Array.new%>
     <%end%>
     <div class="row justify-content-center">
         <div class="col-10">
+            <div id="apply-all-button" style="display: none;">
+                <%= button_to "Apply All", {controller: "grader_sections", action: "create_many"}, class: "btn btn-success", params: {selectedSections} %>
+            </div>
             <% @Courses.each do |course| %>
                     <div class="row course-container">
                         <div class="col">
@@ -66,10 +70,13 @@
                                                 <%end%>
                                             <%else%>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="" id="section-<%=section.id%>-checkbox" onchange="toggleGraderSection(<%=section.id%>)">
+                                                    <input class="form-check-input" type="checkbox" value="0" id="section-<%=section.id%>-checkbox" onchange="toggleGraderSection(<%=section.id%>)">
                                                     <label class="form-check-label" for="section-<%=section.id%>-checkbox">Apply</label>
                                                 </div>
                                             <%end%>
+                                            <div id="section-<%=section.id%>-button" style="display: none;">
+                                                <%= button_to "Apply", {controller: "grader_sections", action: "create"}, class: "btn btn-success", params: {:grader_section => {:grader_id => current_user.id, :section_id => section.id}} %>
+                                            </div>
                                         <%elsif current_user != nil and current_user.user_type.title == "Instructor" then%>
                                             <%if section.instructor.instructor_id == current_user.id%>
                                                 <div>Instructing</div>
