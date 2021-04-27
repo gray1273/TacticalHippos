@@ -19,7 +19,8 @@
             <h3>Users</h3>
             <ol>
                 <% @data[1].each do |user| %>
-                    <li><p><%= user.first_name %> <%= user.last_name %>: <%= user.user_types.title %></p></li>
+                    <li><p><%= user.first_name %> <%= user.last_name %>: <%= user.user_type.title %></p></li>
+		    <br>
                 <% end %>
             </ol>
         <% end %>
