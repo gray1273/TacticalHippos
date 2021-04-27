@@ -5,8 +5,8 @@
 
 <ul id = "recommendations">
    <% @recommendations.each do |rec| %>
-   <%= link_to rec.course_id, {:action => 'show', :id => rec.id} %> <%=link_to " ------> Delete", {:action => 'destroy', :id => rec.id}, :confirm => "Are you sure you want to delete this recommendation?"%><br />
-   <% end %>
+   <%= link_to rec.user_id, {:action => 'show', :id => rec.id} %> <%=link_to " ------> Delete", {:action => 'destroy', :id => rec.id}, :confirm => "Are you sure you want to delete this recommendation?"%><br />
+   <% end%>
 </ul>
 
 <% end %>

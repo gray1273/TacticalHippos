@@ -1,6 +1,6 @@
 class RecommendationsController < ApplicationController
 
-  before_action :instructor_user, only: [:show, :edit, :update, :destroy]
+  before_action 
 
   def index
     @recommendations = Recommendation.all
@@ -51,10 +51,8 @@ class RecommendationsController < ApplicationController
 
   private
     def user_type_params
-      params.require(:recommendation).permit(:student_id, :course_id, :section_id, :instructor_id, :recommendationType,:description)
+      params.require(:recommendation).permit(:user_id, :course_id, :section_id, :instructor_id, :description, :recommendation_type)
     end
 
-    def instructor_user
-      @instructor_user = Instructor.find(params[:id])
-    end
+
 end
