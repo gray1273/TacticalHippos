@@ -1,2 +1,26 @@
-Test
-
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Assign Graders</title>
+    </head>
+    <body>
+        <table>
+            <tr>
+                <th>Course</th>
+                <th>Graders Assigned</th>
+                <th>Edit</th>
+            </tr>
+            <% @data.each do |course| %>
+                <tr>
+                    <td><p><%= course.course_name %></p></td>
+                    <td>
+                        <% course.sections.grader_sections.each do |grader_section| %>
+                            <% puts grader_section.methods %>
+                        <% end %>
+                    </td>
+                    <td>Edit</td>
+                </tr>
+            <% end %>
+        </table>
+    </body>
+</html>
