@@ -9,16 +9,17 @@
             <% if current_user != nil and current_user.user_type != nil and current_user.user_type.title == "Grader" then %>
                 <% puts 'grader' %>
                 <li><%= link_to "Apply", '/apply' %></li>
-                <li><%= link_to "My Applications", '/my_applications' %></li>
-                <li><%= link_to "My Sections", '/my_sections' %></li>
+                <li><%= link_to "My Sections", '/view' %></li>
             <% elsif current_user != nil and current_user.user_type.title == "Admin" then %>
                 <% puts 'admin' %>
                 <li><%= link_to "Assign", '/assign' %></li>
                 <li><%= link_to "Recommendations", '/recommendations' %></li>
+                <li><%= link_to "Master View", '/view' %></li>
             <% elsif current_user != nil and current_user.user_type.title == "Instructor" then %>
                 <% puts 'instructor' %>
+                <li><%= link_to "My Sections", '/view' %></li>
             <% end %>
-            
+
             <li><%= link_to "Search", '/search' %></li>
             <li><%= link_to "Recommendations", '/recommendations' %></li>
             <li><%= link_to "Login", '/users/sign_in' %></li>
