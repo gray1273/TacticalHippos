@@ -10,7 +10,7 @@
                 <% puts 'grader' %>
                 <li><%= link_to "Apply", '/apply' %></li>
                 <li><%= link_to "My Sections", '/view' %></li>
-            <% elsif current_user != nil and current_user.user_type.title == "Admin" then %>
+            <% elsif current_user != nil and current_user.user_type.title == "Administrator" then %>
                 <% puts 'admin' %>
                 <li><%= link_to "Assign", '/assign' %></li>
                 <li><%= link_to "Recommendations", '/recommendations' %></li>
