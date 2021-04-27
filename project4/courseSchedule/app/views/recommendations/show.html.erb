@@ -1,10 +1,10 @@
 <h1>Recommendation</h1>
-
 <p>
-   <strong>Student: </strong> $<%= @recommendation.user_id %><br />
+   <strong>Student: </strong> <%= @recommendation.user_id %><br />
    <strong>Course:</strong> <%= @recommendation.course_id %><br />
    <strong>Section:</strong> <%= @recommendation.section_id %><br />
-   
+   <strong>Instructor:</strong> <%= @recommendation.instructor_id %><br />
+   <strong>Type:</strong> <%= @recommendation.recommendation_type %><br />
 </p>
 
 <p><%= @recommendation.description %></p>
