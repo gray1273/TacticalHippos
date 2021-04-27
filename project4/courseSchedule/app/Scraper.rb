@@ -177,6 +177,9 @@ def scrapeWebsite(campus, term, depart)
 				startDateMonth = startDate[0].to_i
 				startDateDay = startDate[1].to_i
 				startDateYear = startDate[2].to_i
+				if startDateYear < 2000 
+					startDateYear += 2000
+				end
 			end
 
 			endDate = dates[1].split("/")
@@ -187,6 +190,9 @@ def scrapeWebsite(campus, term, depart)
 				endDateMonth = endDate[0].to_i
 				endDateDay = endDate[1].to_i
 				endDateYear = endDate[2].to_i
+				if endDateYear < 2000
+					endDateYear += 2000
+				end
 			end
 
 			times = meetingInfo.css('div.meeting-times.ng-binding').text.strip.split(" - ")

@@ -25,10 +25,17 @@ class GraderSectionsController < ApplicationController
   def create
     @grader_section = GraderSection.new(grader_section_params)
     if @grader_section.save
-      redirect_to @grader_section
+      # redirect_to @grader_section
     else
-      render :new
+      # render :new
     end
+  end
+
+  def create_many
+    puts params
+    params.each { |gs|
+      GraderSection.create(gs)
+    }
   end
 
   def edit

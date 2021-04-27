@@ -106,8 +106,7 @@ class SectionTest < ActiveSupport::TestCase
   		:title => "Title",
   		:description => "This is a description"
   	)
-  	controller = SectionsController.new
-  	testSection = controller.create_safely(course, 0010, 12345, "fn", "ln", "Lecture", "Autumn 2021", "Distance Learning", "Online", 2021, 7, 1, 2021, 12, 20, "MWF", 12, 45, 14, 5)
+  	testSection = SectionsController.create_safely(course, 0010, 12345, "fn", "ln", "Lecture", "Autumn 2021", "Distance Learning", "Online", 2021, 7, 1, 2021, 12, 20, "MWF", 12, 45, 14, 5)
 
   	assert_equal "CourseName", testSection.course.course_name
   	assert_equal "Title", testSection.course.title

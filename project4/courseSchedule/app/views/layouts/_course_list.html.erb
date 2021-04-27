@@ -2,49 +2,98 @@
 <% content_for :course_list_head do %>
     <%= stylesheet_link_tag 'course_list.css' %>
     <%= javascript_pack_tag 'course_list.js' %>
+    <%= javascript_include_tag 'section.js' %>
 <% end %>
 
 
 <!-- < content_for :search do %> -->
-    <div class="container main-container" id="list-container">
-        <% @Courses.each do |course| %>
-        <div class="row">
-            <div class="col-12">
-                <h3><%=course.course_name%>&nbsp;</h3>
-                <p class="font-italic"><%=course.title%></p>
+    <%if current_user != nil and current_user.user_type.title == "Grader" then%>
+        <%graderSections = GraderSection.where(grader_id: current_user.id)%>
+        <%selectedSections = Array.new%>
+    <%end%>
+    <div class="row justify-content-center">
+        <div class="col-10">
+            <% @Courses.each do |course| %>
+                    <div class="row course-container">
+                        <div class="col">
+                            <div class="row course-information">
+                                <div class="col d-flex flex-column">
+                                    <h3><%=course.course_name%>&nbsp;</h3>
+                                    <div class="font-italic"><%=course.title%></div>
+                                    <div><%=course.description%></div>
+                                </div>
+                            </div>
+                            
+                            <% course.sections.each do |section| %>
+                                <div class="row">
+                                    <!--https://getbootstrap.com/docs/4.0/utilities/flex/-->
+                                    <div class="col-1"></div>
+                                    <div class="col section-container">
+                                        <div class="row">
+                                            <div class="col">
+                                                <h4>Section <%=section.section_number%> (<%=section.class_number%>)</h4>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col d-flex flex-column">
+                                                <div><%=section.section_type.title%></div>
+                                                <div>Instructor: <%=section.instructor.first_name%> <%=section.instructor.last_name%></div>
+                                                <div><%=section.instruction_mode.mode%></div>
+                                                <!--https://www.tutorialspoint.com/ruby/ruby_date_time.htm-->
+                                                <div><%=section.location.location%></div>
+                                            </div>
+                                            <div class="col d-flex flex-column">
+                                                <div><%=section.term.season.title%> <%=section.term.year%></div>
+                                                <div><%=(section.start_date.nil? || section.end_date.nil?)? "No start/end date" : "#{section.start_date.strftime("%m/%d/%Y")} - #{section.end_date.strftime("%m/%d/%Y")}"%></div>
+                                                <div><%=(section.days_of_week.eql? "")? "No days of week" : section.days_of_week%></div>
+                                                <div><%=(section.start_time.nil? || section.end_time.nil?)? "No start/end time" : "#{section.start_time.strftime("%H:%M")} - #{section.end_date.strftime("%H:%M")}"%></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="section-<%=section.id%>" class="col-1 user-information d-flex flex-column justify-content-center section-container">
+                                        <!--https://getbootstrap.com/docs/4.0/components/forms/-->
+                                        <%if current_user != nil and current_user.user_type.title == "Grader" then%>
+                                            <!--https://stackoverflow.com/questions/11376746/how-can-i-check-if-an-object-with-specific-property-exists-in-a-ruby-array-->
+                                            <!--https://getbootstrap.com/docs/4.0/components/forms/-->
+                                            <%graderSectionIndex = graderSections.find_index {|gs| gs.section_id == section.id}%>
+                                            <%unless graderSectionIndex.nil?%>
+                                                <%graderSection = graderSections[graderSectionIndex]%>
+                                                <%if graderSection.status == :applied%>
+                                                    <div>Applied</div>
+                                                <%elsif graderSection.status == :accepted%>
+                                                    <div>Accepted</div>
+                                                <%else%>
+                                                    <div>Rejected</div>
+                                                <%end%>
+                                            <%else%>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value="0" id="section-<%=section.id%>-checkbox" onchange="toggleGraderSection(<%=section.id%>)">
+                                                    <label class="form-check-label" for="section-<%=section.id%>-checkbox">Apply</label>
+                                                </div>
+                                            <%end%>
+                                            <div id="section-<%=section.id%>-button" style="display: none;">
+                                                <%= button_to "Apply", {controller: "grader_sections", action: "create"}, class: "btn btn-success", params: {:grader_section => {:grader_id => current_user.id, :section_id => section.id}} %>
+                                            </div>
+                                        <%elsif current_user != nil and current_user.user_type.title == "Instructor" then%>
+                                            <%if section.instructor.instructor_id == current_user.id%>
+                                                <div>Instructing</div>
+                                            <%end%>
+                                        <%end%>
+                                    </div>
+                                    <div class="col-1"></div>
+                                </div>
+                                <% if @TextForButton then %>
+                                    <div class="col-10"></div>
+                                    <div class="col-2 user-affect-button">
+                                        <form action="<%=@PathForButton%>" method="post">
+                                            <input type="text" class="hidden" name="section_id" value="<%= section.id %>" />
+                                            <button type="submit" class="btn btn-outline-primary disappear"><%= @TextForButton %> </button>
+                                        </form>
+                                    </div>
+                                <%end%>
+                            <%end%>
+                        </div>
+                    </div>
+                <%end%>
             </div>
-            <div class="col-12">
-                <p><%=course.description%></p>
-            </div>
-            <% course.sections.each do |section| %>
-            <div class="col"></div> 
-            <div class="col-11 section-container">
-                <h4><%=section.section_number%></h4>
-                </br>
-                <p><%=section.term_id%> <%=section.start_date%> - <%=section.end_date%></p>
-                </br></br>
-                <p><%=section.location_id%></p>
-                </br> 
-                <div class="peopleContainer">
-                    <!--<p>
-                        Graders: <section.users.each do |grader|%>
-                        <=grader.user_id%>
-                        <end%>
-                    </p>-->
-                    <p>Instructor: <%=section.instructor_id%></p>
-                </div>
-            </div>
-            <% if @TextForButton then %>
-                <div class="col-10"></div>
-                <div class="col-2 user-affect-button">
-                <form action="<%=@PathForButton%>" method="post">
-                    <input type="text" class="hidden" name="section_id" value="<%= section.id %>" />
-                    <button type="submit" class="btn btn-outline-primary disappear"><%= @TextForButton %> </button>
-                </form>
-                </div>
-            <% end %>
-            <%end%>
-        </div>
-        <%end%>
-        
     </div>

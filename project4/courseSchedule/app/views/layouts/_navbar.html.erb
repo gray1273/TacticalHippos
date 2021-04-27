@@ -3,7 +3,8 @@
 <% end %>
 
 <header>
-    <div class='container'>
+    <!--https://getbootstrap.com/docs/4.0/utilities/sizing/-->
+    <div class='w-100 ml-0 mr-0 mw-100 pr-0 pl-0 container'>
         <nav>
             <ul>
             <% if current_user != nil and current_user.user_type != nil and current_user.user_type.title == "Grader" then %>

@@ -26,12 +26,19 @@
                 </div>
             </div>
 -->
-    <form action="/search" id="search-bar" method="GET"> 
-        <div class="form-group">
-            <input type="text" class="form-control" id="searchForm" placeholder="What would you like to search for?"/>
-        </div>
-    </form>
-    <%= render "layouts/course_list" %>
+    <!--https://getbootstrap.com/docs/4.0/utilities/sizing/-->
+    <div class="w-100 ml-0 mr-0 mw-100 container">
+        <div class="row justify-content-center">
+            <div class="col-10">
+                <form action="/search" id="search-bar" method="GET"> 
+                    <div class="row form-group">
+                        <input type="text" class="form-control" id="searchForm" placeholder="What would you like to search for?"/>
+                    </div>
+                </form>
+            </div>
+        </div>  
+        <%= render "layouts/course_list" %>
+    </div>
 </body>
 
 
